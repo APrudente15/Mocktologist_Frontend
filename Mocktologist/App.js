@@ -1,23 +1,25 @@
+import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Landing from './pages/landing.js'
-import Dash from './pages/dash.js'
-import Leaderboard from './pages/leaderboard.js'
-import Steps from './pages/steps.js'
-import NavigationMenu from './NavigationMenu';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Pressable, Text } from 'react-native';
+import Landing from './pages/landing.js';
+import Dash from './pages/dash.js';
+import Leaderboard from './pages/leaderboard.js';
+import Steps from './pages/steps.js';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Landing" component={Landing} />
-        <Stack.Screen name="Dash" component={Dash} />
-        <Stack.Screen name="Leaderboard" component={Leaderboard} />
-        <Stack.Screen name="Steps" component={Steps} />
-      </Stack.Navigator>
-      <NavigationMenu />
+      <Drawer.Navigator initialRouteName="Landing">
+        <Drawer.Screen name="Landing" component={Landing} />
+        <Drawer.Screen name="Dash" component={Dash} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+
+
+export default App;
