@@ -1,7 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight, ImageBackground } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Landing() {
+    const navigation = useNavigation();
+
+    const handleLoginPress = () => {
+        navigation.navigate('Dash');
+    };
+
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
@@ -13,14 +20,10 @@ export default function Landing() {
                     <Text style={styles.landingPageText}>Simply choose your favourite taste and we'll do the rest.</Text>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={() => console.log("Signup pressed")}>
-                        <Text style={styles.buttonText}>Signup</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={() => console.log("Login pressed")}>
+                    <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={handleLoginPress}>
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableHighlight>
                 </View>
-                <StatusBar style="auto" />
             </View>
         </ImageBackground>
     );
