@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight, ImageBackground } from 'react-native';
+import { Text, View, Image, TouchableHighlight, ImageBackground } from 'react-native';
+import styles from '../style'
 import { useNavigation } from '@react-navigation/native';
 
 export default function Landing() {
     const navigation = useNavigation();
 
     const handleLoginPress = () => {
-        navigation.navigate('+ New Drink');
+        navigation.navigate('Login');
     };
 
     const handleRegisterPress = () => {
@@ -39,73 +40,3 @@ export default function Landing() {
     );
 }
 
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        resizeMode: 'cover'
-    },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    imageContainer: {
-        flex: 2,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    textContainer: {
-        flex: 1,
-        alignItems: 'center',
-        marginTop: 20
-    },
-    buttonContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    landingPageText1: {
-        color: '#ffffff',
-        marginTop: -40,
-        fontSize: 48,
-        textAlign: 'center',
-        fontWeight: 'bold'
-    },
-    landingPageText2: {
-        color: '#ffffff',
-        marginTop: 50,
-        fontSize: 30,
-        textAlign: 'center'
-    },
-    landingPageImage: {
-        flex: 1,
-        alignSelf: 'stretch',
-        aspectRatio: 1,
-        maxWidth: '70%'
-    },
-    button: {
-        width: 200,
-        height: 50,
-        backgroundColor: '#ED91C8',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 20,
-        marginBottom: 30
-    },
-    buttonText: {
-        color: '#ffffff',
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-    aboutButton: {
-        backgroundColor: 'transparent',
-        position: 'absolute',
-        top: 35,
-        right: 30
-    },
-    aboutText: {
-        color: 'white',
-        fontSize: 64,
-        fontWeight: 'bold',
-    },
-});
