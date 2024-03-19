@@ -33,12 +33,17 @@ const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
         alignItems: 'center',
-        marginTop: verticalScale(20),
+        marginTop: verticalScale(40),
     },
     buttonContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    heading: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
     },
     landingPageText1: {
         color: '#ffffff',
@@ -81,6 +86,17 @@ const styles = StyleSheet.create({
         right: horizontalScale(30),
     },
     aboutText: {
+        color: 'white',
+        fontSize: moderateScale(48),
+        fontWeight: 'bold',
+    },
+    backButton: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: verticalScale(50),
+        left: horizontalScale(30),
+    },
+    backText: {
         color: 'white',
         fontSize: moderateScale(48),
         fontWeight: 'bold',
