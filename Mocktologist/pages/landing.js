@@ -1,10 +1,12 @@
-import React from 'react';
-import { Text, View, Image, TouchableHighlight, ImageBackground } from 'react-native';
-import styles from '../style'
+import React, { useState } from 'react';
+import { Text, View, Image, TouchableHighlight, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Landing() {
     const navigation = useNavigation();
+    const [showOverlay, setShowOverlay] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     const handleLoginPress = () => {
         navigation.navigate('Login');
@@ -14,12 +16,40 @@ export default function Landing() {
         navigation.navigate('Steps');
     };
 
+    const handleAboutPress = () => {
+        setShowOverlay(true);
+        setShowPopup(true)
+    };
+
+    const handlePopupPress = () => {
+        setShowOverlay(false)
+        setShowPopup(false)
+    }
+
+    const Overlay = () => {
+        return (
+            <View style={styles.overlay} />
+        );
+    }
+
+    const Popup = () => {
+        return (
+            <View style={styles.popupBox}>
+                <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
+                    <Text style={styles.popupButtonText}>X</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
-                <TouchableHighlight style={styles.aboutButton} underlayColor="transparent" onPress={() => console.log("About pressed")}>
+                <TouchableHighlight style={styles.aboutButton} underlayColor="transparent" onPress={handleAboutPress}>
                     <Text style={styles.aboutText}>?</Text>
                 </TouchableHighlight>
+                {showOverlay && <Overlay />}
+                {showPopup && <Popup />}
                 <View style={styles.imageContainer}>
                     <Image source={require("../assets/icon.png")} style={styles.landingPageImage} resizeMode="contain" />
                 </View>
@@ -39,4 +69,5 @@ export default function Landing() {
         </ImageBackground>
     );
 }
+
 

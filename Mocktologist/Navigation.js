@@ -1,16 +1,15 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import { StatusBar, Image, View, TouchableHighlight, Text } from 'react-native';
+import { StatusBar, Image, View, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
 import { Login, Landing, Dash, Steps, Top, Profile, Diary } from './pages'
 import styles from './style.js'
 
 const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
-
     const headerOptions = ({ navigation }) => ({
         headerTitle: '',
         headerStyle: {
@@ -50,45 +49,51 @@ const Navigation = () => {
 };
 
 const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
+    const handleAboutPress = () => {
+        navigation.dispatch(DrawerActions.closeDrawer())
+    };
+
     return (
-        <DrawerContentScrollView style={styles.drawerContent} scrollEnabled={false}>
-            <StatusBar translucent backgroundColor="transparent" />
-            <View style={styles.container}>
-                <Image source={require("./assets/icon.png")} style={styles.drawerImage} resizeMode="contain" />
-            </View>
-            <View style={styles.separator} />
-            {state.routes.map((route, index) => {
-                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Steps') {
-                    return null;
-                } else {
-                    const { options } = descriptors[route.key];
-                    const label = options.drawerLabel !== undefined ? options.drawerLabel : route.name;
-                    const itemStyle = label === '+ New Drink' ? styles.newDrinkItem : null;
-                    const marginStyle1 = label === 'Profile' ? styles.profileMargin : null;
-                    const marginStyle2 = label === 'Mix Diary' ? styles.diaryMargin : null;
-                    return (
-                        <View>
-                            <View style={[styles.drawerItemContainer, marginStyle1, marginStyle2]}>
-                                <DrawerItem
-                                    label={label}
-                                    key={route.key}
-                                    onPress={() => navigation.navigate(route.name)}
-                                    labelStyle={[styles.drawerItemLabel, itemStyle]}
-                                />
+        <>
+            <DrawerContentScrollView style={styles.drawerContent} scrollEnabled={false}>
+                <StatusBar translucent backgroundColor="transparent" />
+                <View style={styles.container}>
+                    <Image source={require("./assets/icon.png")} style={styles.drawerImage} resizeMode="contain" />
+                </View>
+                <View style={styles.separator} />
+                {state.routes.map((route, index) => {
+                    if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Steps') {
+                        return null;
+                    } else {
+                        const { options } = descriptors[route.key];
+                        const label = options.drawerLabel !== undefined ? options.drawerLabel : route.name;
+                        const itemStyle = label === '+ New Drink' ? styles.newDrinkItem : null;
+                        const marginStyle1 = label === 'Profile' ? styles.profileMargin : null;
+                        const marginStyle2 = label === 'Mix Diary' ? styles.diaryMargin : null;
+                        return (
+                            <View>
+                                <View style={[styles.drawerItemContainer, marginStyle1, marginStyle2]}>
+                                    <DrawerItem
+                                        label={label}
+                                        key={route.key}
+                                        onPress={() => navigation.navigate(route.name)}
+                                        labelStyle={[styles.drawerItemLabel, itemStyle]}
+                                    />
+                                </View>
+                                {label === '+ New Drink' && <View style={styles.separator2} />}
                             </View>
-                            {label === '+ New Drink' && <View style={styles.separator2} />}
-                        </View>
-                    );
-                }
-            })}
-            <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={() => console.log("About pressed")}>
-                <Text style={styles.navAboutText}>About</Text>
-            </TouchableHighlight>
-            <View style={styles.separator3} />
-            <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
-                <Text style={styles.logoutText}>Sign Out</Text>
-            </TouchableHighlight>
-        </DrawerContentScrollView>
+                        );
+                    }
+                })}
+                <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={handleAboutPress}>
+                    <Text style={styles.navAboutText}>About</Text>
+                </TouchableHighlight>
+                <View style={styles.separator3} />
+                <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
+                    <Text style={styles.logoutText}>Sign Out</Text>
+                </TouchableHighlight>
+            </DrawerContentScrollView>
+        </>
     );
 };
 
