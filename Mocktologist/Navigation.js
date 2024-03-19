@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text } from 'react-native';
-import { Login, Landing, Dash, Steps, Leaderboard } from './pages'
+import { Login, Landing, Dash, Steps, Top, Profile, Diary } from './pages'
 import styles from './style.js'
 
 const Drawer = createDrawerNavigator();
@@ -19,7 +19,7 @@ const Navigation = () => {
             elevation: 0,
         },
         headerLeft: () => (
-            <TouchableHighlight onPress={() => navigation.openDrawer()} style={{ marginLeft: 15, marginTop: 10 }}>
+            <TouchableHighlight underlayColor="transparent" onPress={() => navigation.openDrawer()} style={{ marginLeft: 15, marginTop: 10 }}>
                 <MaterialIcons
                     name="menu"
                     size={40}
@@ -41,7 +41,9 @@ const Navigation = () => {
                 <Drawer.Screen name="+ New Drink" component={Dash} options={headerOptions} />
                 <Drawer.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Drawer.Screen name="Steps" component={Steps} options={headerOptions} />
-                <Drawer.Screen name="Leaderboard" component={Leaderboard} options={headerOptions} />
+                <Drawer.Screen name="Top Mixes" component={Top} options={headerOptions} />
+                <Drawer.Screen name="Mix Diary" component={Diary} options={headerOptions} />
+                <Drawer.Screen name="Profile" component={Profile} options={headerOptions} />
             </Drawer.Navigator>
         </NavigationContainer >
     );
@@ -56,16 +58,17 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
             </View>
             <View style={styles.separator} />
             {state.routes.map((route, index) => {
-                if (route.name === 'Landing' || route.name === 'Login') {
+                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Steps') {
                     return null;
                 } else {
                     const { options } = descriptors[route.key];
                     const label = options.drawerLabel !== undefined ? options.drawerLabel : route.name;
                     const itemStyle = label === '+ New Drink' ? styles.newDrinkItem : null;
-                    const marginStyle = label === 'Steps' ? styles.stepsMargin : null;
+                    const marginStyle1 = label === 'Profile' ? styles.profileMargin : null;
+                    const marginStyle2 = label === 'Mix Diary' ? styles.diaryMargin : null;
                     return (
                         <View>
-                            <View style={[styles.drawerItemContainer, marginStyle]}>
+                            <View style={[styles.drawerItemContainer, marginStyle1, marginStyle2]}>
                                 <DrawerItem
                                     label={label}
                                     key={route.key}
@@ -78,11 +81,11 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
                     );
                 }
             })}
-            <TouchableHighlight style={styles.navAboutButton} onPress={() => console.log("About pressed")}>
+            <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={() => console.log("About pressed")}>
                 <Text style={styles.navAboutText}>About</Text>
             </TouchableHighlight>
             <View style={styles.separator3} />
-            <TouchableHighlight style={styles.logoutButton} onPress={() => navigation.navigate("Landing")}>
+            <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
                 <Text style={styles.logoutText}>Sign Out</Text>
             </TouchableHighlight>
         </DrawerContentScrollView>
