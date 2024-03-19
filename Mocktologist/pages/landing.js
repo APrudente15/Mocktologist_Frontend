@@ -16,7 +16,7 @@ export default function Landing() {
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
-                <TouchableHighlight style={styles.aboutButton} onPress={() => console.log("About pressed")}>
+                <TouchableHighlight style={styles.aboutButton} underlayColor="transparent" onPress={() => console.log("About pressed")}>
                     <Text style={styles.aboutText}>?</Text>
                 </TouchableHighlight>
                 <View style={styles.imageContainer}>
@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#ffffff',
-        fontSize: 20
+        fontSize: 20,
+        fontWeight: 'bold'
     },
     aboutButton: {
         backgroundColor: 'transparent',
