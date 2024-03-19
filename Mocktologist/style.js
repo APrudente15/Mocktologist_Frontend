@@ -1,4 +1,19 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const guidelineBaseWidth = 414;
+const guidelineBaseHeight = 896;
+
+const { width, height } = Dimensions.get('window')
+
+const horizontalScale = (size) => {
+    return (width / guidelineBaseWidth) * size
+}
+const verticalScale = (size) => {
+    return (height / guidelineBaseHeight) * size
+}
+const moderateScale = (size, factor = 0.5) => {
+    return size + (horizontalScale(size) - size) * factor
+}
 
 const styles = StyleSheet.create({
     background: {
@@ -95,7 +110,7 @@ const styles = StyleSheet.create({
     },
     newDrinkItem: {
         fontWeight: 800,
-        fontSize: 38,
+        fontSize: moderateScale(32),
         color: '#ED91C8'
     },
     drawerItemContainer: {
