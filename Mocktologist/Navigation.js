@@ -1,38 +1,49 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text } from 'react-native';
+import { Login, Landing, Dash, Steps, Leaderboard } from './pages'
 import styles from './style.js'
-import Login from './pages/login.js'
-import Landing from './pages/landing.js';
-import Dash from './pages/dash.js';
-import Steps from './pages/steps.js';
-import Leaderboard from './pages/leaderboard.js';
 
 const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
 
+    const headerOptions = ({ navigation }) => ({
+        headerTitle: '',
+        headerStyle: {
+            backgroundColor: '#353535',
+            shadowOpacity: 0,
+            elevation: 0,
+        },
+        headerLeft: () => (
+            <TouchableHighlight onPress={() => navigation.openDrawer()} style={{ marginLeft: 15, marginTop: 10 }}>
+                <MaterialIcons
+                    name="menu"
+                    size={40}
+                    color="white"
+                />
+            </TouchableHighlight>
+        )
+    });
+
     return (
         <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Landing" drawerContent={props => <ConditionalDrawerContent {...props} />} screenOptions={{ drawerStyle: { backgroundColor: 'transparent' } }}>
+            <Drawer.Navigator
+                initialRouteName="Landing"
+                drawerContent={props => <ConditionalDrawerContent {...props} />}
+                screenOptions={{
+                    drawerStyle: { backgroundColor: 'transparent' },
+                }}>
                 <Drawer.Screen name="Landing" component={Landing} options={{ headerShown: false }} />
-                <Drawer.Screen name="+ New Drink" component={Dash} options={{ headerTitle: '' }} />
+                <Drawer.Screen name="+ New Drink" component={Dash} options={headerOptions} />
                 <Drawer.Screen name="Login" component={Login} options={{ headerShown: false }} />
-                <Drawer.Screen name="Steps" component={Steps}
-                    options={{
-                        headerTitle: '',
-                        headerStyle: {
-                            backgroundColor: '#353535',
-                            shadowOpacity: 0,
-                        }
-                        
-                    }}
-                />
-                <Drawer.Screen name="Leaderboard" component={Leaderboard} options={{ headerTitle: '' }} />
+                <Drawer.Screen name="Steps" component={Steps} options={headerOptions} />
+                <Drawer.Screen name="Leaderboard" component={Leaderboard} options={headerOptions} />
             </Drawer.Navigator>
-        </NavigationContainer>
+        </NavigationContainer >
     );
 };
 

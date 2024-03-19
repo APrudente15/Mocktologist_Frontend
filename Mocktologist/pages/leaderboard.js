@@ -1,9 +1,12 @@
-import { View, Text } from "react-native";
+import { View, Text, ImageBackground } from "react-native";
+import styles from '../style'
 
 export default function Leaderboard() {
     return (
-        <View >
-            <Text> Leaderboard Page </Text>
-        </View>
+        <ImageBackground source={require("../assets/background.png")} style={styles.background}>
+            <View style={styles.container}>
+                <Text> Steps Page </Text>
+            </View>
+        </ImageBackground>
     );
 }
