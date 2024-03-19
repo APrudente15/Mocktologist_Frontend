@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'; // Import DrawerContentScrollView
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text } from 'react-native';
 import styles from './style.js'
 import Login from './pages/login.js'
@@ -23,9 +23,11 @@ const Navigation = () => {
                 <Drawer.Screen name="Steps" component={Steps}
                     options={{
                         headerTitle: '',
-                        drawerLabelStyle: { color: 'red' },
-                        drawerActiveBackgroundColor: 'green',
-                        drawerInactiveBackgroundColor: 'blue',
+                        headerStyle: {
+                            backgroundColor: '#353535',
+                            shadowOpacity: 0,
+                        }
+                        
                     }}
                 />
                 <Drawer.Screen name="Leaderboard" component={Leaderboard} options={{ headerTitle: '' }} />

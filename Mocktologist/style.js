@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
         alignItems: 'center',
-        marginTop: 20
+        marginTop: verticalScale(20),
     },
     buttonContainer: {
         flex: 1,
@@ -42,15 +42,16 @@ const styles = StyleSheet.create({
     },
     landingPageText1: {
         color: '#ffffff',
-        marginTop: -40,
-        fontSize: 48,
+        marginTop: verticalScale(-40),
+        fontSize: moderateScale(32),
         textAlign: 'center',
         fontWeight: 'bold'
     },
     landingPageText2: {
         color: '#ffffff',
-        marginTop: 50,
-        fontSize: 30,
+        marginTop: verticalScale(50),
+        fontSize: moderateScale(24),
+        marginHorizontal: horizontalScale(10),
         textAlign: 'center'
     },
     landingPageImage: {
@@ -60,28 +61,28 @@ const styles = StyleSheet.create({
         maxWidth: '70%'
     },
     button: {
-        width: 200,
-        height: 50,
+        width: horizontalScale(200),
+        height: verticalScale(50),
         backgroundColor: '#ED91C8',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 20,
-        marginBottom: 30
+        borderRadius: moderateScale(20),
+        marginBottom: verticalScale(30),
     },
     buttonText: {
         color: '#ffffff',
-        fontSize: 20,
+        fontSize: moderateScale(20),
         fontWeight: 'bold'
     },
     aboutButton: {
         backgroundColor: 'transparent',
         position: 'absolute',
-        top: 35,
-        right: 30
+        top: verticalScale(50),
+        right: horizontalScale(30),
     },
     aboutText: {
         color: 'white',
-        fontSize: 64,
+        fontSize: moderateScale(48),
         fontWeight: 'bold',
     },
     drawerContent: {
@@ -98,15 +99,15 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     drawerImage: {
-        width: 120,
-        height: 120,
+        width: horizontalScale(120),
+        height: verticalScale(120),
     },
     separator: {
-        height: 1,
+        height: verticalScale(1),
         backgroundColor: 'white',
-        marginVertical: 30,
-        marginLeft: 20,
-        marginRight: 20
+        marginVertical: verticalScale(30),
+        marginLeft: verticalScale(20),
+        marginRight: horizontalScale(20),
     },
     newDrinkItem: {
         fontWeight: 800,
@@ -114,44 +115,44 @@ const styles = StyleSheet.create({
         color: '#ED91C8'
     },
     drawerItemContainer: {
-        marginTop: -40,
+        marginTop: verticalScale(-40),
     },
     separator2: {
-        height: 1,
+        height: verticalScale(1),
         backgroundColor: 'white',
-        marginVertical: 0,
-        marginLeft: 20,
-        marginRight: 20,
-        marginBottom: 50
+        marginVertical: verticalScale(0),
+        marginLeft: horizontalScale(20),
+        marginRight: horizontalScale(20),
+        marginBottom: horizontalScale(50),
     },
     separator3: {
-        height: 1,
+        height: verticalScale(1),
         backgroundColor: 'white',
-        marginLeft: 20,
-        marginRight: 20,
+        marginLeft: horizontalScale(20),
+        marginRight: horizontalScale(20),
     },
     logoutButton: {
         backgroundColor: 'transparent',
-        marginLeft: 20,
-        marginTop: 10
+        marginLeft: horizontalScale(20),
+        marginTop: verticalScale(10)
     },
     logoutText: {
         color: 'white',
-        fontSize: 36,
+        fontSize: moderateScale(36),
         fontWeight: 'bold'
     },
     stepsMargin: {
-        marginBottom: 10,
+        marginBottom: verticalScale(10),
     },
     navAboutButton: {
         backgroundColor: 'transparent',
-        marginLeft: 20,
-        marginTop: 420,
-        marginBottom: 20
+        marginLeft: horizontalScale(20),
+        marginTop: verticalScale(420),
+        marginBottom: verticalScale(20)
     },
     navAboutText: {
         color: 'white',
-        fontSize: 26,
+        fontSize: moderateScale(26),
     },
 });
 
