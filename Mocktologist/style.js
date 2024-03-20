@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
         alignItems: 'center',
-        marginTop: verticalScale(40),
+        marginTop: verticalScale(60)
     },
     buttonContainer: {
         flex: 1,
@@ -173,6 +173,61 @@ const styles = StyleSheet.create({
     navAboutText: {
         color: 'white',
         fontSize: moderateScale(26),
+    },
+    inputContainer1: {
+        width: '80%',
+        marginTop: verticalScale(150)
+    },
+    inputContainer2: {
+        width: '80%',
+        marginTop: verticalScale(40),
+        marginBottom: verticalScale(150)
+    },
+    input: {
+        height: verticalScale(50),
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: '100%',
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        }
+    },
+    heading: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
+        marginTop: verticalScale(-120),
+    },
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        zIndex: 1,
+    },
+    popupBox: {
+        position: 'absolute',
+        zIndex: 2,
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        padding: moderateScale(20),
+        borderRadius: moderateScale(10),
+        alignItems: 'center',
+        marginTop: verticalScale(120),
+        width: horizontalScale(350),
+        height: verticalScale(700)
+    },
+    popupButton: {
+        position: 'absolute',
+        top: verticalScale(10),
+        right: horizontalScale(30)
+    },
+    popupButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: moderateScale(50),
     },
 });
 
