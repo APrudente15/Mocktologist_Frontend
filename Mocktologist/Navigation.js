@@ -69,7 +69,6 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
     };
 
     return (
-
         <DrawerContentScrollView style={styles.drawerContent} scrollEnabled={false}>
             <StatusBar translucent backgroundColor="transparent" />
             <View style={styles.container}>
@@ -88,7 +87,7 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
                     const marginStyle1 = label === 'Profile' ? styles.profileMargin : null;
                     const marginStyle2 = label === 'Mix Diary' ? styles.diaryMargin : null;
                     return (
-                        <View>
+                        <View key={route.key}>
                             <View style={[styles.drawerItemContainer, marginStyle1, marginStyle2]}>
                                 <DrawerItem
                                     label={label}
@@ -97,18 +96,18 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
                                     labelStyle={[styles.drawerItemLabel, itemStyle]}
                                 />
                             </View>
-                        );
-                    }
-                })}
-                <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={handleAboutPress}>
-                    <Text style={styles.navAboutText}>About</Text>
-                </TouchableHighlight>
-                <View style={styles.separator3} />
-                <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
-                    <Text style={styles.logoutText}>Sign Out</Text>
-                </TouchableHighlight>
-            </DrawerContentScrollView>
-        </>
+                        </View>
+                    );
+                }
+            })}
+            <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={handleAboutPress}>
+                <Text style={styles.navAboutText}>About</Text>
+            </TouchableHighlight>
+            <View style={styles.separator3} />
+            <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
+                <Text style={styles.logoutText}>Sign Out</Text>
+            </TouchableHighlight>
+        </DrawerContentScrollView>
     );
 };
 
