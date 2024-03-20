@@ -53,12 +53,14 @@ const Navigation = () => {
                 }}>
                 <Drawer.Screen name="Landing" component={Landing} options={{ headerShown: false }} />
                 <Drawer.Screen name="Dashboard" component={Dash} options={headerOptions} />
+                <Drawer.Screen name="Home" component={Dash} options={headerOptions} />
                 <Drawer.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Drawer.Screen name="Register" component={Register} options={{ headerShown: false }} />
                 <Drawer.Screen name="Steps" component={Steps} options={headerOptions} />
                 <Drawer.Screen name="Top Mixes" component={Top} options={headerOptions} />
                 <Drawer.Screen name="Mix Diary" component={Diary} options={headerOptions} />
                 <Drawer.Screen name="Profile" component={Profile} options={headerOptions} />
+
             </Drawer.Navigator>
         </NavigationContainer >
     );
@@ -73,19 +75,17 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
         <DrawerContentScrollView style={styles.drawerContent} scrollEnabled={false}>
             <StatusBar translucent backgroundColor="transparent" />
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => navigation.navigate("Dashboard")}>
-                    <Image source={require("./assets/icon.png")} style={styles.drawerImage} resizeMode="contain" />
-                </TouchableOpacity>
+                <Image source={require("./assets/icon.png")} style={styles.drawerImage} resizeMode="contain" />
             </View>
             <View style={styles.separator} />
             {state.routes.map((route, index) => {
-                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Register' || route.name === 
-                'Steps' || route.name === 'Dashboard' ) {
+                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Register' || route.name ===
+                    'Steps' || route.name === 'Dashboard') {
                     return null;
                 } else {
                     const { options } = descriptors[route.key];
                     const label = options.drawerLabel !== undefined ? options.drawerLabel : route.name;
-                    const itemStyle = label === '+ New Drink' ? styles.newDrinkItem : null;
+                    const itemStyle = label === 'Home' ? styles.newDrinkItem : null;
                     const marginStyle1 = label === 'Profile' ? styles.profileMargin : null;
                     const marginStyle2 = label === 'Mix Diary' ? styles.diaryMargin : null;
                     return (
@@ -98,6 +98,7 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
                                     labelStyle={[styles.drawerItemLabel, itemStyle]}
                                 />
                             </View>
+                            {label === 'Home' && <View style={styles.separator2} />}
                         </View>
                     );
                 }
