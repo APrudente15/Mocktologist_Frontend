@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    buttonContainer2: {
+        marginTop: verticalScale(20),
+    },
     heading: {
         color: 'white',
         fontSize: moderateScale(32),
         fontWeight: 'bold',
-    },
-    errorText: {
-        color: 'white',
     },
     landingPageText1: {
         color: '#ffffff',
@@ -179,12 +179,13 @@ const styles = StyleSheet.create({
     },
     inputContainer1: {
         width: '80%',
-        marginTop: verticalScale(150)
+        marginTop: verticalScale(40),
+        marginBottom: verticalScale(20),
     },
     inputContainer2: {
         width: '80%',
-        marginTop: verticalScale(40),
-        marginBottom: verticalScale(150)
+        marginTop: verticalScale(20),
+        marginBottom: verticalScale(20)
     },
     input: {
         height: verticalScale(50),
@@ -197,6 +198,12 @@ const styles = StyleSheet.create({
         placeholder: {
             color: 'rgba(255, 255, 255, 0.5)',
         }
+    },
+    heading: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
+        marginTop: verticalScale(-120),
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
@@ -226,6 +233,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: moderateScale(50),
     },
+    errorText: {
+        color: 'white'
+    }
 });
 
 module.exports = styles

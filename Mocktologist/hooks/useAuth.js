@@ -6,10 +6,10 @@ export const AuthProvider = ({ children }) => {
     const [userId, setUserId] = useState()
     const [token, setToken] = useState("")
 
-    const login = async (data) => {
+    const login = (data) => {
         setToken(data.token)
-        setUserId(data.userId)
-        setFirstName(data.firstName)
+        setUserId(data.user)
+        setFirstName(data.fname)
     };
 
     const logout = () => {
