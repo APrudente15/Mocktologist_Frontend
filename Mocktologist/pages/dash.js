@@ -5,7 +5,9 @@ export default function Dash() {
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
-                <Text> Steps Page </Text>
+                <View style={styles.textContainer}>
+                    <Text style={styles.heading}> How's it going, User? </Text>
+                </View>
             </View>
         </ImageBackground>
     );

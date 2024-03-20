@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text } from 'react-native';
 import { Login, Landing, Dash, Steps, Top, Profile, Diary } from './pages'
@@ -19,14 +19,29 @@ const Navigation = () => {
             elevation: 0,
         },
         headerLeft: () => (
-            <TouchableHighlight underlayColor="transparent" onPress={() => navigation.openDrawer()} style={{ marginLeft: 15, marginTop: 10 }}>
+            <TouchableHighlight
+                underlayColor={'transparent'}
+                onPress={() => navigation.openDrawer()}
+                style={{ marginLeft: 15, marginTop: 10 }}>
                 <MaterialIcons
                     name="menu"
                     size={40}
                     color="white"
                 />
             </TouchableHighlight>
-        )
+        ),
+        headerRight: () => (
+            <TouchableHighlight
+                underlayColor={'transparent'}
+                onPress={() => navigation.navigate("Profile")}
+                style={{ marginRight: 15, marginTop: 10 }}>
+                <AntDesign
+                    name="user"
+                    size={40}
+                    color="white"
+                />
+            </TouchableHighlight>
+        ),
     });
 
     return (
@@ -38,7 +53,7 @@ const Navigation = () => {
                     drawerStyle: { backgroundColor: 'transparent' },
                 }}>
                 <Drawer.Screen name="Landing" component={Landing} options={{ headerShown: false }} />
-                <Drawer.Screen name="+ New Drink" component={Dash} options={headerOptions} />
+                <Drawer.Screen name="Dashboard" component={Dash} options={headerOptions} />
                 <Drawer.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Drawer.Screen name="Steps" component={Steps} options={headerOptions} />
                 <Drawer.Screen name="Top Mixes" component={Top} options={headerOptions} />
@@ -54,11 +69,13 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
         <DrawerContentScrollView style={styles.drawerContent} scrollEnabled={false}>
             <StatusBar translucent backgroundColor="transparent" />
             <View style={styles.container}>
-                <Image source={require("./assets/icon.png")} style={styles.drawerImage} resizeMode="contain" />
+                <TouchableOpacity onPress={() => navigation.navigate("Dashboard")}>
+                    <Image source={require("./assets/icon.png")} style={styles.drawerImage} resizeMode="contain" />
+                </TouchableOpacity>
             </View>
             <View style={styles.separator} />
             {state.routes.map((route, index) => {
-                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Steps') {
+                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Dashboard') {
                     return null;
                 } else {
                     const { options } = descriptors[route.key];
