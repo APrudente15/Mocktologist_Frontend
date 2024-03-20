@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    heading: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
+    },
     landingPageText1: {
         color: '#ffffff',
         marginTop: verticalScale(-40),
@@ -81,6 +86,17 @@ const styles = StyleSheet.create({
         right: horizontalScale(30),
     },
     aboutText: {
+        color: 'white',
+        fontSize: moderateScale(48),
+        fontWeight: 'bold',
+    },
+    backButton: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: verticalScale(50),
+        left: horizontalScale(30),
+    },
+    backText: {
         color: 'white',
         fontSize: moderateScale(48),
         fontWeight: 'bold',

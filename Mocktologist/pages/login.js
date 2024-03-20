@@ -2,7 +2,7 @@ import { useAuth } from '../hooks/useAuth'
 import { View, Text, ImageBackground, TouchableHighlight, TextInput } from "react-native";
 import styles from '../style'
 
-export default function Login() {
+export default function Login({ navigation }) {
     const { login, logout } = useAuth()
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
