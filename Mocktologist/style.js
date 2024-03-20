@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(32),
         fontWeight: 'bold',
     },
+    errorText: {
+        color: 'white',
+    },
     landingPageText1: {
         color: '#ffffff',
         marginTop: verticalScale(-40),
@@ -194,12 +197,6 @@ const styles = StyleSheet.create({
         placeholder: {
             color: 'rgba(255, 255, 255, 0.5)',
         }
-    },
-    heading: {
-        color: 'white',
-        fontSize: moderateScale(32),
-        fontWeight: 'bold',
-        marginTop: verticalScale(-120),
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,

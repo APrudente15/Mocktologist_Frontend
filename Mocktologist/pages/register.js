@@ -1,23 +1,22 @@
-import { useAuth } from '../hooks/useAuth'
 import { View, Text, ImageBackground, TouchableHighlight, TextInput } from "react-native";
 import styles from '../style'
 import { useState } from 'react';
 
-export default function Login({ navigation }) {
-    const { login } = useAuth()
+export default function Register({ navigation }) {
+    const [ firstName, setFirstName ] = useState("")
+    const [ lastName, setLastName ] = useState("")
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
-    const [ errorMessage, setErrorMessage ] = useState("")
 
-    const handleEmailChange = (inputText) => {
-        setEmail(inputText)
+    const handleFirstNameChange = (inputText) => {
+        setFirstName(inputText)
     }
 
-    const handlePasswordChange = (inputText) => {
+    const handleLastNameChange = (inputText) => {
         setPassword(inputText)
     }
 
-    const handleLogin = async (email, password) => {
+    const handleRegister = (firstName, lastName, email, password) => {
         try {
             if(email === "" || password === ""){
                 setErrorMessage("Email or password missing.")
@@ -26,36 +25,8 @@ export default function Login({ navigation }) {
                 }, 3000)
                 return
             }
-            const options = {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                  },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                }),
-            }
-            const response = await fetch("https://mocktologist-backend.onrender.com/user/login", options)
-            if(!response.ok){
-                setErrorMessage("Incorrect email or password.")
-                setTimeout(() => {
-                    setErrorMessage("")
-                }, 3000)
-                return
-            }
-            setErrorMessage("Accepted credentials")
-            setTimeout(() => {
-                setErrorMessage("")
-            }, 3000)
-            return
         } catch (error) {
-            setErrorMessage(error.message)
-            setTimeout(() => {
-                setErrorMessage("")
-            }, 3000)
-            return
+            
         }
     }
 
@@ -63,7 +34,7 @@ export default function Login({ navigation }) {
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
                 <View style={styles.textContainer2}>
-                    <Text style={styles.heading}> Existing User Login </Text>
+                    <Text style={styles.heading}> Register </Text>
                 </View>
                 <View style={styles.inputContainer1}>
                     <TextInput
@@ -71,7 +42,7 @@ export default function Login({ navigation }) {
                         placeholder="Email"
                         placeholderTextColor={styles.input.placeholder.color}
                         value={email}
-                        onChangeText={handleEmailChange}
+                        onChange={handleEmailChange}
                     />
                 </View>
                 <View style={styles.inputContainer2}>
@@ -81,11 +52,11 @@ export default function Login({ navigation }) {
                         secureTextEntry={true}
                         placeholderTextColor={styles.input.placeholder.color}
                         value={password}
-                        onChangeText={handlePasswordChange}
+                        onChange={handlePasswordChange}
                     />
                 </View>
                 <View style={styles.buttonContainer2}>
-                    <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={() => handleLogin(email, password)}>
+                    <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={() => handleRegister(email, password)}>
                         <Text style={styles.buttonText}> Login </Text>
                     </TouchableHighlight>
                 </View>
