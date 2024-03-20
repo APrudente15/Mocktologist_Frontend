@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
     setToken(data.token);
     setUserId(data.user);
     setFirstName(data.fname)
-    console.log(data)
   };
 
   const logout = () => {
