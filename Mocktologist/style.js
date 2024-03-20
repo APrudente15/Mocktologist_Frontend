@@ -157,8 +157,12 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(36),
         fontWeight: 'bold'
     },
-    stepsMargin: {
-        marginBottom: verticalScale(10),
+    profileMargin: {
+        marginTop: verticalScale(-1),
+        marginBottom: verticalScale(-120),
+    },
+    diaryMargin: {
+        marginTop: verticalScale(-1)
     },
     navAboutButton: {
         backgroundColor: 'transparent',
