@@ -2,25 +2,27 @@ import { createContext, useContext, useMemo, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [firstName, setFirstName] = useState()
-    const [lastName, setLastName] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [firstName, setFirstName] = useState("")
+    const [userId, setUserId] = useState()
+    const [token, setToken] = useState("")
 
     const login = async (data) => {
-        console.log("Login attempted")
+        setToken(data.token)
+        setUserId(data.userId)
+        setFirstName(data.firstName)
     };
 
     const logout = () => {
-        console.log("Logout attempted")
+        setToken("")
+        setUserId()
+        setFirstName("")
     };
 
     const value = useMemo(
         () => ({
             firstName,
-            lastName,
-            email,
-            password,
+            userId,
+            token,
             login,
             logout,
         }),
