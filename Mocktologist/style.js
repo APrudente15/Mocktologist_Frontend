@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     },
     popupBox: {
         position: 'absolute',
-        zIndex: 2,
+        zIndex: 5,
         backgroundColor: '#353535',
         borderColor: '#ED91C8',
         borderWidth: moderateScale(2),
