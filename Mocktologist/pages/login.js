@@ -4,65 +4,62 @@ import styles from '../style'
 import { useState } from 'react';
 
 export default function Login({ navigation }) {
-    const { login } = useAuth()
-    const [ email, setEmail ] = useState("")
-    const [ password, setPassword ] = useState("")
-    const [ errorMessage, setErrorMessage ] = useState("")
+    const { login } = useAuth();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleEmailChange = (inputText) => {
-        setEmail(inputText)
+        setEmail(inputText);
     }
 
     const handlePasswordChange = (inputText) => {
-        setPassword(inputText)
+        setPassword(inputText);
     }
 
     const handleLogin = async (email, password) => {
         try {
-            if(email === "" || password === ""){
-                setErrorMessage("Email or password missing.")
+            if (email === "" || password === "") {
+                setErrorMessage("Email or password missing.");
                 setTimeout(() => {
-                    setErrorMessage("")
-                }, 3000)
-                return
+                    setErrorMessage("");
+                }, 3000);
+                return;
             }
             const options = {
                 method: "POST",
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
-                  },
+                },
                 body: JSON.stringify({
                     email: email,
                     password: password,
                 }),
             }
-            const response = await fetch("https://mocktologist-backend.onrender.com/user/login", options)
-            if(!response.ok){
-                setErrorMessage("Incorrect email or password.")
+            const response = await fetch("https://mocktologist-backend.onrender.com/user/login", options);
+            if (!response.ok) {
+                setErrorMessage("Incorrect email or password.");
                 setTimeout(() => {
-                    setErrorMessage("")
-                }, 3000)
-                return
+                    setErrorMessage("");
+                }, 3000);
+                return;
             }
-            setErrorMessage("Accepted credentials")
-            setTimeout(() => {
-                setErrorMessage("")
-            }, 3000)
-            return
+            const data = await response.json();
+            login(data);
+            navigation.navigate("Dashboard")
         } catch (error) {
-            setErrorMessage(error.message)
+            setErrorMessage(error.message);
             setTimeout(() => {
-                setErrorMessage("")
-            }, 3000)
-            return
+                setErrorMessage("");
+            }, 3000);
         }
     }
 
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
-                <View style={styles.textContainer2}>
+                <View style={styles.headingContainer}>
                     <Text style={styles.heading}> Existing User Login </Text>
                 </View>
                 <View style={styles.inputContainer1}>

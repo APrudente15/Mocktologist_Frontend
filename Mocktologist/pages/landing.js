@@ -13,7 +13,7 @@ export default function Landing() {
     };
 
     const handleRegisterPress = () => {
-        navigation.navigate('Steps');
+        navigation.navigate('Register');
     };
 
     const handleAboutPress = () => {
