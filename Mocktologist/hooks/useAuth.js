@@ -1,37 +1,39 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo } from "react";
+import { useLocalStorage } from "./useAsyncStorage";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [firstName, setFirstName] = useState("")
-    const [userId, setUserId] = useState()
-    const [token, setToken] = useState("")
+  const [token, setToken] = useLocalStorage("token", null);
+  const [userid, setUserId] = useLocalStorage("userid", null);
+  const [firstName, setFirstName] = useLocalStorage("firstName", null);
 
-    const login = (data) => {
-        setToken(data.token)
-        setUserId(data.user)
-        setFirstName(data.fname)
-    };
+  const login = async (data) => {
+    setToken(data.token);
+    setUserId(data.user);
+    setFirstName(data.fname)
+    console.log(data)
+  };
 
-    const logout = () => {
-        setToken("")
-        setUserId()
-        setFirstName("")
-    };
+  const logout = () => {
+    setToken(null);
+    setFirstName(null)
+    setUserId(null)
+  };
 
-    const value = useMemo(
-        () => ({
-            firstName,
-            userId,
-            token,
-            login,
-            logout,
-        }),
-        []
-    );
+  const value = useMemo(
+    () => ({
+      token,
+      userid,
+      firstName,
+      login,
+      logout,
+    }),
+    [token]
+  );
 
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
-    return useContext(AuthContext);
+  return useContext(AuthContext);
 };

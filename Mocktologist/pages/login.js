@@ -1,10 +1,10 @@
 import { useAuth } from '../hooks/useAuth'
 import { View, Text, ImageBackground, TouchableHighlight, TextInput } from "react-native";
 import styles from '../style'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Login({ navigation }) {
-    const { login } = useAuth();
+    const { login, token } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -46,7 +46,7 @@ export default function Login({ navigation }) {
                 return;
             }
             const data = await response.json();
-            login(data);
+            await login(data);
             navigation.navigate("Dashboard")
         } catch (error) {
             setErrorMessage(error.message);
