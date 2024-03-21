@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight } from "react-native";
 import { useAuth } from '../hooks/useAuth'
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
@@ -32,6 +32,7 @@ export default function Dash() {
             </View>
         )
     }
+
 
     if (active) {
         return (

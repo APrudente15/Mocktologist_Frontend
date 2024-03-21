@@ -4,10 +4,11 @@ import styles from '../style'
 import { useEffect, useState } from 'react';
 
 export default function Login({ navigation }) {
-    const { login, token } = useAuth();
+    const { login, token, firstName, userId, setToken, setFirstName, setUserId } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [uploadName, setUploadName] = useState("")
 
     const handleEmailChange = (inputText) => {
         setEmail(inputText);
@@ -46,7 +47,9 @@ export default function Login({ navigation }) {
                 return;
             }
             const data = await response.json();
-            await login(data);
+            setToken(data.token)
+            setUserId(data.user)
+            setFirstName(data.fname)
             navigation.navigate("Dashboard")
         } catch (error) {
             setErrorMessage(error.message);

@@ -1,7 +1,7 @@
 import { View, Text, ImageBackground, TextInput, TouchableHighlight, TouchableOpacity, Switch } from "react-native";
-import { useAuth } from '../hooks/useAuth'
-import { useOverlayPopup } from '../hooks/useOverlayPopup'
-import styles from '../style'
+import { useAuth } from '../hooks/useAuth';
+import { useOverlayPopup } from "../hooks/useOverlayPopup";
+import styles from '../style';
 import { useEffect, useState } from "react";
 import { PopupText } from "../components";
 
