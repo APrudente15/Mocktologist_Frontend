@@ -25,6 +25,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    container2: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
     imageContainer: {
         flex: 2,
         justifyContent: 'center',
@@ -199,12 +204,6 @@ const styles = StyleSheet.create({
             color: 'rgba(255, 255, 255, 0.5)',
         }
     },
-    heading: {
-        color: 'white',
-        fontSize: moderateScale(32),
-        fontWeight: 'bold',
-        marginTop: verticalScale(-120),
-    },
     overlay: {
         ...StyleSheet.absoluteFillObject,
         backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -212,7 +211,7 @@ const styles = StyleSheet.create({
     },
     popupBox: {
         position: 'absolute',
-        zIndex: 2,
+        zIndex: 5,
         backgroundColor: '#353535',
         borderColor: '#ED91C8',
         borderWidth: moderateScale(2),
@@ -235,6 +234,33 @@ const styles = StyleSheet.create({
     },
     errorText: {
         color: 'white'
+    },
+    bartender: {
+        width: horizontalScale(350),
+        height: verticalScale(350),
+        position: 'absolute',
+        bottom: 0,
+        left: horizontalScale(-47)
+    },
+    dashText: {
+        color: '#ffffff',
+        fontSize: moderateScale(20),
+        marginBottom: verticalScale(20)
+    },
+    dashBox: {
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        borderRadius: moderateScale(10),
+        width: horizontalScale(180),
+        height: verticalScale(180),
+        margin: moderateScale(15)
+    },
+    boxCont:
+    {
+        flexDirection: "row",
+        marginTop: verticalScale(50),
+        marginBottom: verticalScale(50)
     }
 });
 

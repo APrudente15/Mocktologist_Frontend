@@ -2,7 +2,8 @@ import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { useOverlayPopup } from '../hooks/useOverlayPopup'
 import styles from '../style'
 
-export default function Steps() {
+export default function New() {
+
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
 
     const handlePopupPress = () => {
@@ -25,15 +26,16 @@ export default function Steps() {
             </View>
         )
     }
+
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
                 {showOverlay && <Overlay />}
                 {showPopup && <Popup />}
                 <View style={styles.textContainer}>
-                    <Text style={styles.heading}> Recipe </Text>
+                    <Text style={styles.heading}> New </Text>
                 </View>
             </View>
         </ImageBackground>
-    );
+    )
 }
