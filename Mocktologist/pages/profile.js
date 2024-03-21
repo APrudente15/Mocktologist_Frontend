@@ -100,7 +100,7 @@ export default function Profile() {
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
                 </TouchableOpacity>
-                <PopupText/>
+                <PopupText />
             </View>
         )
     }
@@ -115,7 +115,7 @@ export default function Profile() {
                 </View>
                 <View style={styles.container}>
                     <View style={styles.row}>
-                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10}]}>
+                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10 }]}>
                             <TextInput
                                 style={styles.input}
                                 value={firstName}
@@ -123,7 +123,7 @@ export default function Profile() {
                                 placeholder="First Name"
                             />
                         </View>
-                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10}]}>
+                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10 }]}>
                             <TextInput
                                 style={styles.input}
                                 value={lastName}
@@ -142,12 +142,12 @@ export default function Profile() {
                         />
                     </View>
                     <View style={styles.row}>
-                        <Text style={[styles.buttonText, {marginRight: 25}]}>Vegan:</Text>
+                        <Text style={[styles.buttonText, { marginRight: 25 }]}>Vegan:</Text>
                         <Switch
                             value={vegan}
                             onValueChange={toggleVegan}
                             thumbColor={vegan ? '#ffffff' : '#ffffff'}
-                            trackColor={{ false: '#ff0000', true: '#ED91C8' }}
+                            trackColor={{ false: '#353535', true: '#ED91C8' }}
                         />
                     </View>
                     <Text style={styles.errorText}>{systemMessage}</Text>

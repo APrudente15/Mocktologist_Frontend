@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, Image, TouchableHighlight, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import styles from '../style';
 import { useNavigation } from '@react-navigation/native';
+import { PopupText } from '../components';
 
 export default function Landing() {
     const navigation = useNavigation();
@@ -38,7 +39,7 @@ export default function Landing() {
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
                 </TouchableOpacity>
-                <PopupText/>
+                <PopupText />
             </View>
         )
     }
