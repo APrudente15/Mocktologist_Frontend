@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight } from "react-native";
+import { useEffect, useState, useRef } from 'react'
+import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight, Animated } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
 import { useAuth } from '../hooks/useAuth'
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
-import { PopupText, Medal, LastDrink } from '../components';
+import { PopupText, Medal, LastDrink, Bartender } from '../components';
 import styles from '../style'
 
 export default function Dash() {
@@ -78,6 +78,37 @@ export default function Dash() {
         }
     }
 
+    const bartenderAnimation = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        Animated.loop(
+            Animated.sequence([
+                Animated.timing(bartenderAnimation, {
+                    toValue: 1,
+                    duration: 1000,
+                    useNativeDriver: true
+                }),
+                Animated.timing(bartenderAnimation, {
+                    toValue: 0,
+                    duration: 1000,
+                    useNativeDriver: true
+                })
+            ]),
+            {
+                iterations: -1
+            }
+        ).start();
+    }, []);
+
+    const interpolatedRotateAnimation = bartenderAnimation.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['-3deg', '3deg']
+    });
+
+    const transformStyle = {
+        transform: [{ rotate: interpolatedRotateAnimation }]
+    };
+
 
     if (active) {
         return (
@@ -121,10 +152,7 @@ export default function Dash() {
                 <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={handleNewDrinkPress}>
                     <Text style={styles.buttonText}> + New Mocktail </Text>
                 </TouchableHighlight>
-                <Image
-                    style={styles.bartender}
-                    source={require('../assets/bartender.png')}
-                />
+                <Bartender/>
             </View>
         </ImageBackground>
     );
