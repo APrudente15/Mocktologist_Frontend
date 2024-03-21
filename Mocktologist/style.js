@@ -204,6 +204,18 @@ const styles = StyleSheet.create({
             color: 'rgba(255, 255, 255, 0.5)',
         }
     },
+    input2: {
+        height: verticalScale(50),
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: horizontalScale(310),
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        }
+    },
     overlay: {
         ...StyleSheet.absoluteFillObject,
         backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -264,6 +276,9 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
+    },
+    toggle: {
+        marginTop: verticalScale(-5)
     }
 });
 
