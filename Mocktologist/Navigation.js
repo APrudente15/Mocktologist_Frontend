@@ -51,7 +51,7 @@ const Navigation = () => {
     return (
         <NavigationContainer>
             <Drawer.Navigator
-                initialRouteName="Dashboard"
+                initialRouteName="Landing"
                 drawerContent={props => <ConditionalDrawerContent {...props} />}
                 screenOptions={{
                     drawerStyle: { backgroundColor: 'transparent' },
