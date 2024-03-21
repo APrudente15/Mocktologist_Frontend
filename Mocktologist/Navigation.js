@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { useOverlayPopup } from './hooks/useOverlayPopup'
+import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
@@ -10,6 +11,9 @@ import styles from './style.js'
 const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
+
+    const { showOverlay } = useOverlayPopup();
+
     const headerOptions = ({ navigation }) => ({
         headerTitle: '',
         headerStyle: {
@@ -41,12 +45,13 @@ const Navigation = () => {
                 />
             </TouchableHighlight>
         ),
+        headerShown: !showOverlay,
     });
 
     return (
         <NavigationContainer>
             <Drawer.Navigator
-                initialRouteName="Landing"
+                initialRouteName="Dashboard"
                 drawerContent={props => <ConditionalDrawerContent {...props} />}
                 screenOptions={{
                     drawerStyle: { backgroundColor: 'transparent' },
@@ -60,14 +65,17 @@ const Navigation = () => {
                 <Drawer.Screen name="Top Mixes" component={Top} options={headerOptions} />
                 <Drawer.Screen name="Mix Diary" component={Diary} options={headerOptions} />
                 <Drawer.Screen name="Profile" component={Profile} options={headerOptions} />
-
             </Drawer.Navigator>
         </NavigationContainer >
     );
 };
 
 const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
+    const { setShowOverlay, setShowPopup } = useOverlayPopup();
+
     const handleAboutPress = () => {
+        setShowOverlay(true)
+        setShowPopup(true)
         navigation.dispatch(DrawerActions.closeDrawer())
     };
 

@@ -3,11 +3,11 @@ import styles from '../style'
 import { useState } from 'react';
 
 export default function Register({ navigation }) {
-    const [ firstName, setFirstName ] = useState("")
-    const [ lastName, setLastName ] = useState("")
-    const [ email, setEmail ] = useState("")
-    const [ password, setPassword ] = useState("")
-    const [ errorMessage, setErrorMessage ] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
 
     const handleFirstNameChange = (inputText) => {
         setFirstName(inputText)
@@ -27,7 +27,7 @@ export default function Register({ navigation }) {
 
     const handleRegister = async (firstName, lastName, email, password) => {
         try {
-            if(firstName === "" || lastName === "" || email === "" || password === ""){
+            if (firstName === "" || lastName === "" || email === "" || password === "") {
                 setErrorMessage("One or more fields are empty")
                 setTimeout(() => {
                     setErrorMessage("")
@@ -39,17 +39,18 @@ export default function Register({ navigation }) {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
-                  },
+                },
                 body: JSON.stringify({
                     fname: firstName,
                     lname: lastName,
                     email: email,
                     password: password,
                     vegan: false,
+                    image: 'blank.png'
                 }),
             }
             const response = await fetch("https://mocktologist-backend.onrender.com/user/register", options)
-            if(!response.ok){
+            if (!response.ok) {
                 setErrorMessage("Error during signup.")
                 setTimeout(() => {
                     setErrorMessage("")
@@ -107,7 +108,7 @@ export default function Register({ navigation }) {
                 </View>
                 <View style={styles.buttonContainer2}>
                     <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={() => handleRegister(firstName, lastName, email, password)}>
-                        <Text style={styles.buttonText}> Login </Text>
+                        <Text style={styles.buttonText}> Register </Text>
                     </TouchableHighlight>
                 </View>
                 <Text style={styles.errorText}>{errorMessage}</Text>
