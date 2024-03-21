@@ -60,7 +60,7 @@ export default function Profile() {
             const repo = 'profile_pics';
             const path = `${userId}/pfp/${Date.now()}.jpg`;
             const message = 'Upload image';
-            const accessToken = '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';
+            const accessToken = '';
             const content = {
                 message,
                 content: base64Image,
