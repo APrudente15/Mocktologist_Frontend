@@ -32,9 +32,7 @@
     "collectCoverageFrom": [
       "**/**/*.js",
       "!**/node_modules/**",
-      "!**/coverage/**",
-      "!**/assets/**",
-      "!**/vendor/**"
+      "!**/assets/**"
     ],
     "coverageDirectory": "./coverage/",
     "testEnvironment": "node",
