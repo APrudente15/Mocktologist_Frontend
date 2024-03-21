@@ -38,10 +38,9 @@ const Navigation = () => {
                 underlayColor={'transparent'}
                 onPress={() => navigation.navigate("Profile")}
                 style={{ marginRight: 15, marginTop: 10 }}>
-                <AntDesign
-                    name="user"
-                    size={40}
-                    color="white"
+                <Image
+                    source={require('./assets/blank.png')}
+                    style={styles.pfpimage}
                 />
             </TouchableHighlight>
         ),

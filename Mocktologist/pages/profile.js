@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, TextInput, TouchableHighlight, TouchableOpacity, Switch } from "react-native";
+import { View, Text, ImageBackground, TextInput, TouchableHighlight, TouchableOpacity, Switch, Image } from "react-native";
 import { useAuth } from '../hooks/useAuth';
 import { useOverlayPopup } from "../hooks/useOverlayPopup";
 import styles from '../style';
@@ -114,6 +114,15 @@ export default function Profile() {
                 <View style={styles.textContainer2}>
                     <Text style={styles.heading}> Profile </Text>
                 </View>
+                <View style={styles.pfp}>
+                    <Image
+                        source={require('../assets/blank.png')}
+                        style={styles.pfp2image}
+                    />
+                    <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={() => updateUserDetails()}>
+                        <Text style={styles.buttonText}> Update Photo </Text>
+                    </TouchableHighlight>
+                </View>
                 <View style={styles.container}>
                     <View style={styles.row}>
                         <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: '8%' }]}>
@@ -143,7 +152,7 @@ export default function Profile() {
                         />
                     </View>
                     <View style={styles.row}>
-                        <Text style={[styles.buttonText, { marginRight: 25 }]}>Vegan:</Text>
+                        <Text style={styles.vegan}>Vegan:</Text>
                         <Switch
                             value={vegan}
                             onValueChange={toggleVegan}

@@ -299,6 +299,22 @@ const styles = StyleSheet.create({
     },
     hidden: {
         marginTop: verticalScale(570)
+    },
+    vegan: {
+        marginRight: horizontalScale(20),
+        fontSize: moderateScale(25),
+        color: 'white'
+    },
+    pfpimage: {
+        height: verticalScale(50),
+        width: horizontalScale(50)
+    },
+    pfp2image: {
+        height: verticalScale(200),
+        width: horizontalScale(200),
+        marginTop: verticalScale(10),
+        marginBottom: verticalScale(20),
+        borderRadius: '50%',
     }
 });
 
