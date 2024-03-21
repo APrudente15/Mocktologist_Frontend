@@ -3,7 +3,7 @@ import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighligh
 import { Dropdown } from 'react-native-element-dropdown';
 import { useAuth } from '../hooks/useAuth'
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
-import { PopupText } from '../components';
+import { PopupText, Medal, LastDrink } from '../components';
 import styles from '../style'
 
 export default function Dash() {
@@ -90,10 +90,10 @@ export default function Dash() {
                     </View>
                     <View style={styles.boxCont}>
                         <View style={styles.dashBox}>
-
+                            <Medal/>
                         </View>
                         <View style={styles.dashBox}>
-
+                            <LastDrink/>
                         </View>
                     </View>
                 </View>
@@ -111,10 +111,10 @@ export default function Dash() {
                 </View>
                 <View style={styles.boxCont}>
                     <View style={styles.dashBox}>
-
+                        <Medal/>
                     </View>
                     <View style={styles.dashBox}>
-
+                        <LastDrink/>
                     </View>
                 </View>
                 <Text style={styles.dashText}> Ready to make something new? </Text>

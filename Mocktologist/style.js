@@ -111,11 +111,11 @@ const styles = StyleSheet.create({
     },
     drawerContent: {
         backgroundColor: '#353535',
-        borderTopRightRadius: 20,
-        borderBottomRightRadius: 20,
-        borderRightWidth: 5,
-        borderTopWidth: 5,
-        borderBottomWidth: 5,
+        borderTopRightRadius: moderateScale(20),
+        borderBottomRightRadius: moderateScale(20),
+        borderRightWidth: moderateScale(5),
+        borderTopWidth: moderateScale(5),
+        borderBottomWidth: moderateScale(5),
         borderColor: '#ED91C8',
         flex: 1,
     },
@@ -204,6 +204,18 @@ const styles = StyleSheet.create({
             color: 'rgba(255, 255, 255, 0.5)',
         }
     },
+    input2: {
+        height: verticalScale(50),
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: horizontalScale(310),
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        }
+    },
     overlay: {
         ...StyleSheet.absoluteFillObject,
         backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -249,6 +261,8 @@ const styles = StyleSheet.create({
     },
     dashBox: {
         backgroundColor: '#353535',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderColor: '#ED91C8',
         borderWidth: moderateScale(2),
         borderRadius: moderateScale(10),
@@ -270,6 +284,44 @@ const styles = StyleSheet.create({
     },
     dropDownText: {
         color: 'white'
+    },
+    medal: {
+        width: horizontalScale(130),
+        height: verticalScale(130),
+        alignSelf: 'center'
+    },
+    rankText: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: verticalScale(5)
+    },
+    toggle: {
+        marginTop: verticalScale(-5),
+    },
+    bottomhalf: {
+        position: 'absolute',
+        bottom: 100,
+        width: '100%'
+    },
+    hidden: {
+        marginTop: verticalScale(570)
+    },
+    vegan: {
+        marginRight: horizontalScale(20),
+        fontSize: moderateScale(25),
+        color: 'white'
+    },
+    pfpimage: {
+        height: verticalScale(50),
+        width: horizontalScale(50)
+    },
+    pfp2image: {
+        height: verticalScale(200),
+        width: horizontalScale(200),
+        marginTop: verticalScale(10),
+        marginBottom: verticalScale(20),
+        borderRadius: '50%',
     }
 });
 
