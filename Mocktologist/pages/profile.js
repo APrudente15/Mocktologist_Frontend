@@ -1,8 +1,9 @@
 import { View, Text, ImageBackground, TextInput, TouchableHighlight, TouchableOpacity, Switch } from "react-native";
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../hooks/useAuth';
 import { useOverlayPopup } from "../hooks/useOverlayPopup";
-import styles from '../style'
+import styles from '../style';
 import { useEffect, useState } from "react";
+import { PopupText } from "../components";
 
 export default function Profile() {
     const { token, userid } = useAuth()
@@ -99,40 +100,49 @@ export default function Profile() {
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
                 </TouchableOpacity>
+                <PopupText/>
             </View>
         )
     }
 
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
-            <View style={styles.container}>
+            <View style={styles.container2}>
                 {showOverlay && <Overlay />}
                 {showPopup && <Popup />}
-                <View style={styles.textContainer}>
+                <View style={styles.textContainer2}>
                     <Text style={styles.heading}> Profile </Text>
                 </View>
-                <View style={styles.nameContainer}>
-                    <TextInput
-                        style={styles.input}
-                        value={firstName}
-                        onChangeText={handleFirstNameChange}
-                        placeholder="First Name"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        value={lastName}
-                        onChangeText={handleLastNameChange}
-                        placeholder="Last Name"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        value={email}
-                        onChangeText={handleEmailChange}
-                        placeholder="Email"
-                        keyboardType="email-address"
-                    />
-                    <View style={styles.switchRow}>
-                        <Text style={styles.switchLabel}>Vegan:</Text>
+                <View style={styles.container}>
+                    <View style={styles.row}>
+                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10}]}>
+                            <TextInput
+                                style={styles.input}
+                                value={firstName}
+                                onChangeText={handleFirstNameChange}
+                                placeholder="First Name"
+                            />
+                        </View>
+                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10}]}>
+                            <TextInput
+                                style={styles.input}
+                                value={lastName}
+                                onChangeText={handleLastNameChange}
+                                placeholder="Last Name"
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.inputContainer2}>
+                        <TextInput
+                            style={styles.input}
+                            value={email}
+                            onChangeText={handleEmailChange}
+                            placeholder="Email"
+                            keyboardType="email-address"
+                        />
+                    </View>
+                    <View style={styles.row}>
+                        <Text style={[styles.buttonText, {marginRight: 25}]}>Vegan:</Text>
                         <Switch
                             value={vegan}
                             onValueChange={toggleVegan}
@@ -140,13 +150,13 @@ export default function Profile() {
                             trackColor={{ false: '#ff0000', true: '#ED91C8' }}
                         />
                     </View>
+                    <Text style={styles.errorText}>{systemMessage}</Text>
                 </View>
-                <View style={styles.buttonContainer2}>
+                <View style={styles.buttonContainer}>
                     <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={() => updateUserDetails()}>
                         <Text style={styles.buttonText}> Update Details </Text>
                     </TouchableHighlight>
                 </View>
-                <Text style={styles.errorText}>{systemMessage}</Text>
             </View>
         </ImageBackground>
     )

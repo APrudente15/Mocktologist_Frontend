@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     popupButtonText: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: moderateScale(50),
+        fontSize: moderateScale(32),
     },
     errorText: {
         color: 'white'
@@ -261,6 +261,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: verticalScale(50),
         marginBottom: verticalScale(50)
+    },
+    row: {
+        flexDirection: 'row',
     }
 });
 
