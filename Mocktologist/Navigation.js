@@ -5,7 +5,7 @@ import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
-import { Login, Register, Landing, Dash, Steps, Top, Profile, Diary } from './pages'
+import { Login, Register, Landing, Dash, Steps, Top, Profile, Diary, New } from './pages'
 import styles from './style.js'
 
 const Drawer = createDrawerNavigator();
@@ -65,6 +65,7 @@ const Navigation = () => {
                 <Drawer.Screen name="Top Mixes" component={Top} options={headerOptions} />
                 <Drawer.Screen name="Mix Diary" component={Diary} options={headerOptions} />
                 <Drawer.Screen name="Profile" component={Profile} options={headerOptions} />
+                <Drawer.Screen name="New" component={New} options={headerOptions} />
             </Drawer.Navigator>
         </NavigationContainer >
     );
@@ -88,7 +89,7 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
             <View style={styles.separator} />
             {state.routes.map((route, index) => {
                 if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Register' || route.name ===
-                    'Steps' || route.name === 'Dashboard') {
+                    'Steps' || route.name === 'Dashboard' || route.name === 'New') {
                     return null;
                 } else {
                     const { options } = descriptors[route.key];
