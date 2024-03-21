@@ -279,6 +279,12 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
     },
+    dropDown: {
+        width: horizontalScale(200)
+    },
+    dropDownText: {
+        color: 'white'
+    },
     medal: {
         width: horizontalScale(130),
         height: verticalScale(130),
