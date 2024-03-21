@@ -112,13 +112,16 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
                     );
                 }
             })}
-            <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={handleAboutPress}>
-                <Text style={styles.navAboutText}>About</Text>
-            </TouchableHighlight>
-            <View style={styles.separator3} />
-            <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
-                <Text style={styles.logoutText}>Sign Out</Text>
-            </TouchableHighlight>
+            <View style={styles.bottomhalf}>
+                <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={handleAboutPress}>
+                    <Text style={styles.navAboutText}>About</Text>
+                </TouchableHighlight>
+                <View style={styles.separator3} />
+                <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
+                    <Text style={styles.logoutText}>Sign Out</Text>
+                </TouchableHighlight>
+            </View>
+            <Text style={styles.hidden}>Hidden</Text>
         </DrawerContentScrollView>
     );
 };

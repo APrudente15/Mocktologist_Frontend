@@ -111,11 +111,11 @@ const styles = StyleSheet.create({
     },
     drawerContent: {
         backgroundColor: '#353535',
-        borderTopRightRadius: 20,
-        borderBottomRightRadius: 20,
-        borderRightWidth: 5,
-        borderTopWidth: 5,
-        borderBottomWidth: 5,
+        borderTopRightRadius: moderateScale(20),
+        borderBottomRightRadius: moderateScale(20),
+        borderRightWidth: moderateScale(5),
+        borderTopWidth: moderateScale(5),
+        borderBottomWidth: moderateScale(5),
         borderColor: '#ED91C8',
         flex: 1,
     },
@@ -278,7 +278,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     toggle: {
-        marginTop: verticalScale(-5)
+        marginTop: verticalScale(-5),
+    },
+    bottomhalf: {
+        position: 'absolute',
+        bottom: 100,
+        width: '100%'
+    },
+    hidden: {
+        marginTop: verticalScale(570)
     }
 });
 
