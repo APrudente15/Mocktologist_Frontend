@@ -22,7 +22,7 @@ export default function Dash() {
     }
 
     const renderLabel = () => {
-        if(value || isFocus) {
+        if (value || isFocus) {
             return (
                 <Text>Taste Selected</Text>
             )
@@ -43,7 +43,7 @@ export default function Dash() {
 
     const Popup = () => {
         if (newDrink) {
-            const data = {taste: null, allergens: null, vegan: vegan}
+            const data = { taste: null, allergens: null, vegan: vegan }
             return (
                 <View style={styles.popupBox}>
                     <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
@@ -52,8 +52,8 @@ export default function Dash() {
                     {renderLabel()}
                     <Dropdown style={styles.dropDown}
                         placeholderStyle={styles.input.placeholder}
-                        selectedTextStyle={styles.input}
-                        data={[{label: 'Sweet', value: 'sweet'}, {label: 'Sour', value: 'sour'}]}
+                        selectedTextStyle={styles.inputDD}
+                        data={[{ label: 'Sweet', value: 'sweet' }, { label: 'Sour', value: 'sour' }]}
                         labelField="label"
                         valueField="value"
                         placeholder={!isFocus ? 'Select taste profile' : '...'}
@@ -72,7 +72,7 @@ export default function Dash() {
                     <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                         <Text style={styles.popupButtonText}>X</Text>
                     </TouchableOpacity>
-                    <PopupText/>
+                    <PopupText />
                 </View>
             )
         }
@@ -90,10 +90,10 @@ export default function Dash() {
                     </View>
                     <View style={styles.boxCont}>
                         <View style={styles.dashBox}>
-                            <Medal/>
+                            <Medal />
                         </View>
                         <View style={styles.dashBox}>
-                            <LastDrink/>
+                            <LastDrink />
                         </View>
                     </View>
                 </View>
@@ -111,10 +111,10 @@ export default function Dash() {
                 </View>
                 <View style={styles.boxCont}>
                     <View style={styles.dashBox}>
-                        <Medal/>
+                        <Medal />
                     </View>
                     <View style={styles.dashBox}>
-                        <LastDrink/>
+                        <LastDrink />
                     </View>
                 </View>
                 <Text style={styles.dashText}> Ready to make something new? </Text>

@@ -7,12 +7,14 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@rea
 import { StatusBar, Image, View, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
 import { Login, Register, Landing, Dash, Steps, Top, Profile, Diary, New } from './pages'
 import styles from './style.js'
+import { useAuth } from './hooks/useAuth.js';
 
 const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
 
     const { showOverlay } = useOverlayPopup();
+    const { image } = useAuth()
 
     const headerOptions = ({ navigation }) => ({
         headerTitle: '',
@@ -39,7 +41,7 @@ const Navigation = () => {
                 onPress={() => navigation.navigate("Profile")}
                 style={{ marginRight: 15, marginTop: 10 }}>
                 <Image
-                    source={require('./assets/blank.png')}
+                    source={{ uri: image }}
                     style={styles.pfpimage}
                 />
             </TouchableHighlight>

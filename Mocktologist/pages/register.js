@@ -46,7 +46,7 @@ export default function Register({ navigation }) {
                     email: email,
                     password: password,
                     vegan: false,
-                    image: 'blank.png'
+                    image: 'https://static.vecteezy.com/system/resources/previews/020/911/746/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'
                 }),
             }
             const response = await fetch("https://mocktologist-backend.onrender.com/user/register", options)
