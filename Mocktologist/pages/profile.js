@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { PopupText } from "../components";
 
 export default function Profile() {
-    const { token, userid } = useAuth()
+    const { token, userId } = useAuth()
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -45,7 +45,8 @@ export default function Profile() {
                     vegan: vegan,
                 }),
             }
-            const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userid}`, options)
+            const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userId}`, options)
+            console.log(response)
             if (!response.ok) {
                 setSystemMessage("Could not update user details.");
                 setTimeout(() => {
@@ -67,7 +68,7 @@ export default function Profile() {
             try {
                 const response = await fetch(`https://mocktologist-backend.onrender.com/user/${token}`)
                 if (!response.ok) {
-                    setErrorMessage("Failed to fetch user details. Please refresh the page.")
+                    setSystemMessage("Failed to fetch user details. Please refresh the page.")
                 }
                 const data = await response.json()
                 setFirstName(data.fname)
@@ -115,7 +116,7 @@ export default function Profile() {
                 </View>
                 <View style={styles.container}>
                     <View style={styles.row}>
-                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10 }]}>
+                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: '8%' }]}>
                             <TextInput
                                 style={styles.input}
                                 value={firstName}
@@ -123,7 +124,7 @@ export default function Profile() {
                                 placeholder="First Name"
                             />
                         </View>
-                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: 10 }]}>
+                        <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: '8%' }]}>
                             <TextInput
                                 style={styles.input}
                                 value={lastName}
@@ -134,7 +135,7 @@ export default function Profile() {
                     </View>
                     <View style={styles.inputContainer2}>
                         <TextInput
-                            style={styles.input}
+                            style={styles.input2}
                             value={email}
                             onChangeText={handleEmailChange}
                             placeholder="Email"
@@ -148,6 +149,7 @@ export default function Profile() {
                             onValueChange={toggleVegan}
                             thumbColor={vegan ? '#ffffff' : '#ffffff'}
                             trackColor={{ false: '#353535', true: '#ED91C8' }}
+                            style={styles.toggle}
                         />
                     </View>
                     <Text style={styles.errorText}>{systemMessage}</Text>
