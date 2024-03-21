@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight } from "react-native";
+import { Dropdown } from 'react-native-element-dropdown';
 import { useAuth } from '../hooks/useAuth'
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
 import { PopupText } from '../components';
@@ -7,12 +8,30 @@ import styles from '../style'
 
 export default function Dash() {
     const [active, setActive] = useState(false)
-    const { firstName } = useAuth();
+    const [newDrink, setNewDrink] = useState(false);
+    const { firstName, vegan } = useAuth();
+    const [value, setValue] = useState(null);
+    const [isFocus, setIsFocus] = useState(false);
 
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
 
+    const handleNewDrinkPress = () => {
+        setShowOverlay(true);
+        setNewDrink(true);
+        setShowPopup(true);
+    }
+
+    const renderLabel = () => {
+        if(value || isFocus) {
+            return (
+                <Text>Taste Selected</Text>
+            )
+        }
+    }
+
     const handlePopupPress = () => {
         setShowOverlay(false)
+        setNewDrink(false)
         setShowPopup(false)
     }
 
@@ -23,14 +42,40 @@ export default function Dash() {
     }
 
     const Popup = () => {
-        return (
-            <View style={styles.popupBox}>
-                <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
-                    <Text style={styles.popupButtonText}>X</Text>
-                </TouchableOpacity>
-                <PopupText/>
-            </View>
-        )
+        if (newDrink) {
+            const data = {taste: null, allergens: null, vegan: vegan}
+            return (
+                <View style={styles.popupBox}>
+                    <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
+                        <Text style={styles.popupButtonText}>X</Text>
+                    </TouchableOpacity>
+                    {renderLabel()}
+                    <Dropdown style={styles.dropDown}
+                        placeholderStyle={styles.input.placeholder}
+                        selectedTextStyle={styles.input}
+                        data={[{label: 'Sweet', value: 'sweet'}, {label: 'Sour', value: 'sour'}]}
+                        labelField="label"
+                        valueField="value"
+                        placeholder={!isFocus ? 'Select taste profile' : '...'}
+                        value={value}
+                        onChange={item => {
+                            setValue(item.value);
+                            setIsFocus(false);
+                        }}
+
+                    />
+                </View>
+            )
+        } else {
+            return (
+                <View style={styles.popupBox}>
+                    <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
+                        <Text style={styles.popupButtonText}>X</Text>
+                    </TouchableOpacity>
+                    <PopupText/>
+                </View>
+            )
+        }
     }
 
 
@@ -73,7 +118,7 @@ export default function Dash() {
                     </View>
                 </View>
                 <Text style={styles.dashText}> Ready to make something new? </Text>
-                <TouchableHighlight style={styles.button} underlayColor="#ED91C8">
+                <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={handleNewDrinkPress}>
                     <Text style={styles.buttonText}> + New Mocktail </Text>
                 </TouchableHighlight>
                 <Image

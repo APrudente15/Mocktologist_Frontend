@@ -4,7 +4,7 @@ import styles from '../style'
 import { useEffect, useState } from 'react';
 
 export default function Login({ navigation }) {
-    const { login, token, firstName, userId, setToken, setFirstName, setUserId } = useAuth();
+    const { login, token, firstName, userId, vegan, image, setToken, setFirstName, setUserId, setVegan, setImage } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -50,6 +50,8 @@ export default function Login({ navigation }) {
             setToken(data.token)
             setUserId(data.user)
             setFirstName(data.fname)
+            setVegan(data.vegan)
+            setImage(data.image)
             navigation.navigate("Dashboard")
         } catch (error) {
             setErrorMessage(error.message);
