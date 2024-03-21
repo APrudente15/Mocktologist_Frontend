@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
     },
     dashBox: {
         backgroundColor: '#353535',
+        alignItems: 'center',
         borderColor: '#ED91C8',
         borderWidth: moderateScale(2),
         borderRadius: moderateScale(10),
@@ -264,6 +265,17 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
+    },
+    medal: {
+        width: horizontalScale(130),
+        height: verticalScale(130),
+        alignSelf: 'center'
+    },
+    rankText: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: verticalScale(5)
     }
 });
 
