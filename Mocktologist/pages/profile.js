@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, TextInput, TouchableHighlight, Switch } from "react-native";
+import { View, Text, ImageBackground, TextInput, TouchableHighlight, TouchableOpacity, Switch } from "react-native";
 import { useAuth } from '../hooks/useAuth'
 import styles from '../style'
 import { useEffect, useState } from "react";
@@ -79,10 +79,6 @@ export default function Profile() {
         fetchUserDetails()
     }, [token])
 
-    return (
-        <ImageBackground source={require("../assets/background.png")} style={styles.background}>
-            <View style={styles.container}>
-                <View style={styles.headingContainer}>
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
 
     const handlePopupPress = () => {
@@ -105,6 +101,7 @@ export default function Profile() {
             </View>
         )
     }
+    
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container}>
