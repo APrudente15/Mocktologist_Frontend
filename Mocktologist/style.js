@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
     dashBox: {
         backgroundColor: '#353535',
         alignItems: 'center',
+        justifyContent: 'center',
         borderColor: '#ED91C8',
         borderWidth: moderateScale(2),
         borderRadius: moderateScale(10),
