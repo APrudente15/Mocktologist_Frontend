@@ -6,15 +6,15 @@ import { useEffect, useState } from "react";
 import { PopupText } from "../components";
 
 export default function Profile() {
-    const { token, userId } = useAuth()
-    const [firstName, setFirstName] = useState("")
+    const { token, userId, firstName, setFirstName } = useAuth()
+    const [editingFirstName, setEditingFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [vegan, setVegan] = useState(false)
     const [systemMessage, setSystemMessage] = useState("")
 
     const handleFirstNameChange = (inputText) => {
-        setFirstName(inputText);
+        setEditingFirstName(inputText);
     }
 
     const handleLastNameChange = (inputText) => {
@@ -39,14 +39,13 @@ export default function Profile() {
                     Authorization: token
                 },
                 body: JSON.stringify({
-                    fname: firstName,
+                    fname: editingFirstName,
                     lname: lastName,
                     email: email,
                     vegan: vegan,
                 }),
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userId}`, options)
-            console.log(response)
             if (!response.ok) {
                 setSystemMessage("Could not update user details.");
                 setTimeout(() => {
@@ -55,6 +54,7 @@ export default function Profile() {
                 return;
             }
             setSystemMessage("User details updated.");
+            setFirstName(editingFirstName)
             setTimeout(() => {
                 setSystemMessage("");
             }, 3000);
@@ -79,6 +79,7 @@ export default function Profile() {
                 console.error(error);
             }
         }
+        setEditingFirstName(firstName)
         fetchUserDetails()
     }, [token])
 
@@ -128,7 +129,7 @@ export default function Profile() {
                         <View style={[styles.inputContainer2, { width: '30%', marginHorizontal: '8%' }]}>
                             <TextInput
                                 style={styles.input}
-                                value={firstName}
+                                value={editingFirstName}
                                 onChangeText={handleFirstNameChange}
                                 placeholder="First Name"
                             />
