@@ -16,8 +16,6 @@ export default function Profile() {
     const [vegan, setVegan] = useState(false)
     const [systemMessage, setSystemMessage] = useState("")
 
-    const GITHUB_TOKEN = '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';
-
     const handleFirstNameChange = (inputText) => {
         setFirstName(inputText);
     }
