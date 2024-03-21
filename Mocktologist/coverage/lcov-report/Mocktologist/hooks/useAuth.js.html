@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/15</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/15</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -97,10 +97,13 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -108,8 +111,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,46 +132,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createContext, useContext, useMemo, useState } from "react";
-const AuthContext = createContext();
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createContext, useContext, useMemo } from "react";
+import { useLocalStorage } from "./useAsyncStorage";
+const AuthContext = <span class="cstat-no" title="statement not covered" >createContext();</span>
 &nbsp;
-export const AuthProvider = <span class="fstat-no" title="function not covered" >({</span> children }) =&gt; {
-    const [firstName, setFirstName] = <span class="cstat-no" title="statement not covered" >useState()</span>
-    const [lastName, setLastName] = <span class="cstat-no" title="statement not covered" >useState()</span>
-    const [email, setEmail] = <span class="cstat-no" title="statement not covered" >useState()</span>
-    const [password, setPassword] = <span class="cstat-no" title="statement not covered" >useState()</span>
+export const AuthProvider = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> children }) =&gt; {</span>
+  const [token, setToken] = <span class="cstat-no" title="statement not covered" >useLocalStorage("token", null);</span>
+  const [userid, setUserId] = <span class="cstat-no" title="statement not covered" >useLocalStorage("userid", null);</span>
+  const [firstName, setFirstName] = <span class="cstat-no" title="statement not covered" >useLocalStorage("firstName", null);</span>
 &nbsp;
-    const login = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (data) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        console.log("Login attempted")</span>
-    };
+  const login = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (data) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setToken(data.token);</span>
+<span class="cstat-no" title="statement not covered" >    setUserId(data.user);</span>
+<span class="cstat-no" title="statement not covered" >    setFirstName(data.fname)</span>
+  };
 &nbsp;
-    const logout = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        console.log("Logout attempted")</span>
-    };
+  const logout = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setToken(null);</span>
+<span class="cstat-no" title="statement not covered" >    setFirstName(null)</span>
+<span class="cstat-no" title="statement not covered" >    setUserId(null)</span>
+  };
 &nbsp;
-    const value = <span class="cstat-no" title="statement not covered" >useMemo(</span>
-<span class="fstat-no" title="function not covered" >        ()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
-            firstName,
-            lastName,
-            email,
-            password,
-            login,
-            logout,
-        }),
-        []
-    );
+  const value = <span class="cstat-no" title="statement not covered" >useMemo(</span>
+<span class="fstat-no" title="function not covered" >    ()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+      token,
+      userid,
+      firstName,
+      login,
+      logout,
+    }),
+    [token]
+  );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return &lt;AuthContext.Provider value={value}&gt;{children}&lt;/AuthContext.Provider&gt;;</span>
+<span class="cstat-no" title="statement not covered" >  return &lt;AuthContext.Provider value={value}&gt;{children}&lt;/AuthContext.Provider&gt;;</span>
 };
 &nbsp;
-export const useAuth = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    return useContext(AuthContext);</span>
+export const useAuth = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  return useContext(AuthContext);</span>
 };</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -172,7 +181,7 @@ export const useAuth = <span class="fstat-no" title="function not covered" >()</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-20T12:22:18.508Z
+                at 2024-03-21T14:00:11.229Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -32,7 +32,10 @@
     "collectCoverageFrom": [
       "**/**/*.js",
       "!**/node_modules/**",
-      "!**/assets/**"
+      "!**/assets/**",
+      "!**/coverage/**",
+      "!mocktologist/**/app.js",
+      "!mocktologist/**/Navigation.js"
     ],
     "coverageDirectory": "./coverage/",
     "testEnvironment": "node",

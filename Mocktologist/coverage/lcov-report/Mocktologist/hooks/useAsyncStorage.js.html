@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Mocktologist/pages/steps.js</title>
+    <title>Code coverage report for Mocktologist/hooks/useAsyncStorage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">Mocktologist/pages</a> steps.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">Mocktologist/hooks</a> useAsyncStorage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -96,88 +96,73 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
-import { useOverlayPopup } from '../hooks/useOverlayPopup'
-import styles from '../style'
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState, useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >Steps(</span>) {
-    const { showOverlay, setShowOverlay, showPopup, setShowPopup } = <span class="cstat-no" title="statement not covered" >useOverlayPopup();</span>
+export const useLocalStorage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(k</span>eyName, defaultValue) =&gt; {</span>
+  const [storedValue, setStoredValue] = <span class="cstat-no" title="statement not covered" >useState(defaultValue);</span>
 &nbsp;
-    const handlePopupPress = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        setShowOverlay(false)</span>
-<span class="cstat-no" title="statement not covered" >        setShowPopup(false)</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+    const loadStoredValue = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      try {</span>
+        const value = <span class="cstat-no" title="statement not covered" >await AsyncStorage.getItem(keyName);</span>
+<span class="cstat-no" title="statement not covered" >        if (value !== null) {</span>
+<span class="cstat-no" title="statement not covered" >          setStoredValue(JSON.parse(value));</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          await AsyncStorage.setItem(keyName, JSON.stringify(defaultValue));</span>
+        }
+      } catch (error) {
+<span class="cstat-no" title="statement not covered" >        console.error("Error loading data from AsyncStorage:", error);</span>
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    loadStoredValue();</span>
+  }, [keyName, defaultValue]);
+&nbsp;
+  const setValue = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (newValue) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      await AsyncStorage.setItem(keyName, JSON.stringify(newValue));</span>
+<span class="cstat-no" title="statement not covered" >      setStoredValue(newValue);</span>
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >      console.error("Error saving data to AsyncStorage:", error);</span>
     }
+  };
 &nbsp;
-    const Overlay = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        return (</span>
-            &lt;View style={styles.overlay} /&gt;
-        );
-    }
-&nbsp;
-    const Popup = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        return (</span>
-            &lt;View style={styles.popupBox}&gt;
-                &lt;TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}&gt;
-                    &lt;Text style={styles.popupButtonText}&gt;X&lt;/Text&gt;
-                &lt;/TouchableOpacity&gt;
-            &lt;/View&gt;
-        )
-    }
-<span class="cstat-no" title="statement not covered" >    return (</span>
-        &lt;ImageBackground source={require("../assets/background.png")} style={styles.background}&gt;
-            &lt;View style={styles.container}&gt;
-                {showOverlay &amp;&amp; &lt;Overlay /&gt;}
-                {showPopup &amp;&amp; &lt;Popup /&gt;}
-                &lt;View style={styles.textContainer}&gt;
-                    &lt;Text style={styles.heading}&gt; Recipe &lt;/Text&gt;
-                &lt;/View&gt;
-            &lt;/View&gt;
-        &lt;/ImageBackground&gt;
-    );
-}</pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >  return [storedValue, setValue];</span>
+};</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
