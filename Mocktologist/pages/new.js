@@ -1,6 +1,7 @@
 import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { useOverlayPopup } from '../hooks/useOverlayPopup'
 import styles from '../style'
+import { PopupText } from "../components";
 
 export default function New() {
 
@@ -23,6 +24,7 @@ export default function New() {
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
                 </TouchableOpacity>
+                <PopupText/>
             </View>
         )
     }

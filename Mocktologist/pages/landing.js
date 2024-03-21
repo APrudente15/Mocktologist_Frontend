@@ -38,6 +38,7 @@ export default function Landing() {
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
                 </TouchableOpacity>
+                <PopupText/>
             </View>
         )
     }

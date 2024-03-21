@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight } from "react-native";
 import { useAuth } from '../hooks/useAuth'
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
+import { PopupText } from '../components';
 import styles from '../style'
 
 export default function Dash() {
@@ -27,6 +28,7 @@ export default function Dash() {
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
                 </TouchableOpacity>
+                <PopupText/>
             </View>
         )
     }
