@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight } from "react-native";
 import { useAuth } from '../hooks/useAuth'
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
-import { PopupText } from '../components';
+import { PopupText, Medal } from '../components';
 import styles from '../style'
 
 export default function Dash() {
@@ -45,7 +45,7 @@ export default function Dash() {
                     </View>
                     <View style={styles.boxCont}>
                         <View style={styles.dashBox}>
-
+                            <Medal/>
                         </View>
                         <View style={styles.dashBox}>
 
@@ -66,7 +66,7 @@ export default function Dash() {
                 </View>
                 <View style={styles.boxCont}>
                     <View style={styles.dashBox}>
-
+                        <Medal/>
                     </View>
                     <View style={styles.dashBox}>
 
