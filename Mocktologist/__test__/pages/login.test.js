@@ -12,7 +12,7 @@ describe('Login component', () => {
     const passwordInput = getByPlaceholderText('Password');
     expect(emailInput).toBeTruthy(); //Makes sure the components with the above names were rendered :o
     expect(passwordInput).toBeTruthy();
-  });
+  }); 
 
   test('calls login function when Login button is pressed', () => { //Not passing
     const loginMock = jest.fn(); //Mocks the loging in function
@@ -25,14 +25,14 @@ describe('Login component', () => {
     expect(loginMock).toHaveBeenCalledTimes(1);
   });
 
-  test('enters text into email input field', () => { //Not passing
+  test('enters text into email input field', () => { //Not passing, returns null
     const { getByPlaceholderText } = render(<Login />);
     const emailInput = getByPlaceholderText('Email');
     fireEvent.changeText(emailInput, 'test@example.com');
     expect(emailInput.props.value).toBe('test@example.com');
   });
 
-  test('enters text into password input field', () => { //not passing
+  test('enters text into password input field', () => { //not passing, returns null
     const { getByPlaceholderText } = render(<Login />);
     const passwordInput = getByPlaceholderText('Password');
     fireEvent.changeText(passwordInput, 'password123');
