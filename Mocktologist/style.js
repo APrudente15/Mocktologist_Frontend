@@ -301,6 +301,7 @@ const styles = StyleSheet.create({
     },
     bottomhalf: {
         position: 'absolute',
+        zIndex: -1,
         bottom: 100,
         width: '100%'
     },
