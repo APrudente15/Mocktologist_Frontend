@@ -4,39 +4,34 @@ import { useAuth } from '../hooks/useAuth';
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
 import styles from '../style';
 import { DrinkThumbnail, PopupText } from '../components';
+import { useIsFocused } from '@react-navigation/native';
 
-export default function Diary() {
+export default function Top() {
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
     const { userId, token } = useAuth();
+    const isFocused = useIsFocused()
     const [drinks, setDrinks] = useState([]);
 
     useEffect(() => {
-        setDrinks([])
         const getTop3Drinks = async () => {
-            if(!token){
-                return
+            const options = {
+                method: 'GET',
+                headers: {
+                    Authorization: token,
+                },
+            };
+            const response = await fetch(`https://mocktologist-backend.onrender.com/drink/top/${userId}`, options);
+            if (!response.ok) {
+                console.error('Cannot get drinks.');
+                return;
             }
-            try {
-                const options = {
-                    method: 'GET',
-                    headers: {
-                        Authorization: token,
-                    },
-                };
-                const response = await fetch(`https://mocktologist-backend.onrender.com/drink/top/${userId}`, options);
-                console.log(response)
-                if (!response.ok) {
-                    console.error('Cannot get drinks.');
-                    return;
-                }
-                const data = await response.json();
-                setDrinks(data);
-            } catch (error) {
-                console.error('Error fetching drinks:', error);
-            }
+            const data = await response.json();
+            setDrinks(data);
         };
-        getTop3Drinks();
-    }, [token]);
+        if (isFocused) {
+            getTop3Drinks();
+        }
+    }, [isFocused]);
 
     const handlePopupPress = () => {
         setShowOverlay(false);
@@ -59,7 +54,7 @@ export default function Diary() {
     };
 
     const renderDrinkItem = ({ item, index }) => (
-        <DrinkThumbnail  index={index} type="ranking" body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
+        <DrinkThumbnail index={index} type="ranking" body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
     );
 
     return (

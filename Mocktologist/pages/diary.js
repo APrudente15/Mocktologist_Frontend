@@ -4,14 +4,15 @@ import { useAuth } from '../hooks/useAuth';
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
 import styles from '../style';
 import { DrinkThumbnail, PopupText } from '../components';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Diary() {
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
+    const isFocused = useIsFocused()
     const { userId, token } = useAuth();
     const [drinks, setDrinks] = useState([]);
 
     useEffect(() => {
-        setDrinks([])
         const getAllDrinks = async () => {
             try {
                 const options = {
@@ -31,8 +32,10 @@ export default function Diary() {
                 console.error('Error fetching drinks:', error);
             }
         };
-        getAllDrinks();
-    }, [token]);
+        if(isFocused){
+            getAllDrinks();
+        }
+    }, [isFocused]);
 
     const handlePopupPress = () => {
         setShowOverlay(false);
