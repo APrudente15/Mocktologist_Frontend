@@ -204,6 +204,17 @@ const styles = StyleSheet.create({
             color: 'rgba(255, 255, 255, 0.5)',
         }
     },
+    inputDD: {
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: '100%',
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        }
+    },
     input2: {
         height: verticalScale(50),
         paddingHorizontal: horizontalScale(10),
@@ -280,10 +291,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     dropDown: {
-        width: horizontalScale(200)
+        width: horizontalScale(200),
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
     },
     dropDownText: {
-        color: 'white'
+        color: 'white',
     },
     allergenInput: {
         height: verticalScale(30),
@@ -315,7 +329,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: -1,
         bottom: 100,
-        width: '100%'
+        width: '100%',
     },
     hidden: {
         marginTop: verticalScale(570)
@@ -327,13 +341,19 @@ const styles = StyleSheet.create({
     },
     pfpimage: {
         height: verticalScale(50),
-        width: horizontalScale(50)
+        width: horizontalScale(50),
+        borderRadius: moderateScale(500)
     },
     pfp2image: {
         height: verticalScale(200),
         width: horizontalScale(200),
         marginTop: verticalScale(10),
         marginBottom: verticalScale(20),
+        borderRadius: moderateScale(500),
+    },
+    search: {
+        backgroundColor: 'white'
+    }
         borderRadius: '50%',
     },
     backButton: {
