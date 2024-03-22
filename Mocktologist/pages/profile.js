@@ -7,7 +7,6 @@ import { PopupText } from "../components";
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system';
 
-
 export default function Profile() {
     const { token, userId, image, setImage } = useAuth()
     const [firstName, setFirstName] = useState("")
@@ -58,7 +57,7 @@ export default function Profile() {
             const repo = 'profile_pics';
             const path = `${userId}/pfp/${Date.now()}.jpg`;
             const message = 'Upload image';
-            const accessToken = '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';
+            const accessToken = '';
             const content = {
                 message,
                 content: base64Image,
@@ -78,6 +77,7 @@ export default function Profile() {
 
             const responseData = await response.json();
             console.log('Image uploaded successfully:', responseData);
+            setImage(responseData.content.download_url);
             return responseData;
         } catch (error) {
             console.error('Error uploading image to GitHub:', error);
@@ -99,6 +99,7 @@ export default function Profile() {
                     lname: lastName,
                     email: email,
                     vegan: vegan,
+                    image: image
                 }),
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userId}`, options)
