@@ -85,6 +85,7 @@ export default function Profile() {
             const responseData = await response.json();
             console.log('Image uploaded successfully:', responseData);
             setImage(responseData.content.download_url);
+            updateUserDetails()
             return responseData;
         } catch (error) {
             console.error('Error uploading image to GitHub:', error);
@@ -105,7 +106,8 @@ export default function Profile() {
                     fname: editingFirstName,
                     lname: lastName,
                     email: email,
-                    vegan: vegan2
+                    vegan: vegan2,
+                    image: image
                 }),
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userId}`, options)
