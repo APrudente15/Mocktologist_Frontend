@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, Image } from 'react-native'
 import { useAuth } from '../hooks/useAuth'
 import styles from '../style'
+import DrinkThumbnail from './DrinkThumbnail'
 
 function LastDrink() {
     const { userId, token } = useAuth()
@@ -24,20 +25,24 @@ function LastDrink() {
             if(data.length === 0){
                 return
             }
-            setLastDrink(data[-1])
+            setHasMadeMocktail(true)
+            setLastDrink(data[data.length-1])
         }
         getLastDrink()
-    }, [userId])
+    }, [])
 
     if(!hasMadeMocktail){
         return (
-            <Text style={styles.rankText}>Your most recent mocktail will show up here!</Text>
+            <View style={styles.dashBox}>
+                <Text style={styles.rankText}>Your most recent mocktail will show up here!</Text>
+            </View>
         )
     }
 
     return (
-        // We'll make this when the drinks are properly set up.
-        <View></View>
+        <View>
+            {lastDrink  && <DrinkThumbnail body={lastDrink.body} image={lastDrink.image} name={lastDrink.name} rating={lastDrink.rating} tastes={lastDrink.tastes} vegan={lastDrink.vegan}></DrinkThumbnail>}
+        </View>
     )
 }
 

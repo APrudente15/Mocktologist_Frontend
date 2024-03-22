@@ -25,6 +25,10 @@ export default function Register({ navigation }) {
         setPassword(inputText)
     }
 
+    const handleBackPress = () => {
+        navigation.navigate("Landing")
+    }
+
     const handleRegister = async (firstName, lastName, email, password) => {
         try {
             if (firstName === "" || lastName === "" || email === "" || password === "") {
@@ -69,6 +73,9 @@ export default function Register({ navigation }) {
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> Register </Text>
                 </View>
+                <TouchableHighlight style={styles.backButton} underlayColor="transparent" onPress={handleBackPress}>
+                    <Text style={styles.aboutText}>←</Text>
+                </TouchableHighlight>
                 <View style={styles.inputContainer1}>
                     <TextInput
                         style={styles.input}

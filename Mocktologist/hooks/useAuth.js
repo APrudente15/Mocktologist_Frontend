@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [firstName, setFirstName] = useState("");
   const [vegan, setVegan] = useState(false);
   const [image, setImage] = useState("");
+  console.log(token)
 
   return (
     <AuthContext.Provider value={{ token, setToken, userId, setUserId, firstName, setFirstName, vegan, setVegan, image, setImage }}>

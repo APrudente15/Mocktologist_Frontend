@@ -18,6 +18,10 @@ export default function Login({ navigation }) {
         setPassword(inputText);
     }
 
+    const handleBackPress = () => {
+        navigation.navigate("Landing")
+    }
+
     const handleLogin = async (email, password) => {
         try {
             if (email === "" || password === "") {
@@ -67,6 +71,9 @@ export default function Login({ navigation }) {
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> Existing User Login </Text>
                 </View>
+                <TouchableHighlight style={styles.backButton} underlayColor="transparent" onPress={handleBackPress}>
+                    <Text style={styles.aboutText}>←</Text>
+                </TouchableHighlight>
                 <View style={styles.inputContainer1}>
                     <TextInput
                         style={styles.input}

@@ -335,7 +335,19 @@ const styles = StyleSheet.create({
         marginTop: verticalScale(10),
         marginBottom: verticalScale(20),
         borderRadius: '50%',
-    }
+    },
+    backButton: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: verticalScale(50),
+        left: horizontalScale(30),
+    },
+    drinkThumbnailImage: {
+        marginTop: verticalScale(5),
+        height: verticalScale(100),
+        width: horizontalScale(150),
+        borderRadius: moderateScale(10)
+    },
 });
 
 module.exports = styles
