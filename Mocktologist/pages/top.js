@@ -6,12 +6,16 @@ import styles from '../style';
 import { DrinkThumbnail, PopupText } from '../components';
 
 export default function Diary() {
-    const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
+    const { showOverlay, setShowOverlay, showPopup, setShowPopup, showThumbnailPopup, setShowThumbnailPopup } = useOverlayPopup();
     const { userId, token } = useAuth();
     const [drinks, setDrinks] = useState([]);
 
     useEffect(() => {
+        setDrinks([])
         const getTop3Drinks = async () => {
+            if(!token){
+                return
+            }
             try {
                 const options = {
                     method: 'GET',
@@ -20,6 +24,7 @@ export default function Diary() {
                     },
                 };
                 const response = await fetch(`https://mocktologist-backend.onrender.com/drink/top/${userId}`, options);
+                console.log(response)
                 if (!response.ok) {
                     console.error('Cannot get drinks.');
                     return;
@@ -31,11 +36,12 @@ export default function Diary() {
             }
         };
         getTop3Drinks();
-    }, []);
+    }, [token]);
 
     const handlePopupPress = () => {
         setShowOverlay(false);
         setShowPopup(false);
+        setShowThumbnailPopup(false);
     };
 
     const Overlay = () => {
@@ -53,6 +59,16 @@ export default function Diary() {
         );
     };
 
+    const ThumbnailPopup = () => {
+        return (
+          <View style={styles.popupBox}>
+            <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
+              <Text style={styles.popupButtonText}>X</Text>
+            </TouchableOpacity>
+          </View>
+        );
+    };
+
     const renderDrinkItem = ({ item, index }) => (
         <DrinkThumbnail  index={index} type="ranking" body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
     );
@@ -62,6 +78,7 @@ export default function Diary() {
             <View style={styles.container2}>
                 {showOverlay && <Overlay />}
                 {showPopup && <Popup />}
+                {showThumbnailPopup && <ThumbnailPopup />}
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> Top Mixes </Text>
                 </View>

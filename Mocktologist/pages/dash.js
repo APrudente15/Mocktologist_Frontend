@@ -14,7 +14,7 @@ export default function Dash() {
     const [allergenValue, setAllergenValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
-    const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
+    const { showOverlay, setShowOverlay, showPopup, setShowPopup, showThumbnailPopup, setShowThumbnailPopup } = useOverlayPopup();
 
     const handleNewDrinkPress = () => {
         setShowOverlay(true);
@@ -23,7 +23,6 @@ export default function Dash() {
     }
 
     const renderLabel = () => {
-
         if(tasteValue || isFocus) {
             return (
                 <Text>Taste Selected</Text>
@@ -39,6 +38,7 @@ export default function Dash() {
         setShowOverlay(false)
         setNewDrink(false)
         setShowPopup(false)
+        setShowThumbnailPopup(false)
     }
 
     const Overlay = () => {
@@ -90,12 +90,23 @@ export default function Dash() {
         }
     }
 
+    const ThumbnailPopup = () => {
+        return (
+          <View style={styles.popupBox}>
+            <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
+              <Text style={styles.popupButtonText}>X</Text>
+            </TouchableOpacity>
+          </View>
+        );
+    };
+
     if (active) {
         return (
             <ImageBackground source={require("../assets/background.png")} style={styles.background}>
                 <View style={styles.container2}>
                     {showOverlay && <Overlay />}
                     {showPopup && <Popup />}
+                    {showThumbnailPopup && <ThumbnailPopup/>}
                     <View style={styles.headingContainer}>
                         <Text style={styles.heading}> How's it going, {firstName}? </Text>
                     </View>
