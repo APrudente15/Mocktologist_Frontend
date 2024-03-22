@@ -299,6 +299,18 @@ const styles = StyleSheet.create({
     dropDownText: {
         color: 'white',
     },
+    allergenInput: {
+        height: verticalScale(30),
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: '100%',
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        }
+    },
     medal: {
         width: horizontalScale(130),
         height: verticalScale(130),
@@ -315,6 +327,7 @@ const styles = StyleSheet.create({
     },
     bottomhalf: {
         position: 'absolute',
+        zIndex: -1,
         bottom: 100,
         width: '100%',
     },
@@ -341,6 +354,20 @@ const styles = StyleSheet.create({
     search: {
         backgroundColor: 'white'
     }
+        borderRadius: '50%',
+    },
+    backButton: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: verticalScale(50),
+        left: horizontalScale(30),
+    },
+    drinkThumbnailImage: {
+        marginTop: verticalScale(5),
+        height: verticalScale(100),
+        width: horizontalScale(150),
+        borderRadius: moderateScale(10)
+    },
 });
 
 module.exports = styles
