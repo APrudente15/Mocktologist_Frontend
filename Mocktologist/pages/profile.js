@@ -124,7 +124,11 @@ export default function Profile() {
 
     useEffect(() => {
         const fetchUserDetails = async () => {
+            setSystemMessage("")
             try {
+                if(!token){
+                    return
+                }
                 const response = await fetch(`https://mocktologist-backend.onrender.com/user/${token}`)
                 if (!response.ok) {
                     setSystemMessage("Failed to fetch user details. Please refresh the page.")
