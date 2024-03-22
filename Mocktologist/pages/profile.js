@@ -9,13 +9,17 @@ import * as FileSystem from 'expo-file-system';
 
 export default function Profile() {
 
-    const { token, userId, firstName, setFirstName, image, setImage  } = useAuth()
-    const [editingFirstName, setEditingFirstName] = useState("")
+    const { token, userId, firstName, setFirstName, image, setImage, setVegan } = useAuth()
 
+    const [editingFirstName, setEditingFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
-    const [vegan, setVegan] = useState(false)
+    const [vegan2, setVegan2] = useState(false)
     const [systemMessage, setSystemMessage] = useState("")
+
+    useEffect(() => {
+        setVegan(vegan2)
+    }, [])
 
     const handleFirstNameChange = (inputText) => {
         setEditingFirstName(inputText);
@@ -30,7 +34,8 @@ export default function Profile() {
     }
 
     const toggleVegan = () => {
-        setVegan(previousValue => !previousValue);
+        setVegan2(previousValue => !previousValue);
+        setVegan(vegan2)
     };
 
     const pickImage = async () => {
@@ -100,8 +105,7 @@ export default function Profile() {
                     fname: editingFirstName,
                     lname: lastName,
                     email: email,
-                    vegan: vegan,
-                    image: image
+                    vegan: vegan2
                 }),
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userId}`, options)
@@ -133,7 +137,7 @@ export default function Profile() {
                 setFirstName(data.fname)
                 setLastName(data.lname)
                 setEmail(data.email)
-                setVegan(data.vegan)
+                setVegan2(data.vegan)
             } catch (error) {
                 console.error(error);
             }
@@ -214,9 +218,9 @@ export default function Profile() {
                     <View style={styles.row}>
                         <Text style={styles.vegan}>Vegan:</Text>
                         <Switch
-                            value={vegan}
+                            value={vegan2}
                             onValueChange={toggleVegan}
-                            thumbColor={vegan ? '#ffffff' : '#ffffff'}
+                            thumbColor={vegan2 ? '#ffffff' : '#ffffff'}
                             trackColor={{ false: '#353535', true: '#ED91C8' }}
                             style={styles.toggle}
                         />
