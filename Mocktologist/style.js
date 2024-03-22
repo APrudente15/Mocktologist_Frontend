@@ -98,12 +98,6 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(48),
         fontWeight: 'bold',
     },
-    backButton: {
-        backgroundColor: 'transparent',
-        position: 'absolute',
-        top: verticalScale(50),
-        left: horizontalScale(30),
-    },
     backText: {
         color: 'white',
         fontSize: moderateScale(48),
@@ -213,7 +207,9 @@ const styles = StyleSheet.create({
         color: 'white',
         placeholder: {
             color: 'rgba(255, 255, 255, 0.5)',
-        }
+        },
+        height: verticalScale(200),
+        marginBottom: verticalScale(30)
     },
     input2: {
         height: verticalScale(50),
@@ -290,6 +286,10 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
     },
+    row2: {
+        flexDirection: 'row',
+        marginBottom: verticalScale(50)
+    },
     dropDown: {
         width: horizontalScale(200),
         backgroundColor: '#353535',
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     allergenInput: {
-        height: verticalScale(30),
+        height: verticalScale(60),
         paddingHorizontal: horizontalScale(10),
         borderRadius: moderateScale(10),
         backgroundColor: '#353535',
@@ -309,7 +309,11 @@ const styles = StyleSheet.create({
         color: 'white',
         placeholder: {
             color: 'rgba(255, 255, 255, 0.5)',
-        }
+        },
+        marginTop: verticalScale(30),
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+
     },
     medal: {
         width: horizontalScale(130),
@@ -363,6 +367,15 @@ const styles = StyleSheet.create({
         width: horizontalScale(150),
         borderRadius: moderateScale(10)
     },
+    ddbox: {
+        flexDirection: "row",
+        marginTop: verticalScale(150),
+    },
+    dropdownMess: {
+        fontSize: moderateScale(25),
+        color: 'white',
+        marginRight: horizontalScale(10)
+    }
 });
 
 module.exports = styles
