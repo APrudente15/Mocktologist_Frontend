@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { Animated } from 'react-native'
 import styles from '../style'
 
-function Bartender() {
+function Bartender({ type }) {
     const bartenderAnimation = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {

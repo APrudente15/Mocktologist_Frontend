@@ -261,6 +261,11 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: horizontalScale(-47)
     },
+    bartenderCurrent: {
+        width: horizontalScale(150),
+        height: verticalScale(150),
+        bottom: 0,
+    },
     dashText: {
         color: '#ffffff',
         fontSize: moderateScale(20),

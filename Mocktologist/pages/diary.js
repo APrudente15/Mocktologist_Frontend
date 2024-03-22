@@ -4,14 +4,15 @@ import { useAuth } from '../hooks/useAuth';
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
 import styles from '../style';
 import { DrinkThumbnail, PopupText } from '../components';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Diary() {
-    const { showOverlay, setShowOverlay, showPopup, setShowPopup, showThumbnailPopup, setShowThumbnailPopup } = useOverlayPopup();
+    const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
+    const isFocused = useIsFocused()
     const { userId, token } = useAuth();
     const [drinks, setDrinks] = useState([]);
 
     useEffect(() => {
-        setDrinks([])
         const getAllDrinks = async () => {
             try {
                 const options = {
@@ -31,13 +32,14 @@ export default function Diary() {
                 console.error('Error fetching drinks:', error);
             }
         };
-        getAllDrinks();
-    }, [token]);
+        if(isFocused){
+            getAllDrinks();
+        }
+    }, [isFocused]);
 
     const handlePopupPress = () => {
         setShowOverlay(false);
         setShowPopup(false);
-        setShowThumbnailPopup(false);
     };
 
     const Overlay = () => {
@@ -55,16 +57,6 @@ export default function Diary() {
         );
     };
 
-    const ThumbnailPopup = () => {
-        return (
-          <View style={styles.popupBox}>
-            <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
-              <Text style={styles.popupButtonText}>X</Text>
-            </TouchableOpacity>
-          </View>
-        );
-    };
-
     const renderDrinkItem = ({ item }) => (
         <DrinkThumbnail body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
     );
@@ -74,7 +66,6 @@ export default function Diary() {
             <View style={styles.container2}>
                 {showOverlay && <Overlay />}
                 {showPopup && <Popup />}
-                {showThumbnailPopup && <ThumbnailPopup />}
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> Mix Diary </Text>
                 </View>
