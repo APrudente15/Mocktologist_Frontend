@@ -6,7 +6,7 @@ import styles from '../style';
 import { DrinkThumbnail, PopupText } from '../components';
 
 export default function Diary() {
-    const { showOverlay, setShowOverlay, showPopup, setShowPopup, showThumbnailPopup, setShowThumbnailPopup } = useOverlayPopup();
+    const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
     const { userId, token } = useAuth();
     const [drinks, setDrinks] = useState([]);
 
@@ -37,7 +37,6 @@ export default function Diary() {
     const handlePopupPress = () => {
         setShowOverlay(false);
         setShowPopup(false);
-        setShowThumbnailPopup(false);
     };
 
     const Overlay = () => {
@@ -55,16 +54,6 @@ export default function Diary() {
         );
     };
 
-    const ThumbnailPopup = () => {
-        return (
-          <View style={styles.popupBox}>
-            <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
-              <Text style={styles.popupButtonText}>X</Text>
-            </TouchableOpacity>
-          </View>
-        );
-    };
-
     const renderDrinkItem = ({ item }) => (
         <DrinkThumbnail body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
     );
@@ -74,7 +63,6 @@ export default function Diary() {
             <View style={styles.container2}>
                 {showOverlay && <Overlay />}
                 {showPopup && <Popup />}
-                {showThumbnailPopup && <ThumbnailPopup />}
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> Mix Diary </Text>
                 </View>

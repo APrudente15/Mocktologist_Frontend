@@ -3,15 +3,40 @@ import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighligh
 import { useAuth } from '../hooks/useAuth'
 import { useChoices } from '../hooks/useChoices';
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
-import { PopupText, Medal, LastDrink, Bartender } from '../components';
+import { PopupText, Medal, LastDrink, Bartender, DrinkThumbnail } from '../components';
+import { useIsFocused } from '@react-navigation/native';
 import styles from '../style'
 
 export default function Dash({ navigation }) {
     const [active, setActive] = useState(false)
     const [newDrink, setNewDrink] = useState(false);
-    const { firstName, vegan } = useAuth();
+    const [currentDrink, setCurrentDrink] = useState({})
+    const { firstName, token, userId, vegan } = useAuth();
+    const isFocused = useIsFocused()
 
-    const { showOverlay, setShowOverlay, showPopup, setShowPopup, showThumbnailPopup, setShowThumbnailPopup } = useOverlayPopup();
+    const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
+
+    useEffect(() => {
+        const getCurrentDrink = async () => {
+            const options = {
+                method: 'GET',
+                headers: {
+                    Authorization: token,
+                }
+            }
+            const response = await fetch(`https://mocktologist-backend.onrender.com/drink/current/${userId}`, options)
+            if(response.status === 404){
+                return
+            }
+            const data = await response.json()
+            setActive(true)
+            setCurrentDrink(data)
+        }
+        if(isFocused){
+            getCurrentDrink()
+        }
+    }, [isFocused])
+
 
     const handleNewDrinkPress = () => {
         navigation.navigate("New")
@@ -20,7 +45,6 @@ export default function Dash({ navigation }) {
     const handlePopupPress = () => {
         setShowOverlay(false)
         setShowPopup(false)
-        setShowThumbnailPopup(false)
     }
 
     const Overlay = () => {
@@ -40,23 +64,12 @@ export default function Dash({ navigation }) {
         )
     }
 
-    const ThumbnailPopup = () => {
-        return (
-          <View style={styles.popupBox}>
-            <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
-              <Text style={styles.popupButtonText}>X</Text>
-            </TouchableOpacity>
-          </View>
-        );
-    };
-
     if (active) {
         return (
             <ImageBackground source={require("../assets/background.png")} style={styles.background}>
                 <View style={styles.container2}>
                     {showOverlay && <Overlay />}
                     {showPopup && <Popup />}
-                    {showThumbnailPopup && <ThumbnailPopup/>}
                     <View style={styles.headingContainer}>
                         <Text style={styles.heading}> How's it going, {firstName}? </Text>
                     </View>
@@ -68,6 +81,8 @@ export default function Dash({ navigation }) {
                             <LastDrink />
                         </View>
                     </View>
+                    <Text style={styles.dashText}> Mix in Progress: </Text>
+                    <DrinkThumbnail type="current" body={currentDrink.body} image={currentDrink.image} name={currentDrink.name} rating={currentDrink.rating} tastes={currentDrink.tastes} vegan={currentDrink.vegan} ></DrinkThumbnail>
                 </View>
             </ImageBackground>
         )
@@ -85,7 +100,6 @@ export default function Dash({ navigation }) {
                     <View style={styles.dashBox}>
                         <Medal />
                     </View>
-
                     <LastDrink />
                 </View>
                 <Text style={styles.dashText}> Ready to make something new? </Text>

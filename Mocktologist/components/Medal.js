@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image } from 'react-native'
 import { useAuth } from '../hooks/useAuth'
+import { useIsFocused } from '@react-navigation/native'
 import styles from '../style'
 import medalNone from '../assets/medal-none.png'
 import medalBronze from '../assets/medal-bronze.png'
@@ -9,14 +10,12 @@ import medalGold from '../assets/medal-gold.png'
 
 function Medal() {
     const { userId, token } = useAuth()
+    const isFocused = useIsFocused()
     const [count, setCount] = useState(0)
     const [image, setImage] = useState(medalNone)
     const [rankText, setRankText] = useState("Beginner")
 
     useEffect(() => {
-        if(!token){
-            return
-        }
         setCount(0)
         const fetchCount = async () => {
             const options = {
@@ -29,8 +28,10 @@ function Medal() {
             const data = await response.json();
             setCount(data);
         };
-        fetchCount();
-    }, [token]);
+        if(isFocused){
+            fetchCount();
+        }
+    }, [isFocused]);
 
     useEffect(() => {
         const chooseImage = count => {

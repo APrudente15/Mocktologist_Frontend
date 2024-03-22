@@ -3,8 +3,10 @@ import { View, Text, Image } from 'react-native'
 import { useAuth } from '../hooks/useAuth'
 import styles from '../style'
 import DrinkThumbnail from './DrinkThumbnail'
+import { useIsFocused } from "@react-navigation/native";
 
 function LastDrink() {
+    const isFocused = useIsFocused()
     const { userId, token } = useAuth()
     const [hasMadeMocktail, setHasMadeMocktail] = useState(false)
     const [lastDrink, setLastDrink] = useState({})
@@ -34,8 +36,10 @@ function LastDrink() {
             setHasMadeMocktail(true)
             setLastDrink(data[data.length-1])
         }
-        getLastDrink()
-    }, [token])
+        if(isFocused){
+            getLastDrink()
+        }
+    }, [isFocused])
 
     if(!hasMadeMocktail){
         return (
