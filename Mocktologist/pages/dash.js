@@ -11,7 +11,7 @@ export default function Dash({ navigation }) {
     const [newDrink, setNewDrink] = useState(false);
     const { firstName, vegan } = useAuth();
 
-    const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
+    const { showOverlay, setShowOverlay, showPopup, setShowPopup, showThumbnailPopup, setShowThumbnailPopup } = useOverlayPopup();
 
     const handleNewDrinkPress = () => {
         navigation.navigate("New")
@@ -20,6 +20,7 @@ export default function Dash({ navigation }) {
     const handlePopupPress = () => {
         setShowOverlay(false)
         setShowPopup(false)
+        setShowThumbnailPopup(false)
     }
 
     const Overlay = () => {
@@ -39,12 +40,23 @@ export default function Dash({ navigation }) {
         )
     }
 
+    const ThumbnailPopup = () => {
+        return (
+          <View style={styles.popupBox}>
+            <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
+              <Text style={styles.popupButtonText}>X</Text>
+            </TouchableOpacity>
+          </View>
+        );
+    };
+
     if (active) {
         return (
             <ImageBackground source={require("../assets/background.png")} style={styles.background}>
                 <View style={styles.container2}>
                     {showOverlay && <Overlay />}
                     {showPopup && <Popup />}
+                    {showThumbnailPopup && <ThumbnailPopup/>}
                     <View style={styles.headingContainer}>
                         <Text style={styles.heading}> How's it going, {firstName}? </Text>
                     </View>
