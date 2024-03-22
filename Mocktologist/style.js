@@ -285,6 +285,18 @@ const styles = StyleSheet.create({
     dropDownText: {
         color: 'white'
     },
+    allergenInput: {
+        height: verticalScale(30),
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: '100%',
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        }
+    },
     medal: {
         width: horizontalScale(130),
         height: verticalScale(130),

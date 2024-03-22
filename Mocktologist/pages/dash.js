@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity, Image, TouchableHighlight, TextInput } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
 import { useAuth } from '../hooks/useAuth'
 import { useOverlayPopup } from '../hooks/useOverlayPopup';
@@ -10,7 +10,8 @@ export default function Dash() {
     const [active, setActive] = useState(false)
     const [newDrink, setNewDrink] = useState(false);
     const { firstName, vegan } = useAuth();
-    const [value, setValue] = useState(null);
+    const [tasteValue, setTasteValue] = useState(null);
+    const [allergenValue, setAllergenValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
 
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
@@ -22,11 +23,15 @@ export default function Dash() {
     }
 
     const renderLabel = () => {
-        if(value || isFocus) {
+        if(tasteValue || isFocus) {
             return (
                 <Text>Taste Selected</Text>
             )
         }
+    }
+
+    const handleAllergenChange = (inputValue) => {
+        setAllergenValue(inputValue)
     }
 
     const handlePopupPress = () => {
@@ -57,12 +62,18 @@ export default function Dash() {
                         labelField="label"
                         valueField="value"
                         placeholder={!isFocus ? 'Select taste profile' : '...'}
-                        value={value}
+                        value={tasteValue}
                         onChange={item => {
-                            setValue(item.value);
+                            setTasteValue(item.value);
                             setIsFocus(false);
                         }}
-
+                    />
+                    <TextInput
+                        style={styles.allergenInput}
+                        placeholder={"Please don't include: \nAnything not to include? (Include dietary preferences and allergies here...)"}
+                        placeholderTextColor={styles.input.placeholder.color}
+                        value={allergenValue}
+                        onChangeText={handleAllergenChange}
                     />
                 </View>
             )
