@@ -53,6 +53,12 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(32),
         fontWeight: 'bold',
     },
+    heading2: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
+        marginBottom: verticalScale(20)
+    },
     landingPageText1: {
         color: '#ffffff',
         marginTop: verticalScale(-40),
@@ -380,6 +386,43 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(25),
         color: 'white',
         marginRight: horizontalScale(10)
+    },
+    stepBox: {
+        backgroundColor: '#353535',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        borderRadius: moderateScale(10),
+        width: horizontalScale(300),
+        height: verticalScale(300),
+        marginBottom: verticalScale(20),
+        padding: moderateScale(20),
+        marginTop: verticalScale(20)
+    },
+    stepText: {
+        color: 'white',
+        fontSize: moderateScale(20)
+    },
+    buttonST: {
+        width: horizontalScale(200),
+        height: verticalScale(50),
+        borderWidth: moderateScale(2),
+        borderColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(20),
+        marginBottom: verticalScale(20),
+        marginTop: verticalScale(50)
+    },
+    buttonSTC: {
+        width: horizontalScale(200),
+        height: verticalScale(50),
+        backgroundColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(20),
+        marginBottom: verticalScale(50),
     }
 });
 
