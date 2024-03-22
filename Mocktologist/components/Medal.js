@@ -26,7 +26,7 @@ function Medal() {
             setCount(data);
         };
         fetchCount();
-    }, [userId]);
+    }, []);
 
     useEffect(() => {
         const chooseImage = count => {

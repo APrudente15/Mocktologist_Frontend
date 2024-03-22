@@ -78,38 +78,6 @@ export default function Dash() {
         }
     }
 
-    const bartenderAnimation = useRef(new Animated.Value(0)).current;
-
-    useEffect(() => {
-        Animated.loop(
-            Animated.sequence([
-                Animated.timing(bartenderAnimation, {
-                    toValue: 1,
-                    duration: 1000,
-                    useNativeDriver: true
-                }),
-                Animated.timing(bartenderAnimation, {
-                    toValue: 0,
-                    duration: 1000,
-                    useNativeDriver: true
-                })
-            ]),
-            {
-                iterations: -1
-            }
-        ).start();
-    }, []);
-
-    const interpolatedRotateAnimation = bartenderAnimation.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['-3deg', '3deg']
-    });
-
-    const transformStyle = {
-        transform: [{ rotate: interpolatedRotateAnimation }]
-    };
-
-
     if (active) {
         return (
             <ImageBackground source={require("../assets/background.png")} style={styles.background}>
@@ -144,9 +112,7 @@ export default function Dash() {
                     <View style={styles.dashBox}>
                         <Medal/>
                     </View>
-                    <View style={styles.dashBox}>
-                        <LastDrink/>
-                    </View>
+                    <LastDrink/>
                 </View>
                 <Text style={styles.dashText}> Ready to make something new? </Text>
                 <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={handleNewDrinkPress}>
