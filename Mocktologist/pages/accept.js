@@ -8,7 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useChoices } from '../hooks/useChoices'
 import { useIsFocused } from "@react-navigation/native";
 
-export default function Accept() {
+export default function Accept({ navigation }) {
 
     const isFocused = useIsFocused()
 
@@ -16,7 +16,44 @@ export default function Accept() {
 
     const { selectedTaste, setSelectedTaste, avoids, setAvoids } = useChoices()
 
-    const { vegan, token } = useAuth()
+    const { vegan, token, userId } = useAuth()
+
+    const [name, setName] = useState("");
+    const [profile, setProfile] = useState("");
+    const [ingredients, setIngredients] = useState([]);
+    const [steps, setSteps] = useState([]);
+    const [resp, setResp] = useState([]);
+
+    const handleAccept = () => {
+        const postDrink = async () => {
+            try {
+                const options = {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        Authorization: token,
+                    },
+                    body: JSON.stringify({
+                        user: userId,
+                        name: name,
+                        body: resp,
+                        tastes: selectedTaste,
+                        vegan: vegan
+                    })
+                }
+                const response = await fetch(`https://mocktologist-backend.onrender.com/drink/accept`, options)
+                if (response.ok) {
+                    navigation.navigate("Steps")
+                    return vegan
+                }
+                console.log("Failed to accept")
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        postDrink()
+    }
 
     const getDrink = async () => {
         try {
@@ -33,7 +70,16 @@ export default function Accept() {
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/drink`, options)
             if (response.ok) {
-                console.log(await response.json())
+                const data = await response.json()
+                setResp(data.body)
+                setName(data.name)
+                setProfile(data.body[0])
+                const i = data.body.findIndex(e => e == "Ingredients required:") + 1
+                const j = data.body.findIndex(e => e == "Instructions:")
+                setIngredients(data.body.slice(i, j))
+                const k = data.body.findIndex(e => e == "Nutritional Info: ")
+                setSteps(data.body.slice(j + 1, k))
+                console.log(steps)
             }
         } catch (error) {
             console.error(error);
@@ -77,7 +123,18 @@ export default function Accept() {
                 {showPopup && <Popup />}
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> How about this? </Text>
+                    <Text style={styles.drinkName}> {name} </Text>
+                    <Text style={styles.drinkProfile}> {profile} </Text>
+                    <View>
+                        <Text style={styles.drinkIng}>Ingredients:</Text>
+                        {ingredients.map((ingredient, index) => (
+                            <Text style={styles.drinkIngList} key={index}>{ingredient}</Text>
+                        ))}
+                    </View>
                 </View >
+                <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={handleAccept}>
+                    <Text style={styles.buttonText}> Accept</Text>
+                </TouchableHighlight>
             </View>
         </ImageBackground>
     )
