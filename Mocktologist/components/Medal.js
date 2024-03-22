@@ -14,6 +14,10 @@ function Medal() {
     const [rankText, setRankText] = useState("Beginner")
 
     useEffect(() => {
+        if(!token){
+            return
+        }
+        setCount(0)
         const fetchCount = async () => {
             const options = {
                 method: 'GET',
@@ -26,7 +30,7 @@ function Medal() {
             setCount(data);
         };
         fetchCount();
-    }, []);
+    }, [token]);
 
     useEffect(() => {
         const chooseImage = count => {

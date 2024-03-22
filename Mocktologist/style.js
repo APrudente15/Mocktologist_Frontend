@@ -351,11 +351,6 @@ const styles = StyleSheet.create({
         marginBottom: verticalScale(20),
         borderRadius: moderateScale(500),
     },
-    search: {
-        backgroundColor: 'white'
-    }
-        borderRadius: '50%',
-    },
     backButton: {
         backgroundColor: 'transparent',
         position: 'absolute',

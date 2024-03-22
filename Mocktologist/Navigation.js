@@ -118,7 +118,9 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
                     <Text style={styles.navAboutText}>About</Text>
                 </TouchableHighlight>
                 <View style={styles.separator3} />
-                <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
+                <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => {
+                    navigation.navigate("Landing");
+                }}>
                     <Text style={styles.logoutText}>Sign Out</Text>
                 </TouchableHighlight>
             </View>

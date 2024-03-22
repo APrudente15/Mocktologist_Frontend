@@ -51,8 +51,8 @@ export default function Login({ navigation }) {
                 return;
             }
             const data = await response.json();
-            setToken(data.token)
             setUserId(data.user)
+            setToken(data.token)
             setFirstName(data.fname)
             setVegan(data.vegan)
             setImage(data.image)

@@ -10,7 +10,12 @@ function LastDrink() {
     const [lastDrink, setLastDrink] = useState({})
 
     useEffect(() => {
+        setHasMadeMocktail(false)
+        setLastDrink({})
         const getLastDrink = async () => {
+            if(!token){
+                return
+            }
             const options = {
                 method: 'GET',
                 headers: {
@@ -18,6 +23,7 @@ function LastDrink() {
                 }
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/drink/all/${userId}`, options)
+            console.log(response)
             if(!response.ok){
                 console.error('Cannot get drinks.')
             }
@@ -29,7 +35,7 @@ function LastDrink() {
             setLastDrink(data[data.length-1])
         }
         getLastDrink()
-    }, [])
+    }, [token])
 
     if(!hasMadeMocktail){
         return (
