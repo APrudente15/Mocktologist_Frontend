@@ -423,7 +423,45 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: moderateScale(20),
         marginBottom: verticalScale(50),
+    },
+    newBox: {
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        padding: moderateScale(20),
+        borderRadius: moderateScale(10),
+        alignItems: 'center',
+        marginTop: verticalScale(70),
+        width: horizontalScale(350),
+        height: verticalScale(500),
+        marginBottom: verticalScale(50),
+    },
+    headingDrink: {
+        color: '#ED91C8',
+        fontSize: moderateScale(30),
+        fontWeight: 'bold',
+        marginTop: verticalScale(20),
+        textAlign: 'center'
+    },
+    drinkProfile: {
+        color: 'white',
+        fontSize: moderateScale(20),
+        marginTop: verticalScale(30),
+        marginBottom: verticalScale(30),
+        textAlign: 'center'
+    },
+    drinkIng: {
+        color: 'white',
+        fontSize: moderateScale(15),
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    drinkIngList: {
+        color: 'white',
+        fontSize: moderateScale(15),
+        textAlign: 'center'
     }
+
 });
 
 module.exports = styles

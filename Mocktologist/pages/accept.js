@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, TouchableOpacity, TextInput, TouchableHighlight, Switch } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity, TextInput, TouchableHighlight, Switch, Image } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
 import { useOverlayPopup } from '../hooks/useOverlayPopup'
 import styles from '../style'
@@ -23,6 +23,14 @@ export default function Accept({ navigation }) {
     const [ingredients, setIngredients] = useState([]);
     const [steps, setSteps] = useState([]);
     const [resp, setResp] = useState([]);
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        if (isFocused) {
+            setLoading(true)
+        }
+    }, [isFocused])
+
 
     const handleAccept = () => {
         const postDrink = async () => {
@@ -55,6 +63,11 @@ export default function Accept({ navigation }) {
         postDrink()
     }
 
+    const handleDecline = () => {
+        setLoading(true)
+        getDrink()
+    }
+
     const getDrink = async () => {
         try {
             const options = {
@@ -79,7 +92,7 @@ export default function Accept({ navigation }) {
                 setIngredients(data.body.slice(i, j))
                 const k = data.body.findIndex(e => e == "Nutritional Info: ")
                 setSteps(data.body.slice(j + 1, k))
-                console.log(steps)
+                setLoading(false)
             }
         } catch (error) {
             console.error(error);
@@ -116,6 +129,24 @@ export default function Accept({ navigation }) {
         )
     }
 
+    if (loading) {
+        return (
+            <ImageBackground source={require("../assets/background.png")} style={styles.background}>
+                <View style={styles.container2}>
+                    {showOverlay && <Overlay />}
+                    {showPopup && <Popup />}
+                    <View style={styles.headingContainer}>
+                        <Text style={styles.heading}> Loading </Text>
+                    </View >
+                    <Image
+                        source={{ uri: 'https://images.squarespace-cdn.com/content/v1/54aebf00e4b0b4cef10f52f5/1503888838259-WYTJ6W7DEVNVCYV7J3VS/cocktail-shaker.gif?format=500w' }}
+                        style={styles.pfp2image}
+                    />
+                </View>
+            </ImageBackground>
+        )
+    }
+
     return (
         <ImageBackground source={require("../assets/background.png")} style={styles.background}>
             <View style={styles.container2}>
@@ -123,7 +154,9 @@ export default function Accept({ navigation }) {
                 {showPopup && <Popup />}
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> How about this? </Text>
-                    <Text style={styles.drinkName}> {name} </Text>
+                </View >
+                <View style={styles.newBox}>
+                    <Text style={styles.headingDrink}> {name} </Text>
                     <Text style={styles.drinkProfile}> {profile} </Text>
                     <View>
                         <Text style={styles.drinkIng}>Ingredients:</Text>
@@ -131,9 +164,12 @@ export default function Accept({ navigation }) {
                             <Text style={styles.drinkIngList} key={index}>{ingredient}</Text>
                         ))}
                     </View>
-                </View >
+                </View>
                 <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={handleAccept}>
-                    <Text style={styles.buttonText}> Accept</Text>
+                    <Text style={styles.buttonText}>Let's Mix!</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={handleDecline}>
+                    <Text style={styles.buttonText}> Not feeling it</Text>
                 </TouchableHighlight>
             </View>
         </ImageBackground>
