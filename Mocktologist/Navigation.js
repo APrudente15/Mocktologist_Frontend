@@ -52,7 +52,7 @@ const Navigation = () => {
     return (
         <NavigationContainer>
             <Drawer.Navigator
-                initialRouteName="Steps"
+                initialRouteName="Landing"
                 drawerContent={props => <ConditionalDrawerContent {...props} />}
                 screenOptions={{
                     drawerStyle: { backgroundColor: 'transparent' },
@@ -91,7 +91,7 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
             </View>
             <View style={styles.separator} />
             {state.routes.map((route, index) => {
-                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Register' || route.name === 'Dashboard' || route.name === 'New' || route.name === 'Accept' || route.name === 'Complete') {
+                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Register' || route.name === 'Dashboard' || route.name === 'New' || route.name === 'Accept' || route.name === 'Complete' || route.name === 'Steps') {
                     return null;
                 } else {
                     const { options } = descriptors[route.key];

@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(32),
         fontWeight: 'bold',
+        marginTop: verticalScale(10)
     },
     headingConf: {
         color: 'white',
@@ -106,6 +107,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#ffffff',
+        fontSize: moderateScale(20),
+        fontWeight: 'bold'
+    },
+    buttonTextc: {
+        color: '#ED91C8',
         fontSize: moderateScale(20),
         fontWeight: 'bold'
     },
@@ -222,6 +228,7 @@ const styles = StyleSheet.create({
     },
     inputDD: {
         paddingHorizontal: horizontalScale(10),
+        paddingVertical: verticalScale(10),
         borderRadius: moderateScale(10),
         backgroundColor: '#353535',
         width: '100%',
@@ -539,8 +546,9 @@ const styles = StyleSheet.create({
         marginTop: verticalScale(60)
     },
     completeimg: {
-        height: verticalScale(300),
-        width: horizontalScale(400)
+        height: verticalScale(200),
+        width: horizontalScale(300),
+        marginBottom: verticalScale(20)
     },
     completeup: {
         height: verticalScale(200),
@@ -548,7 +556,12 @@ const styles = StyleSheet.create({
         borderWidth: moderateScale(3),
         borderColor: '#2C2C2C',
         borderRadius: moderateScale(20)
-    }
+    },
+    loadingimg: {
+        height: verticalScale(600),
+        width: horizontalScale(400),
+        marginTop: verticalScale(75)
+    },
 });
 
 module.exports = styles

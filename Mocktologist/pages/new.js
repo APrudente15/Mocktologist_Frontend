@@ -88,11 +88,13 @@ export default function New({ navigation }) {
                 </View>
                 <View style={styles.inputContainer1}>
                     <TextInput
-                        style={styles.inputDD}
+                        style={[styles.inputDD, { textAlignVertical: 'top' }]}
                         placeholder="Anything to not include in your drink?"
                         placeholderTextColor={styles.input.placeholder.color}
                         value={avoids}
                         onChangeText={handleAvoidsChange}
+                        maxLength={100}
+                        multiline={true}
                     />
                 </View>
                 <View style={styles.row2}>

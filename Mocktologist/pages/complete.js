@@ -105,8 +105,8 @@ export default function Complete({ navigation }) {
                     placeholderStyle={[{ color: 'white' }, { marginLeft: '45%' }]}
                 />
             </View>
-            <TouchableHighlight style={styles.buttonc} underlayColor="#ED91C8" >
-                <Text style={styles.buttonText}> Complete </Text>
+            <TouchableHighlight style={styles.buttonc} underlayColor="#ED91C8" onPress={() => navigation.navigate("Dashboard")}>
+                <Text style={styles.buttonTextc}> Complete </Text>
             </TouchableHighlight>
         </View>
     );

@@ -57,6 +57,7 @@ export default function Steps({ navigation }) {
     const handlePopupPress = () => {
         setShowOverlay(false)
         setShowPopup(false)
+        setShowPopupIng(false)
     }
 
     const Overlay = () => {

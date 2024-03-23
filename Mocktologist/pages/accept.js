@@ -136,11 +136,11 @@ export default function Accept({ navigation }) {
                     {showOverlay && <Overlay />}
                     {showPopup && <Popup />}
                     <View style={styles.headingContainer}>
-                        <Text style={styles.heading}> Loading </Text>
+                        <Text style={styles.heading}> Shaking Up . . . </Text>
                     </View >
                     <Image
-                        source={{ uri: 'https://images.squarespace-cdn.com/content/v1/54aebf00e4b0b4cef10f52f5/1503888838259-WYTJ6W7DEVNVCYV7J3VS/cocktail-shaker.gif?format=500w' }}
-                        style={styles.pfp2image}
+                        source={{ uri: 'https://media4.giphy.com/media/nZmvW8LHk6f0ccnAED/giphy.gif?cid=6c09b952ridm5kxu8hoe51yf9lmic8ewlbyxubynjmk21eqg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s' }}
+                        style={styles.loadingimg}
                     />
                 </View>
             </ImageBackground>
