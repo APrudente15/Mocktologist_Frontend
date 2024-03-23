@@ -1,12 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, FlatList, Image, TouchableHighlight } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
+import * as ImagePicker from 'expo-image-picker'
+import * as FileSystem from 'expo-file-system';
+import { useAuth } from '../hooks/useAuth';
 import styles from '../style';
 
 export default function Complete({ navigation }) {
 
+    const { userId } = useAuth()
+
     const [rating, setRating] = useState(5)
     const [image, setImage] = useState('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+        });
+
+        if (!result.cancelled) {
+            try {
+                const uploadedImage = await uploadImageToGitHub(result.assets[0].uri);
+                console.log('Uploaded image details:', uploadedImage);
+            } catch (error) {
+                console.error('Error uploading image:', error);
+            }
+        }
+    };
+
+    const uploadImageToGitHub = async (imageUri) => {
+        try {
+            const base64Image = await FileSystem.readAsStringAsync(imageUri, { encoding: FileSystem.EncodingType.Base64 });
+
+            const owner = 'zmolla99';
+            const repo = 'profile_pics';
+            const path = `${userId}/drinks/${Date.now()}.jpg`;
+            const message = 'Upload image';
+            const accessToken = '';
+            const content = {
+                message,
+                content: base64Image,
+            };
+            const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `token ${accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(content),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to upload image to GitHub');
+            }
+
+            const responseData = await response.json();
+            console.log('Image uploaded successfully:', responseData);
+            setImage(responseData.content.download_url);
+            return image;
+        } catch (error) {
+            console.error('Error uploading image to GitHub:', error);
+            throw error;
+        }
+    };
 
     return (
         <View style={styles.completebg}>
@@ -15,7 +74,7 @@ export default function Complete({ navigation }) {
                 source={{ uri: 'https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif' }}
                 style={styles.completeimg}
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={pickImage}>
                 <Image
                     source={{ uri: image }}
                     style={styles.completeup}
