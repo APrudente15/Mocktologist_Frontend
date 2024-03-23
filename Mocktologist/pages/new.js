@@ -16,7 +16,6 @@ export default function New({ navigation }) {
         if (isFocused) {
             setSelectedTaste('Sour')
             setVegan(vegan)
-            console.log(vegan)
         }
 
     }, [isFocused])

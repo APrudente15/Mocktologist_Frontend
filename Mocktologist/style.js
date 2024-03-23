@@ -53,6 +53,12 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(32),
         fontWeight: 'bold',
     },
+    headingConf: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
     heading2: {
         color: 'white',
         fontSize: moderateScale(32),
@@ -87,6 +93,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: moderateScale(20),
         marginBottom: verticalScale(30),
+    },
+    buttonc: {
+        width: horizontalScale(200),
+        height: verticalScale(50),
+        borderWidth: moderateScale(2),
+        backgroundColor: '#353535',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(20),
+        marginTop: verticalScale(100),
     },
     buttonText: {
         color: '#ffffff',
@@ -247,6 +263,18 @@ const styles = StyleSheet.create({
         width: horizontalScale(350),
         height: verticalScale(700)
     },
+    popupBoxConf: {
+        position: 'absolute',
+        zIndex: 5,
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        padding: moderateScale(20),
+        borderRadius: moderateScale(10),
+        alignItems: 'center',
+        width: horizontalScale(350),
+        height: verticalScale(300)
+    },
     popupButton: {
         position: 'absolute',
         top: verticalScale(10),
@@ -305,6 +333,11 @@ const styles = StyleSheet.create({
         width: horizontalScale(200),
         backgroundColor: '#353535',
         borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+    },
+    dropDownc: {
+        width: horizontalScale(100),
+        borderColor: '#353535',
         borderWidth: moderateScale(2),
     },
     dropDownText: {
@@ -382,6 +415,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: verticalScale(150),
     },
+    ddboxc: {
+        flexDirection: "row",
+        marginTop: verticalScale(50),
+    },
     dropdownMess: {
         fontSize: moderateScale(25),
         color: 'white',
@@ -398,7 +435,7 @@ const styles = StyleSheet.create({
         height: verticalScale(300),
         marginBottom: verticalScale(20),
         padding: moderateScale(20),
-        marginTop: verticalScale(20)
+        marginTop: verticalScale(20),
     },
     stepText: {
         color: 'white',
@@ -423,6 +460,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: moderateScale(20),
         marginBottom: verticalScale(50),
+    },
+    buttonIng: {
+        width: horizontalScale(300),
+        height: verticalScale(50),
+        backgroundColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(10),
+        marginBottom: verticalScale(20),
     },
     newBox: {
         backgroundColor: '#353535',
@@ -460,8 +506,49 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(15),
         textAlign: 'center'
+    },
+    confMess: {
+        fontSize: moderateScale(15),
+        color: 'white',
+        marginTop: verticalScale(20),
+    },
+    options: {
+        flexDirection: "row",
+        marginTop: verticalScale(40)
+    },
+    buttonOp: {
+        width: horizontalScale(150),
+        height: verticalScale(50),
+        backgroundColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(10),
+        marginBottom: verticalScale(30),
+        marginLeft: horizontalScale(10),
+        marginRight: horizontalScale(10)
+    },
+    completebg: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: '#ED91C8',
+        alignItems: 'center'
+    },
+    completemsg: {
+        fontSize: moderateScale(40),
+        fontWeight: 'bold',
+        color: '#2C2C2C',
+        marginTop: verticalScale(60)
+    },
+    completeimg: {
+        height: verticalScale(300),
+        width: horizontalScale(400)
+    },
+    completeup: {
+        height: verticalScale(200),
+        width: horizontalScale(200),
+        borderWidth: moderateScale(3),
+        borderColor: '#2C2C2C',
+        borderRadius: moderateScale(20)
     }
-
 });
 
 module.exports = styles
