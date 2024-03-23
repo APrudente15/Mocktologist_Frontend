@@ -16,6 +16,7 @@ export default function Profile() {
     const [email, setEmail] = useState("")
     const [vegan2, setVegan2] = useState(false)
     const [systemMessage, setSystemMessage] = useState("")
+    const [newpfp, setNewpfp] = useState(image)
 
     useEffect(() => {
         setVegan(vegan2)
@@ -84,9 +85,8 @@ export default function Profile() {
 
             const responseData = await response.json();
             console.log('Image uploaded successfully:', responseData);
-            setImage(responseData.content.download_url);
-            updateUserDetails()
-            return responseData;
+            setNewpfp(responseData.content.download_url);
+            return newpfp;
         } catch (error) {
             console.error('Error uploading image to GitHub:', error);
             throw error;
@@ -107,7 +107,7 @@ export default function Profile() {
                     lname: lastName,
                     email: email,
                     vegan: vegan2,
-                    image: image
+                    image: newpfp
                 }),
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userId}`, options)
@@ -119,6 +119,7 @@ export default function Profile() {
                 return;
             }
             setSystemMessage("User details updated.");
+            setImage(newpfp)
             setFirstName(editingFirstName)
             setTimeout(() => {
                 setSystemMessage("");
@@ -132,7 +133,7 @@ export default function Profile() {
         const fetchUserDetails = async () => {
             setSystemMessage("")
             try {
-                if(!token){
+                if (!token) {
                     return
                 }
                 const response = await fetch(`https://mocktologist-backend.onrender.com/user/${token}`)
@@ -186,7 +187,7 @@ export default function Profile() {
                 </View>
                 <View style={styles.pfp}>
                     <Image
-                        source={{ uri: image }}
+                        source={{ uri: newpfp }}
                         style={styles.pfp2image}
                     />
                     <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={pickImage}>
