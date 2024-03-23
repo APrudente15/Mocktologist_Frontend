@@ -25,14 +25,14 @@ export default function Dash({ navigation }) {
                 }
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/drink/current/${userId}`, options)
-            if(response.status === 404){
+            if (response.status === 404) {
                 return
             }
             const data = await response.json()
             setActive(true)
             setCurrentDrink(data)
         }
-        if(isFocused){
+        if (isFocused) {
             getCurrentDrink()
         }
     }, [isFocused])

@@ -15,6 +15,8 @@ export default function New({ navigation }) {
     useEffect(() => {
         if (isFocused) {
             setSelectedTaste('Sour')
+            setVegan(vegan)
+            console.log(vegan)
         }
 
     }, [isFocused])

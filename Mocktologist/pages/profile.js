@@ -12,14 +12,14 @@ export default function Profile() {
 
     const isFocused = useIsFocused()
 
-    const { token, userId, firstName, setFirstName, image, setImage, setVegan } = useAuth()
+    const { token, userId, firstName, setFirstName, image, setImage, setVegan, vegan } = useAuth()
 
     const [editingFirstName, setEditingFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
-    const [vegan2, setVegan2] = useState(false)
     const [systemMessage, setSystemMessage] = useState("")
     const [newpfp, setNewpfp] = useState(image)
+    const [newVegan, setNewVegan] = useState(false)
 
     const handleFirstNameChange = (inputText) => {
         setEditingFirstName(inputText);
@@ -34,8 +34,7 @@ export default function Profile() {
     }
 
     const toggleVegan = () => {
-        setVegan2(previousValue => !previousValue);
-        setVegan(vegan2)
+        setNewVegan(previousValue => !previousValue);
     };
 
     const pickImage = async () => {
@@ -105,7 +104,7 @@ export default function Profile() {
                     fname: editingFirstName,
                     lname: lastName,
                     email: email,
-                    vegan: vegan2,
+                    vegan: newVegan,
                     image: newpfp
                 }),
             }
@@ -120,6 +119,7 @@ export default function Profile() {
             setSystemMessage("User details updated.");
             setImage(newpfp)
             setFirstName(editingFirstName)
+            setVegan(newVegan)
             setTimeout(() => {
                 setSystemMessage("");
             }, 3000);
@@ -144,7 +144,7 @@ export default function Profile() {
                     setFirstName(data.fname)
                     setLastName(data.lname)
                     setEmail(data.email)
-                    setVegan2(data.vegan)
+                    setNewVegan(data.vegan)
                     setNewpfp(data.image)
                 } catch (error) {
                     console.error(error);
@@ -227,9 +227,9 @@ export default function Profile() {
                     <View style={styles.row}>
                         <Text style={styles.vegan}>Vegan:</Text>
                         <Switch
-                            value={vegan2}
+                            value={newVegan}
                             onValueChange={toggleVegan}
-                            thumbColor={vegan2 ? '#ffffff' : '#ffffff'}
+                            thumbColor={newVegan ? '#ffffff' : '#ffffff'}
                             trackColor={{ false: '#353535', true: '#ED91C8' }}
                             style={styles.toggle}
                         />
