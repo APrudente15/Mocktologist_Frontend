@@ -6,8 +6,11 @@ import { useEffect, useState } from "react";
 import { PopupText } from "../components";
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system';
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Profile() {
+
+    const isFocused = useIsFocused()
 
     const { token, userId, firstName, setFirstName, image, setImage, setVegan } = useAuth()
 
@@ -17,10 +20,6 @@ export default function Profile() {
     const [vegan2, setVegan2] = useState(false)
     const [systemMessage, setSystemMessage] = useState("")
     const [newpfp, setNewpfp] = useState(image)
-
-    useEffect(() => {
-        setVegan(vegan2)
-    }, [])
 
     const handleFirstNameChange = (inputText) => {
         setEditingFirstName(inputText);
@@ -130,28 +129,31 @@ export default function Profile() {
     }
 
     useEffect(() => {
-        const fetchUserDetails = async () => {
-            setSystemMessage("")
-            try {
-                if (!token) {
-                    return
+        if (isFocused) {
+            const fetchUserDetails = async () => {
+                setSystemMessage("")
+                try {
+                    if (!token) {
+                        return
+                    }
+                    const response = await fetch(`https://mocktologist-backend.onrender.com/user/${token}`)
+                    if (!response.ok) {
+                        setSystemMessage("Failed to fetch user details. Please refresh the page.")
+                    }
+                    const data = await response.json()
+                    setFirstName(data.fname)
+                    setLastName(data.lname)
+                    setEmail(data.email)
+                    setVegan2(data.vegan)
+                    setNewpfp(data.image)
+                } catch (error) {
+                    console.error(error);
                 }
-                const response = await fetch(`https://mocktologist-backend.onrender.com/user/${token}`)
-                if (!response.ok) {
-                    setSystemMessage("Failed to fetch user details. Please refresh the page.")
-                }
-                const data = await response.json()
-                setFirstName(data.fname)
-                setLastName(data.lname)
-                setEmail(data.email)
-                setVegan2(data.vegan)
-            } catch (error) {
-                console.error(error);
             }
+            setEditingFirstName(firstName)
+            fetchUserDetails()
         }
-        setEditingFirstName(firstName)
-        fetchUserDetails()
-    }, [token])
+    }, [isFocused])
 
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
 
