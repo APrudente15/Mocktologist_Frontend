@@ -12,6 +12,8 @@ export default function Complete({ navigation }) {
 
     const [rating, setRating] = useState(5)
     const [image, setImage] = useState('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
+    const [uploadImg, setUploadImg] = useState('https://media.istockphoto.com/id/1303977605/photo/five-cocktails-in-hands-joined-in-celebratory-toast.jpg?s=612x612&w=0&k=20&c=QtnWuVeQCwKOfXIISxfkuDhQTe15qnnKOFKgpcH1Vko=')
+    const [done, setDone] = useState(false)
 
     const pickImage = async () => {
         let result = await ImagePicker.launchCameraAsync({
@@ -60,12 +62,34 @@ export default function Complete({ navigation }) {
             const responseData = await response.json();
             console.log('Image uploaded successfully:', responseData);
             setImage(responseData.content.download_url);
+            setUploadImg(responseData.content.download_url)
             return image;
         } catch (error) {
             console.error('Error uploading image to GitHub:', error);
             throw error;
         }
     };
+
+    const handleDone = () => {
+        setDone(true)
+        setTimeout(() => {
+            setDone(false)
+            navigation.navigate("Dashboard")
+        }, 1500);
+
+    }
+
+    if (done) {
+        return (
+            <View style={styles.completebg}>
+                <Text style={styles.completemsg}>Cheers!</Text>
+                <Image
+                    source={{ uri: 'https://media2.giphy.com/media/jj0cTIyyiCWrBKM73f/giphy.gif?cid=6c09b952oczhf1e4kiasjrpk3utrrdqi9c62gp6754qsddfp&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s' }}
+                    style={styles.done}
+                />
+            </View>
+        )
+    }
 
     return (
         <View style={styles.completebg}>
@@ -105,7 +129,7 @@ export default function Complete({ navigation }) {
                     placeholderStyle={[{ color: 'white' }, { marginLeft: '45%' }]}
                 />
             </View>
-            <TouchableHighlight style={styles.buttonc} underlayColor="#ED91C8" onPress={() => navigation.navigate("Dashboard")}>
+            <TouchableHighlight style={styles.buttonc} underlayColor="#ED91C8" onPress={handleDone}>
                 <Text style={styles.buttonTextc}> Complete </Text>
             </TouchableHighlight>
         </View>

@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
         width: horizontalScale(350),
         height: verticalScale(350),
         position: 'absolute',
-        bottom: 0,
+        bottom: verticalScale(-10),
         left: horizontalScale(-47)
     },
     bartenderCurrent: {
@@ -562,6 +562,19 @@ const styles = StyleSheet.create({
         width: horizontalScale(400),
         marginTop: verticalScale(75)
     },
+    done: {
+        height: verticalScale(300),
+        width: horizontalScale(300),
+        marginTop: '50%'
+    },
+    qr: {
+        alignItems: 'center',
+        marginTop: verticalScale(100)
+    },
+    code: {
+        marginTop: verticalScale(200),
+        transform: [{ scale: moderateScale(3) }]
+    }
 });
 
 module.exports = styles
