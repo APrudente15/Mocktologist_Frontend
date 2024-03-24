@@ -573,7 +573,7 @@ const styles = StyleSheet.create({
     },
     code: {
         marginTop: verticalScale(200),
-        transform: [{ scale: moderateScale(3) }]
+        transform: [{ scale: moderateScale(2) }]
     }
 });
 
