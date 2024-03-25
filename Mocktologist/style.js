@@ -52,6 +52,19 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(32),
         fontWeight: 'bold',
+        marginTop: verticalScale(10)
+    },
+    headingConf: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    heading2: {
+        color: 'white',
+        fontSize: moderateScale(32),
+        fontWeight: 'bold',
+        marginBottom: verticalScale(20)
     },
     landingPageText1: {
         color: '#ffffff',
@@ -82,8 +95,23 @@ const styles = StyleSheet.create({
         borderRadius: moderateScale(20),
         marginBottom: verticalScale(30),
     },
+    buttonc: {
+        width: horizontalScale(200),
+        height: verticalScale(50),
+        borderWidth: moderateScale(2),
+        backgroundColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(20),
+        marginTop: verticalScale(100),
+    },
     buttonText: {
         color: '#ffffff',
+        fontSize: moderateScale(20),
+        fontWeight: 'bold'
+    },
+    buttonTextc: {
+        color: '#ED91C8',
         fontSize: moderateScale(20),
         fontWeight: 'bold'
     },
@@ -98,12 +126,6 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(48),
         fontWeight: 'bold',
     },
-    backButton: {
-        backgroundColor: 'transparent',
-        position: 'absolute',
-        top: verticalScale(50),
-        left: horizontalScale(30),
-    },
     backText: {
         color: 'white',
         fontSize: moderateScale(48),
@@ -111,11 +133,11 @@ const styles = StyleSheet.create({
     },
     drawerContent: {
         backgroundColor: '#353535',
-        borderTopRightRadius: 20,
-        borderBottomRightRadius: 20,
-        borderRightWidth: 5,
-        borderTopWidth: 5,
-        borderBottomWidth: 5,
+        borderTopRightRadius: moderateScale(20),
+        borderBottomRightRadius: moderateScale(20),
+        borderRightWidth: moderateScale(5),
+        borderTopWidth: moderateScale(5),
+        borderBottomWidth: moderateScale(5),
         borderColor: '#ED91C8',
         flex: 1,
     },
@@ -204,6 +226,32 @@ const styles = StyleSheet.create({
             color: 'rgba(255, 255, 255, 0.5)',
         }
     },
+    inputDD: {
+        paddingHorizontal: horizontalScale(10),
+        paddingVertical: verticalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: '100%',
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        },
+        height: verticalScale(200),
+        marginBottom: verticalScale(30)
+    },
+    input2: {
+        height: verticalScale(50),
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: horizontalScale(310),
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        }
+    },
     overlay: {
         ...StyleSheet.absoluteFillObject,
         backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -222,15 +270,29 @@ const styles = StyleSheet.create({
         width: horizontalScale(350),
         height: verticalScale(700)
     },
+    popupBoxConf: {
+        position: 'absolute',
+        zIndex: 5,
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        padding: moderateScale(20),
+        borderRadius: moderateScale(10),
+        alignItems: 'center',
+        width: horizontalScale(350),
+        height: verticalScale(300)
+    },
     popupButton: {
         position: 'absolute',
         top: verticalScale(10),
-        right: horizontalScale(30)
+        right: horizontalScale(30),
+        zIndex: 6,
     },
     popupButtonText: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: moderateScale(50),
+        fontSize: moderateScale(32),
+        zIndex: 6,
     },
     errorText: {
         color: 'white'
@@ -239,8 +301,13 @@ const styles = StyleSheet.create({
         width: horizontalScale(350),
         height: verticalScale(350),
         position: 'absolute',
-        bottom: 0,
+        bottom: verticalScale(-10),
         left: horizontalScale(-47)
+    },
+    bartenderCurrent: {
+        width: horizontalScale(150),
+        height: verticalScale(150),
+        bottom: 0,
     },
     dashText: {
         color: '#ffffff',
@@ -249,18 +316,267 @@ const styles = StyleSheet.create({
     },
     dashBox: {
         backgroundColor: '#353535',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderColor: '#ED91C8',
         borderWidth: moderateScale(2),
         borderRadius: moderateScale(10),
         width: horizontalScale(180),
         height: verticalScale(180),
-        margin: moderateScale(15)
+        margin: moderateScale(15),
+        padding: moderateScale(10)
     },
     boxCont:
     {
         flexDirection: "row",
         marginTop: verticalScale(50),
         marginBottom: verticalScale(50)
+    },
+    row: {
+        flexDirection: 'row',
+    },
+    row2: {
+        flexDirection: 'row',
+        marginBottom: verticalScale(50)
+    },
+    dropDown: {
+        width: horizontalScale(200),
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+    },
+    dropDownc: {
+        width: horizontalScale(100),
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+    },
+    dropDownText: {
+        color: 'white',
+    },
+    allergenInput: {
+        height: verticalScale(60),
+        paddingHorizontal: horizontalScale(10),
+        borderRadius: moderateScale(10),
+        backgroundColor: '#353535',
+        width: '100%',
+        fontSize: moderateScale(16),
+        color: 'white',
+        placeholder: {
+            color: 'rgba(255, 255, 255, 0.5)',
+        },
+        marginTop: verticalScale(30),
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+
+    },
+    medal: {
+        width: horizontalScale(130),
+        height: verticalScale(130),
+        alignSelf: 'center'
+    },
+    rankText: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: verticalScale(5)
+    },
+    toggle: {
+        marginTop: verticalScale(-5),
+    },
+    bottomhalf: {
+        position: 'absolute',
+        zIndex: -1,
+        bottom: 100,
+        width: '100%',
+    },
+    hidden: {
+        marginTop: verticalScale(570)
+    },
+    vegan: {
+        marginRight: horizontalScale(20),
+        fontSize: moderateScale(25),
+        color: 'white'
+    },
+    pfpimage: {
+        height: verticalScale(50),
+        width: horizontalScale(50),
+        borderRadius: moderateScale(500)
+    },
+    pfp2image: {
+        height: verticalScale(200),
+        width: horizontalScale(200),
+        marginTop: verticalScale(10),
+        marginBottom: verticalScale(20),
+        borderRadius: moderateScale(500),
+    },
+    backButton: {
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: verticalScale(50),
+        left: horizontalScale(30),
+    },
+    drinkThumbnailImage: {
+        marginTop: verticalScale(5),
+        height: verticalScale(100),
+        width: horizontalScale(150),
+        borderRadius: moderateScale(10)
+    },
+    ddbox: {
+        flexDirection: "row",
+        marginTop: verticalScale(150),
+    },
+    ddboxc: {
+        flexDirection: "row",
+        marginTop: verticalScale(50),
+    },
+    dropdownMess: {
+        fontSize: moderateScale(25),
+        color: 'white',
+        marginRight: horizontalScale(10)
+    },
+    stepBox: {
+        backgroundColor: '#353535',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        borderRadius: moderateScale(10),
+        width: horizontalScale(300),
+        height: verticalScale(300),
+        marginBottom: verticalScale(20),
+        padding: moderateScale(20),
+        marginTop: verticalScale(20),
+    },
+    stepText: {
+        color: 'white',
+        fontSize: moderateScale(20)
+    },
+    buttonST: {
+        width: horizontalScale(200),
+        height: verticalScale(50),
+        borderWidth: moderateScale(2),
+        borderColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(20),
+        marginBottom: verticalScale(20),
+        marginTop: verticalScale(50)
+    },
+    buttonSTC: {
+        width: horizontalScale(200),
+        height: verticalScale(50),
+        backgroundColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(20),
+        marginBottom: verticalScale(50),
+    },
+    buttonIng: {
+        width: horizontalScale(300),
+        height: verticalScale(50),
+        backgroundColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(10),
+        marginBottom: verticalScale(20),
+    },
+    newBox: {
+        backgroundColor: '#353535',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        padding: moderateScale(20),
+        borderRadius: moderateScale(10),
+        alignItems: 'center',
+        marginTop: verticalScale(70),
+        width: horizontalScale(350),
+        height: verticalScale(500),
+        marginBottom: verticalScale(50),
+    },
+    headingDrink: {
+        color: '#ED91C8',
+        fontSize: moderateScale(30),
+        fontWeight: 'bold',
+        marginTop: verticalScale(20),
+        textAlign: 'center'
+    },
+    drinkProfile: {
+        color: 'white',
+        fontSize: moderateScale(20),
+        marginTop: verticalScale(30),
+        marginBottom: verticalScale(30),
+        textAlign: 'center'
+    },
+    drinkIng: {
+        color: 'white',
+        fontSize: moderateScale(15),
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    drinkIngList: {
+        color: 'white',
+        fontSize: moderateScale(15),
+        textAlign: 'center'
+    },
+    confMess: {
+        fontSize: moderateScale(15),
+        color: 'white',
+        marginTop: verticalScale(20),
+    },
+    options: {
+        flexDirection: "row",
+        marginTop: verticalScale(40)
+    },
+    buttonOp: {
+        width: horizontalScale(150),
+        height: verticalScale(50),
+        backgroundColor: '#ED91C8',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: moderateScale(10),
+        marginBottom: verticalScale(30),
+        marginLeft: horizontalScale(10),
+        marginRight: horizontalScale(10)
+    },
+    completebg: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: '#2C2C2C',
+        alignItems: 'center'
+    },
+    completemsg: {
+        fontSize: moderateScale(40),
+        fontWeight: 'bold',
+        color: 'white',
+        marginTop: verticalScale(60)
+    },
+    completeimg: {
+        height: verticalScale(200),
+        width: horizontalScale(300),
+        marginBottom: verticalScale(20)
+    },
+    completeup: {
+        height: verticalScale(200),
+        width: horizontalScale(200),
+        borderWidth: moderateScale(3),
+        borderColor: '#2C2C2C',
+        borderRadius: moderateScale(20)
+    },
+    loadingimg: {
+        height: verticalScale(600),
+        width: horizontalScale(400),
+        marginTop: verticalScale(75)
+    },
+    done: {
+        height: verticalScale(300),
+        width: horizontalScale(300),
+        marginTop: '50%'
+    },
+    qr: {
+        alignItems: 'center',
+        marginTop: verticalScale(100)
+    },
+    code: {
+        marginTop: verticalScale(200),
+        transform: [{ scale: moderateScale(2) }]
     }
 });
 

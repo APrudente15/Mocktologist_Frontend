@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TouchableHighlight, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import styles from '../style';
+import { useAuth } from '../hooks/useAuth';
 import { useNavigation } from '@react-navigation/native';
+import { PopupText } from '../components';
 
 export default function Landing() {
     const navigation = useNavigation();
     const [showOverlay, setShowOverlay] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
+    const { setToken, setFirstName, setUserId, setVegan, setImage } = useAuth()
 
     const handleLoginPress = () => {
+        setToken(null);
+        setUserId(null);
+        setFirstName(null);
+        setVegan(null);
+        setImage(null);
         navigation.navigate('Login');
     };
 
     const handleRegisterPress = () => {
+        setToken(null);
+        setUserId(null);
+        setFirstName(null);
+        setVegan(null);
+        setImage(null);
         navigation.navigate('Register');
     };
 
@@ -38,6 +51,7 @@ export default function Landing() {
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
                 </TouchableOpacity>
+                <PopupText />
             </View>
         )
     }

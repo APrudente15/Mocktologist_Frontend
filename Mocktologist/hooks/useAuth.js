@@ -1,38 +1,20 @@
-import { createContext, useContext, useMemo } from "react";
-import { useLocalStorage } from "./useAsyncStorage";
+import React, { createContext, useState, useContext } from 'react';
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useLocalStorage("token", null);
-  const [userid, setUserId] = useLocalStorage("userid", null);
-  const [firstName, setFirstName] = useLocalStorage("firstName", null);
+  const [token, setToken] = useState("");
+  const [userId, setUserId] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [vegan, setVegan] = useState(false);
+  const [image, setImage] = useState("https://static.vecteezy.com/system/resources/previews/020/911/746/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png");
+  const [scannedId, setScannedId] = useState(0)
 
-  const login = async (data) => {
-    setToken(data.token);
-    setUserId(data.user);
-    setFirstName(data.fname)
-  };
-
-  const logout = () => {
-    setToken(null);
-    setFirstName(null)
-    setUserId(null)
-  };
-
-  const value = useMemo(
-    () => ({
-      token,
-      userid,
-      firstName,
-      login,
-      logout,
-    }),
-    [token]
+  return (
+    <AuthContext.Provider value={{ token, setToken, userId, setUserId, firstName, setFirstName, vegan, setVegan, image, setImage, scannedId, setScannedId }}>
+      {children}
+    </AuthContext.Provider>
   );
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

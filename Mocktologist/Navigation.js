@@ -2,17 +2,19 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { useOverlayPopup } from './hooks/useOverlayPopup'
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-import { MaterialIcons, AntDesign } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
-import { Login, Register, Landing, Dash, Steps, Top, Profile, Diary } from './pages'
+import { Login, Register, Landing, Dash, Steps, Top, Profile, Diary, New, Accept, Complete, Scan } from './pages'
 import styles from './style.js'
+import { useAuth } from './hooks/useAuth.js';
 
 const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
 
     const { showOverlay } = useOverlayPopup();
+    const { image } = useAuth()
 
     const headerOptions = ({ navigation }) => ({
         headerTitle: '',
@@ -38,10 +40,9 @@ const Navigation = () => {
                 underlayColor={'transparent'}
                 onPress={() => navigation.navigate("Profile")}
                 style={{ marginRight: 15, marginTop: 10 }}>
-                <AntDesign
-                    name="user"
-                    size={40}
-                    color="white"
+                <Image
+                    source={{ uri: image }}
+                    style={styles.pfpimage}
                 />
             </TouchableHighlight>
         ),
@@ -51,7 +52,7 @@ const Navigation = () => {
     return (
         <NavigationContainer>
             <Drawer.Navigator
-                initialRouteName="Dashboard"
+                initialRouteName="Landing"
                 drawerContent={props => <ConditionalDrawerContent {...props} />}
                 screenOptions={{
                     drawerStyle: { backgroundColor: 'transparent' },
@@ -65,6 +66,10 @@ const Navigation = () => {
                 <Drawer.Screen name="Top Mixes" component={Top} options={headerOptions} />
                 <Drawer.Screen name="Mix Diary" component={Diary} options={headerOptions} />
                 <Drawer.Screen name="Profile" component={Profile} options={headerOptions} />
+                <Drawer.Screen name="New" component={New} options={headerOptions} />
+                <Drawer.Screen name="Accept" component={Accept} options={headerOptions} />
+                <Drawer.Screen name="Scan" component={Scan} options={headerOptions} />
+                <Drawer.Screen name="Complete" component={Complete} options={{ headerShown: false }} />
             </Drawer.Navigator>
         </NavigationContainer >
     );
@@ -87,8 +92,7 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
             </View>
             <View style={styles.separator} />
             {state.routes.map((route, index) => {
-                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Register' || route.name ===
-                    'Steps' || route.name === 'Dashboard') {
+                if (route.name === 'Landing' || route.name === 'Login' || route.name === 'Register' || route.name === 'Dashboard' || route.name === 'New' || route.name === 'Accept' || route.name === 'Complete' || route.name === 'Steps' || route.name === 'Scan') {
                     return null;
                 } else {
                     const { options } = descriptors[route.key];
@@ -111,13 +115,18 @@ const ConditionalDrawerContent = ({ state, descriptors, navigation }) => {
                     );
                 }
             })}
-            <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={handleAboutPress}>
-                <Text style={styles.navAboutText}>About</Text>
-            </TouchableHighlight>
-            <View style={styles.separator3} />
-            <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => navigation.navigate("Landing")}>
-                <Text style={styles.logoutText}>Sign Out</Text>
-            </TouchableHighlight>
+            <View style={styles.bottomhalf}>
+                <TouchableHighlight style={styles.navAboutButton} underlayColor="transparent" onPress={handleAboutPress}>
+                    <Text style={styles.navAboutText}>About</Text>
+                </TouchableHighlight>
+                <View style={styles.separator3} />
+                <TouchableHighlight style={styles.logoutButton} underlayColor="transparent" onPress={() => {
+                    navigation.navigate("Landing");
+                }}>
+                    <Text style={styles.logoutText}>Sign Out</Text>
+                </TouchableHighlight>
+            </View>
+            <Text style={styles.hidden}>Hidden</Text>
         </DrawerContentScrollView>
     );
 };

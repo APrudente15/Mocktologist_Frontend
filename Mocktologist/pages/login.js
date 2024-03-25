@@ -4,10 +4,11 @@ import styles from '../style'
 import { useEffect, useState } from 'react';
 
 export default function Login({ navigation }) {
-    const { login, token } = useAuth();
+    const { login, token, firstName, userId, vegan, image, setToken, setFirstName, setUserId, setVegan, setImage } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [uploadName, setUploadName] = useState("")
 
     const handleEmailChange = (inputText) => {
         setEmail(inputText);
@@ -15,6 +16,10 @@ export default function Login({ navigation }) {
 
     const handlePasswordChange = (inputText) => {
         setPassword(inputText);
+    }
+
+    const handleBackPress = () => {
+        navigation.navigate("Landing")
     }
 
     const handleLogin = async (email, password) => {
@@ -46,7 +51,11 @@ export default function Login({ navigation }) {
                 return;
             }
             const data = await response.json();
-            await login(data);
+            setUserId(data.user)
+            setToken(data.token)
+            setFirstName(data.fname)
+            setVegan(data.vegan)
+            setImage(data.image)
             navigation.navigate("Dashboard")
         } catch (error) {
             setErrorMessage(error.message);
@@ -62,6 +71,9 @@ export default function Login({ navigation }) {
                 <View style={styles.headingContainer}>
                     <Text style={styles.heading}> Existing User Login </Text>
                 </View>
+                <TouchableHighlight style={styles.backButton} underlayColor="transparent" onPress={handleBackPress}>
+                    <Text style={styles.aboutText}>←</Text>
+                </TouchableHighlight>
                 <View style={styles.inputContainer1}>
                     <TextInput
                         style={styles.input}
