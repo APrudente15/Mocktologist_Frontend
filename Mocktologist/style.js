@@ -594,7 +594,18 @@ const styles = StyleSheet.create({
     code: {
         marginTop: verticalScale(100),
         transform: [{ scale: moderateScale(2) }]
-    }
-});
+    },
+    detailsImage: {
+        marginTop: verticalScale(15),
+        marginBottom: verticalScale(10),
+        height: verticalScale(300),
+        width: horizontalScale(250),
+        borderRadius: moderateScale(10)
+    },
+    modalBackground: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        position: 'absolute',
+    },
+})
 
 module.exports = styles
