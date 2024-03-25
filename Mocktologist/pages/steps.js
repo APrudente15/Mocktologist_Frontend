@@ -82,11 +82,12 @@ export default function Steps({ navigation }) {
             <View style={styles.popupBox}>
                 <TouchableOpacity style={styles.popupButton} onPress={handlePopupPress}>
                     <Text style={styles.popupButtonText}>X</Text>
-                </TouchableOpacity>
-                <Text style={styles.heading}>Ingredients</Text>
-                {ingredients.map((ingredient, index) => (
-                    <Text style={styles.landingPageText2} key={index}>{ingredient}</Text>
-                ))}
+                </TouchableOpacity><Text style={styles.heading}>Ingredients</Text>
+                <View style={[{ justifyContent: 'center' }, { height: '70%' }]}>
+                    {ingredients.map((ingredient, index) => (
+                        <Text style={styles.ingredientsList} key={index}>{ingredient}</Text>
+                    ))}
+                </View>
             </View>
         )
     }
