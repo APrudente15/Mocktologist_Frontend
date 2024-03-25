@@ -25,8 +25,8 @@ export default function Top({ navigation }) {
     const QRCodeGenerator = ({ userIdStr }) => {
         return (
             <View style={styles.qr}>
-                <Text style={[styles.heading2, {textAlign: 'center'}]}>Share your top mixes with friends!</Text>
-                <Text style={[styles.landingPageText2, {marginTop: 15}]}>Your friend can scan this QR code on their Mocktologist app to see your top mixes.</Text>
+                <Text style={[styles.heading2, { textAlign: 'center' }]}>Share your top mixes with friends!</Text>
+                <Text style={[styles.landingPageText2, { marginTop: 15 }]}>Your friend can scan this QR code on their Mocktologist app to see your top mixes.</Text>
                 <View style={[styles.code, {
                     borderColor: '#ED91C8',
                     borderWidth: 2,
@@ -181,7 +181,7 @@ export default function Top({ navigation }) {
     };
 
     const renderDrinkItem = ({ item, index }) => (
-        <DrinkThumbnail index={index} type="ranking" body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
+        <DrinkThumbnail index={index} type="ranking" body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} id={item.id} />
     );
 
     if (loading) {

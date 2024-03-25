@@ -25,7 +25,7 @@ export default function Dash({ navigation }) {
                 }
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/drink/current/${userId}`, options)
-            if(response.status === 404){
+            if (response.status === 404) {
                 setActive(false)
                 return
             }
