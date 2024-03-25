@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         width: horizontalScale(200),
         height: verticalScale(50),
         borderWidth: moderateScale(2),
-        backgroundColor: '#353535',
+        backgroundColor: '#ED91C8',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: moderateScale(20),
@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     },
     dropDownc: {
         width: horizontalScale(100),
-        borderColor: '#353535',
+        borderColor: '#ED91C8',
         borderWidth: moderateScale(2),
     },
     dropDownText: {
@@ -537,13 +537,13 @@ const styles = StyleSheet.create({
     },
     completebg: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: '#ED91C8',
+        backgroundColor: '#2C2C2C',
         alignItems: 'center'
     },
     completemsg: {
         fontSize: moderateScale(40),
         fontWeight: 'bold',
-        color: '#2C2C2C',
+        color: 'white',
         marginTop: verticalScale(60)
     },
     completeimg: {

@@ -90,7 +90,12 @@ export default function Accept({ navigation }) {
                 const i = data.body.findIndex(e => e == "Ingredients required:") + 1
                 const j = data.body.findIndex(e => e == "Instructions:")
                 setIngredients(data.body.slice(i, j))
-                const k = data.body.findIndex(e => e == "Nutritional Info: ")
+                let k
+                if (data.body.findIndex(e => e == "Nutritional Info: ")) {
+                    k = data.body.findIndex(e => e == "Nutritional Info: ")
+                } else {
+                    k = data.body.findIndex(e => e == "Nutritional Info:")
+                }
                 setSteps(data.body.slice(j + 1, k))
                 setLoading(false)
             }
@@ -139,7 +144,7 @@ export default function Accept({ navigation }) {
                         <Text style={styles.heading}> Shaking Up . . . </Text>
                     </View >
                     <Image
-                        source={{ uri: 'https://media4.giphy.com/media/nZmvW8LHk6f0ccnAED/giphy.gif?cid=6c09b952ridm5kxu8hoe51yf9lmic8ewlbyxubynjmk21eqg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s' }}
+                        source={{ uri: 'https://github.com/zmolla99/profile_pics/blob/main/loading__1_.gif?raw=true' }}
                         style={styles.loadingimg}
                     />
                 </View>
