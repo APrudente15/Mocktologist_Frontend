@@ -12,7 +12,7 @@ export default function Complete({ navigation }) {
     const { userId, token } = useAuth()
 
     const [rating, setRating] = useState(5)
-    const [image, setImage] = useState('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
+    const [image, setImage] = useState('')
     const [uploadImg, setUploadImg] = useState('')
     const [done, setDone] = useState(false)
     const [id, setId] = useState(0)
@@ -53,7 +53,7 @@ export default function Complete({ navigation }) {
                 }
             }
             getId()
-            setImage('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
+            setImage('https://github.com/zmolla99/profile_pics/blob/main/360_f_565224180_qnrirqkf9fw0dkrozgwuknmmfk51suss__5__360.png?raw=true')
             setRating(5)
             const newIndex = Math.floor(Math.random() * placeholders.length);
             setUploadImg(placeholders[newIndex])
@@ -86,7 +86,7 @@ export default function Complete({ navigation }) {
             const repo = 'profile_pics';
             const path = `${userId}/drinks/${Date.now()}.jpg`;
             const message = 'Upload image';
-            const accessToken = '';
+            const accessToken = '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';
             const content = {
                 message,
                 content: base64Image,
@@ -162,7 +162,7 @@ export default function Complete({ navigation }) {
         <View style={styles.completebg}>
             <Text style={styles.completemsg}>Thirst Quenched!</Text>
             <Image
-                source={{ uri: 'https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif' }}
+                source={{ uri: 'https://img1.picmix.com/output/stamp/normal/1/9/4/1/1061491_26600.gif' }}
                 style={styles.completeimg}
             />
             <TouchableOpacity onPress={pickImage}>

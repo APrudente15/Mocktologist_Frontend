@@ -64,7 +64,7 @@ export default function Top({ navigation }) {
             const repo = 'profile_pics';
             const path = `${userId}/qr/${Date.now()}.jpg`;
             const message = 'Upload image';
-            const accessToken = '';
+            const accessToken = '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';
             const content = {
                 message,
                 content: base64Image,
@@ -218,13 +218,15 @@ export default function Top({ navigation }) {
                     numColumns={1}
                     contentContainerStyle={{ paddingBottom: 20 }}
                 />
-                <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={() => { setShowOverlay(true), setShowQR(true) }}>
-                    <Text style={styles.buttonText}> QR code</Text>
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={pickImage}>
-                    <Text style={styles.buttonText}> Scan QR Code</Text>
-                </TouchableHighlight>
-                <Text>{errm}</Text>
+                <View style={styles.qrcont}>
+                    <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={() => { setShowOverlay(true), setShowQR(true) }}>
+                        <Text style={styles.buttonText}> Share</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={pickImage}>
+                        <Text style={styles.buttonText}> Scan </Text>
+                    </TouchableHighlight>
+                </View>
+                <Text style={styles.buttonText}>{errm}</Text>
             </View>
         </ImageBackground >
     );

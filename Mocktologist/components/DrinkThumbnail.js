@@ -63,9 +63,9 @@ function DrinkThumbnail({ index, type, body, image, name, rating, tastes, vegan,
     <View>
       {showDetails && <Details />}
       <TouchableOpacity style={[styles.dashBox, { width: type === 'ranking' || type === 'current' ? 350 : 190, height: type === 'current' ? 300 : 185 }]} onPress={() => handleThumbnailPress()}>
-        <Text style={[styles.heading, { fontSize: 18 }]}>{type === 'ranking' && index + 1 + '.'} {name} <Text style={{ color: '#A9ED91' }}>{vegan ? 'v' : ''}</Text></Text>
+        <Text style={[styles.heading, { fontSize: 18, marginTop: 0, marginBottom: 10 }]}>{type === 'ranking' && index + 1 + '.'} {name} <Text style={{ color: '#A9ED91' }}>{vegan ? 'v' : ''}</Text></Text>
         <View>
-          {type !== 'current' && <Image source={{ uri: image }} style={styles.drinkThumbnailImage} />}
+          {type !== 'current' && <Image source={{ uri: image }} style={[styles.drinkThumbnailImage, { width: type === 'ranking' || type === 'current' ? 300 : 150 }]} />}
           {type === 'current' && <Image style={[styles.bartenderCurrent, { bottom: -10 }]} source={require('../assets/bartender.png')} />}
         </View>
         {type === 'current' && <TouchableHighlight style={styles.button} onPress={() => navigation.navigate("Steps")}>

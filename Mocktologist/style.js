@@ -561,19 +561,20 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(40),
         fontWeight: 'bold',
         color: 'white',
-        marginTop: verticalScale(60)
+        marginTop: verticalScale(100)
     },
     completeimg: {
+        position: 'absolute',
+        bottom: verticalScale(0),
         height: verticalScale(200),
-        width: horizontalScale(300),
-        marginBottom: verticalScale(20)
+        width: horizontalScale(400),
     },
     completeup: {
-        height: verticalScale(200),
-        width: horizontalScale(200),
-        borderWidth: moderateScale(3),
-        borderColor: '#2C2C2C',
-        borderRadius: moderateScale(20)
+        height: verticalScale(300),
+        width: horizontalScale(300),
+        borderRadius: moderateScale(20),
+        marginBottom: verticalScale(10),
+        marginTop: verticalScale(20)
     },
     loadingimg: {
         height: verticalScale(600),
@@ -606,6 +607,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         position: 'absolute',
     },
+    qrcont: {
+        flexDirection: 'row'
+    },
+    ingredientsList: {
+        color: 'white',
+        fontSize: moderateScale(20),
+        padding: moderateScale(10)
+    }
 })
 
 module.exports = styles
