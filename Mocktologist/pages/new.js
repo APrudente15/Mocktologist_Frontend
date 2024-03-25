@@ -6,8 +6,19 @@ import { PopupText } from "../components";
 import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useChoices } from '../hooks/useChoices'
+import { useIsFocused } from "@react-navigation/native";
 
 export default function New({ navigation }) {
+
+    const isFocused = useIsFocused()
+
+    useEffect(() => {
+        if (isFocused) {
+            setSelectedTaste('Sour')
+            setVegan(vegan)
+        }
+
+    }, [isFocused])
 
     const { selectedTaste, setSelectedTaste, avoids, setAvoids } = useChoices()
 
@@ -61,7 +72,7 @@ export default function New({ navigation }) {
                     <Text style={styles.dropdownMess}> Select Taste </Text>
                     <Dropdown
                         style={styles.dropDown}
-                        placeholder=""
+                        placeholder={selectedTaste}
                         data={[
                             { label: 'Sour', value: 'sour' },
                             { label: 'Sweet', value: 'sweet' },
@@ -72,15 +83,18 @@ export default function New({ navigation }) {
                         value={selectedTaste}
                         onChange={item => setSelectedTaste(item.value)}
                         selectedTextStyle={[{ color: 'white' }, { marginLeft: '5%' }]}
+                        placeholderStyle={[{ color: 'white' }, { marginLeft: '5%' }]}
                     />
                 </View>
                 <View style={styles.inputContainer1}>
                     <TextInput
-                        style={styles.inputDD}
+                        style={[styles.inputDD, { textAlignVertical: 'top' }]}
                         placeholder="Anything to not include in your drink?"
                         placeholderTextColor={styles.input.placeholder.color}
                         value={avoids}
                         onChangeText={handleAvoidsChange}
+                        maxLength={100}
+                        multiline={true}
                     />
                 </View>
                 <View style={styles.row2}>
