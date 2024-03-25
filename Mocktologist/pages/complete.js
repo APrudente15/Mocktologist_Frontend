@@ -13,12 +13,22 @@ export default function Complete({ navigation }) {
 
     const [rating, setRating] = useState(5)
     const [image, setImage] = useState('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
-    const [uploadImg, setUploadImg] = useState('https://media.istockphoto.com/id/1303977605/photo/five-cocktails-in-hands-joined-in-celebratory-toast.jpg?s=612x612&w=0&k=20&c=QtnWuVeQCwKOfXIISxfkuDhQTe15qnnKOFKgpcH1Vko=')
+    const [uploadImg, setUploadImg] = useState('')
     const [done, setDone] = useState(false)
     const [id, setId] = useState(0)
 
     const isFocused = useIsFocused()
 
+    const placeholders = [
+        'https://media.istockphoto.com/id/1303977605/photo/five-cocktails-in-hands-joined-in-celebratory-toast.jpg?s=612x612&w=0&k=20&c=QtnWuVeQCwKOfXIISxfkuDhQTe15qnnKOFKgpcH1Vko=',
+        'https://t4.ftcdn.net/jpg/00/83/43/35/360_F_83433594_0xo0M4r8WPJFqVktFUu7ubkn831t4kpu.jpg',
+        'https://media.istockphoto.com/id/917737514/photo/barmans-hands-sprinkling-the-juice-into-the-cocktail-glass.jpg?s=612x612&w=0&k=20&c=9gWN7LlTLDxal1QUpVYHSLUwJ6U9NoYWG52K2GVVFPI=',
+        'https://media.istockphoto.com/id/1319973261/photo/people-hands-toasting-multicolored-fancy-drinks-young-friends-having-fun-together-drinking.jpg?s=612x612&w=0&k=20&c=_laIepgjipbjSO_E-6KD-hGvJuRl-qb6M60rB946Tvg=',
+        'https://www.shutterstock.com/image-photo/friends-toasting-saying-cheers-holding-600nw-780298633.jpg',
+        'https://cdn.pixabay.com/photo/2017/08/03/21/48/drinks-2578446_640.jpg',
+        'https://cdn.create.vista.com/api/media/small/647087706/stock-photo-bright-glowing-colourful-cocktails-reflecting-glass-black-background',
+        'https://thumbs.dreamstime.com/b/margaritas-most-popular-cocktails-series-6780543.jpg'
+    ]
 
 
     useEffect(() => {
@@ -45,7 +55,8 @@ export default function Complete({ navigation }) {
             getId()
             setImage('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
             setRating(5)
-            setUploadImg('https://media.istockphoto.com/id/1303977605/photo/five-cocktails-in-hands-joined-in-celebratory-toast.jpg?s=612x612&w=0&k=20&c=QtnWuVeQCwKOfXIISxfkuDhQTe15qnnKOFKgpcH1Vko=')
+            const newIndex = Math.floor(Math.random() * placeholders.length);
+            setUploadImg(placeholders[newIndex])
         }
     }, [isFocused])
 
