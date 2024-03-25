@@ -571,11 +571,13 @@ const styles = StyleSheet.create({
         marginTop: '50%'
     },
     qr: {
+        flex: 1,
         alignItems: 'center',
-        marginTop: verticalScale(100)
+        justifyContent: 'center',
+        marginTop: verticalScale(10)
     },
     code: {
-        marginTop: verticalScale(200),
+        marginTop: verticalScale(100),
         transform: [{ scale: moderateScale(2) }]
     }
 });
