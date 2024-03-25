@@ -25,8 +25,12 @@ export default function Top({ navigation }) {
     const QRCodeGenerator = ({ userIdStr }) => {
         return (
             <View style={styles.qr}>
-                <Text style={styles.heading2}>Share with Friends!</Text>
-                <View style={styles.code}>
+                <Text style={[styles.heading2, {textAlign: 'center'}]}>Share your top mixes with friends!</Text>
+                <Text style={[styles.landingPageText2, {marginTop: 15}]}>Your friend can scan this QR code on their Mocktologist app to see your top mixes.</Text>
+                <View style={[styles.code, {
+                    borderColor: '#ED91C8',
+                    borderWidth: 2,
+                }]}>
                     <QRCode value={userIdStr} />
                 </View>
             </View>
