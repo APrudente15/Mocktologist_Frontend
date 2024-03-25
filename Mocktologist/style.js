@@ -449,6 +449,19 @@ const styles = StyleSheet.create({
         padding: moderateScale(20),
         marginTop: verticalScale(20),
     },
+    stepBox2: {
+        backgroundColor: '#353535',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        borderRadius: moderateScale(10),
+        width: horizontalScale(300),
+        height: verticalScale(400),
+        marginBottom: verticalScale(20),
+        padding: moderateScale(20),
+        marginTop: verticalScale(20),
+    },
     stepText: {
         color: 'white',
         fontSize: moderateScale(20)
