@@ -18,17 +18,21 @@ function Medal() {
     useEffect(() => {
         setCount(0)
         const fetchCount = async () => {
-            const options = {
-                method: 'GET',
-                headers: {
-                    Authorization: token
-                }
-            };
-            const response = await fetch(`https://mocktologist-backend.onrender.com/user/count/${userId}`, options);
-            const data = await response.json();
-            setCount(data);
-        };
-        if(isFocused){
+            try {
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        Authorization: token
+                    }
+                };
+                const response = await fetch(`https://mocktologist-backend.onrender.com/user/count/${userId}`, options);
+                const data = await response.json();
+                setCount(data);
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        if (isFocused) {
             fetchCount();
         }
     }, [isFocused]);

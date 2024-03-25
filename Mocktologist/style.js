@@ -285,12 +285,14 @@ const styles = StyleSheet.create({
     popupButton: {
         position: 'absolute',
         top: verticalScale(10),
-        right: horizontalScale(30)
+        right: horizontalScale(30),
+        zIndex: 6,
     },
     popupButtonText: {
         color: '#fff',
         fontWeight: 'bold',
         fontSize: moderateScale(32),
+        zIndex: 6,
     },
     errorText: {
         color: 'white'
