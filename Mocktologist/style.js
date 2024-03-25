@@ -321,7 +321,8 @@ const styles = StyleSheet.create({
         borderRadius: moderateScale(10),
         width: horizontalScale(180),
         height: verticalScale(180),
-        margin: moderateScale(15)
+        margin: moderateScale(15),
+        padding: moderateScale(10)
     },
     boxCont:
     {
