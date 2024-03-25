@@ -86,7 +86,7 @@ export default function Complete({ navigation }) {
             const repo = 'profile_pics';
             const path = `${userId}/drinks/${Date.now()}.jpg`;
             const message = 'Upload image';
-            const accessToken = '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';
+            const accessToken = '';
             const content = {
                 message,
                 content: base64Image,
