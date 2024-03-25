@@ -5,15 +5,49 @@ import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system';
 import { useAuth } from '../hooks/useAuth';
 import styles from '../style';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Complete({ navigation }) {
 
-    const { userId } = useAuth()
+    const { userId, token } = useAuth()
 
     const [rating, setRating] = useState(5)
     const [image, setImage] = useState('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
     const [uploadImg, setUploadImg] = useState('https://media.istockphoto.com/id/1303977605/photo/five-cocktails-in-hands-joined-in-celebratory-toast.jpg?s=612x612&w=0&k=20&c=QtnWuVeQCwKOfXIISxfkuDhQTe15qnnKOFKgpcH1Vko=')
     const [done, setDone] = useState(false)
+    const [id, setId] = useState(0)
+
+    const isFocused = useIsFocused()
+
+
+
+    useEffect(() => {
+        if (isFocused) {
+            const getId = async () => {
+                try {
+                    const options = {
+                        method: "GET",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                            Authorization: token,
+                        }
+                    }
+                    const response = await fetch(`https://mocktologist-backend.onrender.com/drink/current/${userId}`, options)
+                    const data = await response.json()
+                    if (response.ok) {
+                        setId(data.id)
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            getId()
+            setImage('https://t4.ftcdn.net/jpg/05/65/22/41/360_F_565224180_QNRiRQkf9Fw0dKRoZGwUknmmfk51SuSS.jpg')
+            setRating(5)
+            setUploadImg('https://media.istockphoto.com/id/1303977605/photo/five-cocktails-in-hands-joined-in-celebratory-toast.jpg?s=612x612&w=0&k=20&c=QtnWuVeQCwKOfXIISxfkuDhQTe15qnnKOFKgpcH1Vko=')
+        }
+    }, [isFocused])
 
     const pickImage = async () => {
         let result = await ImagePicker.launchCameraAsync({
@@ -70,12 +104,34 @@ export default function Complete({ navigation }) {
         }
     };
 
-    const handleDone = () => {
+    const handleDone = async () => {
         setDone(true)
-        setTimeout(() => {
+        try {
+            const options = {
+                method: "PATCH",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                },
+                body: JSON.stringify({
+                    image: uploadImg,
+                    rating: rating,
+                    done: true
+                }),
+            }
+            const response = await fetch(`https://mocktologist-backend.onrender.com/drink/${id}`, options)
+            if (response.ok) {
+                setTimeout(() => {
+                    setDone(false)
+                    navigation.navigate("Dashboard")
+                }, 1500);
+            }
+        } catch (error) {
             setDone(false)
-            navigation.navigate("Dashboard")
-        }, 1500);
+            console.error(error);
+        }
+
 
     }
 

@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(32),
         fontWeight: 'bold',
-        marginTop: verticalScale(10)
+        marginTop: verticalScale(10),
+        textAlign: 'center'
     },
     headingConf: {
         color: 'white',
@@ -64,7 +65,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(32),
         fontWeight: 'bold',
-        marginBottom: verticalScale(20)
+        marginBottom: verticalScale(20),
+        textAlign: 'center'
     },
     landingPageText1: {
         color: '#ffffff',

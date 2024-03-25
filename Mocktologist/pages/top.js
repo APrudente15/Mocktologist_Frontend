@@ -209,7 +209,7 @@ export default function Top({ navigation }) {
                 {showPopup && <Popup />}
                 {showQR && <PopupQR />}
                 <View style={styles.headingContainer}>
-                    <Text style={styles.heading}> Top Mixes {scannedId} {errm}</Text>
+                    <Text style={styles.heading}> Top Mixes</Text>
                 </View>
                 <FlatList
                     data={drinks}
@@ -224,6 +224,7 @@ export default function Top({ navigation }) {
                 <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={pickImage}>
                     <Text style={styles.buttonText}> Scan QR Code</Text>
                 </TouchableHighlight>
+                <Text>{errm}</Text>
             </View>
         </ImageBackground >
     );
