@@ -43,8 +43,8 @@
       "!**/node_modules/**",
       "!**/assets/**",
       "!**/coverage/**",
-      "!mocktologist/**/app.js",
-      "!mocktologist/**/Navigation.js"
+      "!**/hooks/**",
+      "!**/components/**"
     ],
     "coverageDirectory": "./coverage/",
     "testEnvironment": "node",
