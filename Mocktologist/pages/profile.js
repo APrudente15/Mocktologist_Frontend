@@ -6,20 +6,20 @@ import { useEffect, useState } from "react";
 import { PopupText } from "../components";
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system';
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Profile() {
 
-    const { token, userId, firstName, setFirstName, image, setImage, setVegan } = useAuth()
+    const isFocused = useIsFocused()
+
+    const { token, userId, firstName, setFirstName, image, setImage, setVegan, vegan } = useAuth()
 
     const [editingFirstName, setEditingFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
-    const [vegan2, setVegan2] = useState(false)
     const [systemMessage, setSystemMessage] = useState("")
-
-    useEffect(() => {
-        setVegan(vegan2)
-    }, [])
+    const [newpfp, setNewpfp] = useState(image)
+    const [newVegan, setNewVegan] = useState(false)
 
     const handleFirstNameChange = (inputText) => {
         setEditingFirstName(inputText);
@@ -34,8 +34,7 @@ export default function Profile() {
     }
 
     const toggleVegan = () => {
-        setVegan2(previousValue => !previousValue);
-        setVegan(vegan2)
+        setNewVegan(previousValue => !previousValue);
     };
 
     const pickImage = async () => {
@@ -84,9 +83,8 @@ export default function Profile() {
 
             const responseData = await response.json();
             console.log('Image uploaded successfully:', responseData);
-            setImage(responseData.content.download_url);
-            updateUserDetails()
-            return responseData;
+            setNewpfp(responseData.content.download_url);
+            return newpfp;
         } catch (error) {
             console.error('Error uploading image to GitHub:', error);
             throw error;
@@ -106,8 +104,8 @@ export default function Profile() {
                     fname: editingFirstName,
                     lname: lastName,
                     email: email,
-                    vegan: vegan2,
-                    image: image
+                    vegan: newVegan,
+                    image: newpfp
                 }),
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/user/${userId}`, options)
@@ -119,7 +117,9 @@ export default function Profile() {
                 return;
             }
             setSystemMessage("User details updated.");
+            setImage(newpfp)
             setFirstName(editingFirstName)
+            setVegan(newVegan)
             setTimeout(() => {
                 setSystemMessage("");
             }, 3000);
@@ -129,28 +129,31 @@ export default function Profile() {
     }
 
     useEffect(() => {
-        const fetchUserDetails = async () => {
-            setSystemMessage("")
-            try {
-                if(!token){
-                    return
+        if (isFocused) {
+            const fetchUserDetails = async () => {
+                setSystemMessage("")
+                try {
+                    if (!token) {
+                        return
+                    }
+                    const response = await fetch(`https://mocktologist-backend.onrender.com/user/${token}`)
+                    if (!response.ok) {
+                        setSystemMessage("Failed to fetch user details. Please refresh the page.")
+                    }
+                    const data = await response.json()
+                    setFirstName(data.fname)
+                    setLastName(data.lname)
+                    setEmail(data.email)
+                    setNewVegan(data.vegan)
+                    setNewpfp(data.image)
+                } catch (error) {
+                    console.error(error);
                 }
-                const response = await fetch(`https://mocktologist-backend.onrender.com/user/${token}`)
-                if (!response.ok) {
-                    setSystemMessage("Failed to fetch user details. Please refresh the page.")
-                }
-                const data = await response.json()
-                setFirstName(data.fname)
-                setLastName(data.lname)
-                setEmail(data.email)
-                setVegan2(data.vegan)
-            } catch (error) {
-                console.error(error);
             }
+            setEditingFirstName(firstName)
+            fetchUserDetails()
         }
-        setEditingFirstName(firstName)
-        fetchUserDetails()
-    }, [token])
+    }, [isFocused])
 
     const { showOverlay, setShowOverlay, showPopup, setShowPopup } = useOverlayPopup();
 
@@ -186,7 +189,7 @@ export default function Profile() {
                 </View>
                 <View style={styles.pfp}>
                     <Image
-                        source={{ uri: image }}
+                        source={{ uri: newpfp }}
                         style={styles.pfp2image}
                     />
                     <TouchableHighlight style={styles.button} underlayColor="#ED91C8" onPress={pickImage}>
@@ -224,9 +227,9 @@ export default function Profile() {
                     <View style={styles.row}>
                         <Text style={styles.vegan}>Vegan:</Text>
                         <Switch
-                            value={vegan2}
+                            value={newVegan}
                             onValueChange={toggleVegan}
-                            thumbColor={vegan2 ? '#ffffff' : '#ffffff'}
+                            thumbColor={newVegan ? '#ffffff' : '#ffffff'}
                             trackColor={{ false: '#353535', true: '#ED91C8' }}
                             style={styles.toggle}
                         />

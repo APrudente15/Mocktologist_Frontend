@@ -33,7 +33,7 @@ export default function Dash({ navigation }) {
             setActive(true)
             setCurrentDrink(data)
         }
-        if(isFocused){
+        if (isFocused) {
             getCurrentDrink()
         }
     }, [isFocused])
