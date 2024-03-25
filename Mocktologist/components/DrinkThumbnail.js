@@ -4,10 +4,13 @@ import { useOverlayPopup } from '../hooks/useOverlayPopup'
 import styles from '../style'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
+import { useChoices } from '../hooks/useChoices'
 
-function DrinkThumbnail({ index, type, body, image, name, rating, tastes, vegan }) {
+function DrinkThumbnail({ index, type, body, image, name, rating, tastes, vegan, id }) {
 
   const { showOverlay, setShowOverlay } = useOverlayPopup()
+  const { viewId, setViewId } = useChoices()
+
   const navigation = useNavigation()
 
   const [showDetails, setShowDetails] = useState(false)
@@ -26,6 +29,13 @@ function DrinkThumbnail({ index, type, body, image, name, rating, tastes, vegan 
     }
   }
 
+  const handleRecipe = () => {
+    setShowDetails(false)
+    setShowOverlay(false)
+    setViewId(id)
+    navigation.navigate("Recipe")
+  }
+
   const Details = () => (
     <Modal
       visible={showDetails}
@@ -34,14 +44,14 @@ function DrinkThumbnail({ index, type, body, image, name, rating, tastes, vegan 
       onRequestClose={() => setShowDetails(false)}
     >
       <View style={[styles.popupBox, { left: 30 }]}>
-        <TouchableHighlight style={{ left: 140 }} onPress={() => handleThumbnailClose()}>
+        <TouchableHighlight underlayColor="transparent" style={{ left: 140 }} onPress={() => handleThumbnailClose()}>
           <Text style={styles.popupButtonText}>X</Text>
         </TouchableHighlight>
         <Text style={styles.heading}>{name} <Text style={{ color: '#A9ED91' }}>{vegan ? 'v' : ''}</Text></Text>
-        <Image style={styles.detailsImage} source={{uri: image}}></Image>
-        <Text style={[styles.heading, {marginBottom: 25, fontSize: 24}]}>Rating: {rating}/10</Text>
-        <Text style={[styles.heading, {marginBottom: 25, fontSize: 24}]}>Taste Profile: {tastes}</Text>
-        <TouchableHighlight style={styles.button} onPress={() => setShowDetails(false)}>
+        <Image style={styles.detailsImage} source={{ uri: image }}></Image>
+        <Text style={[styles.heading, { marginBottom: 25, fontSize: 24 }]}>Rating: {rating}/10</Text>
+        <Text style={[styles.heading, { marginBottom: 25, fontSize: 24 }]}>Taste Profile: {tastes}</Text>
+        <TouchableHighlight style={styles.button} onPress={handleRecipe}>
           <Text style={styles.buttonText}>Recipe</Text>
         </TouchableHighlight>
       </View>
@@ -52,7 +62,7 @@ function DrinkThumbnail({ index, type, body, image, name, rating, tastes, vegan 
   return (
     <View>
       {showDetails && <Details />}
-      <TouchableOpacity style={[styles.dashBox, { width: type === 'ranking' || type === 'current' ? 350 : 180, height: type === 'current' ? 300 : 180 }]} onPress={() => handleThumbnailPress()}>
+      <TouchableOpacity style={[styles.dashBox, { width: type === 'ranking' || type === 'current' ? 350 : 190, height: type === 'current' ? 300 : 185 }]} onPress={() => handleThumbnailPress()}>
         <Text style={[styles.heading, { fontSize: 18 }]}>{type === 'ranking' && index + 1 + '.'} {name} <Text style={{ color: '#A9ED91' }}>{vegan ? 'v' : ''}</Text></Text>
         <View>
           {type !== 'current' && <Image source={{ uri: image }} style={styles.drinkThumbnailImage} />}

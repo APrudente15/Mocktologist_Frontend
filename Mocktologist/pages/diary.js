@@ -32,7 +32,7 @@ export default function Diary() {
                 console.error('Error fetching drinks:', error);
             }
         };
-        if(isFocused){
+        if (isFocused) {
             getAllDrinks();
         }
     }, [isFocused]);
@@ -58,7 +58,7 @@ export default function Diary() {
     };
 
     const renderDrinkItem = ({ item }) => (
-        <DrinkThumbnail body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
+        <DrinkThumbnail body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} id={item.id} />
     );
 
     return (
