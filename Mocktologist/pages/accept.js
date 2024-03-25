@@ -85,13 +85,14 @@ export default function Accept({ navigation }) {
             if (response.ok) {
                 const data = await response.json()
                 setResp(data.body)
+                console.log(resp)
                 setName(data.name)
                 setProfile(data.body[0])
                 const i = data.body.findIndex(e => e == "Ingredients required:") + 1
                 const j = data.body.findIndex(e => e == "Instructions:")
                 setIngredients(data.body.slice(i, j))
                 let k
-                if (data.body.findIndex(e => e == "Nutritional Info: ")) {
+                if (data.body.findIndex(e => e == "Nutritional Info: ") !== -1) {
                     k = data.body.findIndex(e => e == "Nutritional Info: ")
                 } else {
                     k = data.body.findIndex(e => e == "Nutritional Info:")
