@@ -125,12 +125,12 @@ export default function Complete({ navigation }) {
                     valueField="value"
                     value={rating}
                     onChange={item => setRating(item.value)}
-                    selectedTextStyle={[{ color: '#353535' }, { marginLeft: '45%' }, { fontWeight: 'bold' }]}
+                    selectedTextStyle={[{ color: 'white' }, { marginLeft: '45%' }, { fontWeight: 'bold' }]}
                     placeholderStyle={[{ color: 'white' }, { marginLeft: '45%' }]}
                 />
             </View>
             <TouchableHighlight style={styles.buttonc} underlayColor="#ED91C8" onPress={handleDone}>
-                <Text style={styles.buttonTextc}> Complete </Text>
+                <Text style={styles.buttonText}> Complete </Text>
             </TouchableHighlight>
         </View>
     );

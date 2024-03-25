@@ -190,7 +190,7 @@ export default function Top({ navigation }) {
                         <Text style={styles.heading}> Scanning . . . </Text>
                     </View >
                     <Image
-                        source={{ uri: 'https://media4.giphy.com/media/nZmvW8LHk6f0ccnAED/giphy.gif?cid=6c09b952ridm5kxu8hoe51yf9lmic8ewlbyxubynjmk21eqg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s' }}
+                        source={{ uri: 'https://github.com/zmolla99/profile_pics/blob/main/loading__1_.gif?raw=true' }}
                         style={styles.loadingimg}
                     />
                 </View>

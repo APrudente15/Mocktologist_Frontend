@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { useOverlayPopup } from './hooks/useOverlayPopup'
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
-import { MaterialIcons, AntDesign } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StatusBar, Image, View, TouchableHighlight, Text, TouchableOpacity } from 'react-native';
 import { Login, Register, Landing, Dash, Steps, Top, Profile, Diary, New, Accept, Complete, Scan } from './pages'
