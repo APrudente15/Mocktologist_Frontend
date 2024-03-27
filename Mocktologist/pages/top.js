@@ -25,8 +25,12 @@ export default function Top({ navigation }) {
     const QRCodeGenerator = ({ userIdStr }) => {
         return (
             <View style={styles.qr}>
-                <Text style={styles.heading2}>Share with Friends!</Text>
-                <View style={styles.code}>
+                <Text style={[styles.heading2, { textAlign: 'center' }]}>Share your top mixes with friends!</Text>
+                <Text style={[styles.landingPageText2, { marginTop: 15 }]}>Your friend can scan this QR code on their Mocktologist app to see your top mixes.</Text>
+                <View style={[styles.code, {
+                    borderColor: '#ED91C8',
+                    borderWidth: 2,
+                }]}>
                     <QRCode value={userIdStr} />
                 </View>
             </View>
@@ -177,7 +181,7 @@ export default function Top({ navigation }) {
     };
 
     const renderDrinkItem = ({ item, index }) => (
-        <DrinkThumbnail index={index} type="ranking" body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} />
+        <DrinkThumbnail index={index} type="ranking" body={item.body} image={item.image} name={item.name} rating={item.rating} tastes={item.tastes} vegan={item.vegan} id={item.id} />
     );
 
     if (loading) {
@@ -205,7 +209,7 @@ export default function Top({ navigation }) {
                 {showPopup && <Popup />}
                 {showQR && <PopupQR />}
                 <View style={styles.headingContainer}>
-                    <Text style={styles.heading}> Top Mixes {scannedId} {errm}</Text>
+                    <Text style={styles.heading}> Top Mixes</Text>
                 </View>
                 <FlatList
                     data={drinks}
@@ -214,12 +218,15 @@ export default function Top({ navigation }) {
                     numColumns={1}
                     contentContainerStyle={{ paddingBottom: 20 }}
                 />
-                <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={() => { setShowOverlay(true), setShowQR(true) }}>
-                    <Text style={styles.buttonText}> QR code</Text>
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={pickImage}>
-                    <Text style={styles.buttonText}> Scan QR Code</Text>
-                </TouchableHighlight>
+                <View style={styles.qrcont}>
+                    <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={() => { setShowOverlay(true), setShowQR(true) }}>
+                        <Text style={styles.buttonText}> Share</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.buttonOp} underlayColor="#ED91C8" onPress={pickImage}>
+                        <Text style={styles.buttonText}> Scan </Text>
+                    </TouchableHighlight>
+                </View>
+                <Text style={styles.buttonText}>{errm}</Text>
             </View>
         </ImageBackground >
     );

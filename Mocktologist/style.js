@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(32),
         fontWeight: 'bold',
-        marginTop: verticalScale(10)
+        marginTop: verticalScale(10),
+        textAlign: 'center'
     },
     headingConf: {
         color: 'white',
@@ -64,7 +65,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(32),
         fontWeight: 'bold',
-        marginBottom: verticalScale(20)
+        marginBottom: verticalScale(20),
+        textAlign: 'center'
     },
     landingPageText1: {
         color: '#ffffff',
@@ -447,6 +449,19 @@ const styles = StyleSheet.create({
         padding: moderateScale(20),
         marginTop: verticalScale(20),
     },
+    stepBox2: {
+        backgroundColor: '#353535',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#ED91C8',
+        borderWidth: moderateScale(2),
+        borderRadius: moderateScale(10),
+        width: horizontalScale(300),
+        height: verticalScale(400),
+        marginBottom: verticalScale(20),
+        padding: moderateScale(20),
+        marginTop: verticalScale(20),
+    },
     stepText: {
         color: 'white',
         fontSize: moderateScale(20)
@@ -546,19 +561,20 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(40),
         fontWeight: 'bold',
         color: 'white',
-        marginTop: verticalScale(60)
+        marginTop: verticalScale(100)
     },
     completeimg: {
+        position: 'absolute',
+        bottom: verticalScale(0),
         height: verticalScale(200),
-        width: horizontalScale(300),
-        marginBottom: verticalScale(20)
+        width: horizontalScale(400),
     },
     completeup: {
-        height: verticalScale(200),
-        width: horizontalScale(200),
-        borderWidth: moderateScale(3),
-        borderColor: '#2C2C2C',
-        borderRadius: moderateScale(20)
+        height: verticalScale(300),
+        width: horizontalScale(300),
+        borderRadius: moderateScale(20),
+        marginBottom: verticalScale(10),
+        marginTop: verticalScale(20)
     },
     loadingimg: {
         height: verticalScale(600),
@@ -571,13 +587,34 @@ const styles = StyleSheet.create({
         marginTop: '50%'
     },
     qr: {
+        flex: 1,
         alignItems: 'center',
-        marginTop: verticalScale(100)
+        justifyContent: 'center',
+        marginTop: verticalScale(10)
     },
     code: {
-        marginTop: verticalScale(200),
+        marginTop: verticalScale(100),
         transform: [{ scale: moderateScale(2) }]
+    },
+    detailsImage: {
+        marginTop: verticalScale(15),
+        marginBottom: verticalScale(10),
+        height: verticalScale(300),
+        width: horizontalScale(250),
+        borderRadius: moderateScale(10)
+    },
+    modalBackground: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        position: 'absolute',
+    },
+    qrcont: {
+        flexDirection: 'row'
+    },
+    ingredientsList: {
+        color: 'white',
+        fontSize: moderateScale(20),
+        padding: moderateScale(10)
     }
-});
+})
 
 module.exports = styles

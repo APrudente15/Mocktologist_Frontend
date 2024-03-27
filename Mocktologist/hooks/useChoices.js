@@ -7,9 +7,10 @@ export const ChoicesProvider = ({ children }) => {
     const [avoids, setAvoids] = useState("");
     const [veganNow, setVeganNow] = useState(false)
     const [start, setStart] = useState(false)
+    const [viewId, setViewId] = useState(0)
 
     return (
-        <ChoicesContext.Provider value={{ selectedTaste, setSelectedTaste, avoids, setAvoids, veganNow, setVeganNow, start, setStart }}>
+        <ChoicesContext.Provider value={{ selectedTaste, setSelectedTaste, avoids, setAvoids, veganNow, setVeganNow, start, setStart, viewId, setViewId }}>
             {children}
         </ChoicesContext.Provider>
     );

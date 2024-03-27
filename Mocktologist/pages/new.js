@@ -76,7 +76,10 @@ export default function New({ navigation }) {
                         data={[
                             { label: 'Sour', value: 'sour' },
                             { label: 'Sweet', value: 'sweet' },
-                            { label: 'Salty', value: 'salty' }
+                            { label: 'Salty', value: 'salty' },
+                            { label: 'Minty', value: 'minty'},
+                            { label: 'Herby', value: 'herby'},
+                            { label: 'Fizzy', value: 'fizzy'}
                         ]}
                         labelField="label"
                         valueField="value"

@@ -15,7 +15,7 @@ function LastDrink() {
         setHasMadeMocktail(false)
         setLastDrink({})
         const getLastDrink = async () => {
-            if(!token){
+            if (!token) {
                 return
             }
             const options = {
@@ -26,22 +26,22 @@ function LastDrink() {
             }
             const response = await fetch(`https://mocktologist-backend.onrender.com/drink/all/${userId}`, options)
             console.log(response)
-            if(!response.ok){
+            if (!response.ok) {
                 console.error('Cannot get drinks.')
             }
             const data = await response.json()
-            if(data.length === 0){
+            if (data.length === 0) {
                 return
             }
             setHasMadeMocktail(true)
-            setLastDrink(data[data.length-1])
+            setLastDrink(data[data.length - 1])
         }
-        if(isFocused){
+        if (isFocused) {
             getLastDrink()
         }
     }, [isFocused])
 
-    if(!hasMadeMocktail){
+    if (!hasMadeMocktail) {
         return (
             <View style={styles.dashBox}>
                 <Text style={styles.rankText}>Your most recent mocktail will show up here!</Text>
@@ -51,7 +51,7 @@ function LastDrink() {
 
     return (
         <View>
-            {lastDrink  && <DrinkThumbnail body={lastDrink.body} image={lastDrink.image} name={lastDrink.name} rating={lastDrink.rating} tastes={lastDrink.tastes} vegan={lastDrink.vegan}></DrinkThumbnail>}
+            {lastDrink && <DrinkThumbnail body={lastDrink.body} image={lastDrink.image} name={lastDrink.name} rating={lastDrink.rating} tastes={lastDrink.tastes} vegan={lastDrink.vegan} id={lastDrink.id}></DrinkThumbnail>}
         </View>
     )
 }
