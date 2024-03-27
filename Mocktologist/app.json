@@ -16,13 +16,18 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "IOSMOCKTOLOGIST"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.zephania1656.Mocktologist"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,6 +39,12 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9549fa8e-9884-4553-9c6a-8954380758a9"
+      }
+    },
+    "owner": "zephania1656"
   }
 }

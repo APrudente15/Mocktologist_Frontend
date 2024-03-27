@@ -35,7 +35,7 @@ export default function Steps({ navigation }) {
                         const data = await response.json()
                         setName(data.name)
                         setId(data.id)
-                        const i = data.body.findIndex(e => e == "Ingredients required:") + 1
+                        const i = data.body.findIndex(e => e == "Ingredients:") + 1
                         const j = data.body.findIndex(e => e == "Instructions:")
                         setIngredients(data.body.slice(i, j))
                         const k = data.body.findIndex(e => e == "Nutritional Info: ")

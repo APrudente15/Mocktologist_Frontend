@@ -88,7 +88,7 @@ export default function Top({ navigation }) {
             console.log(responseData.content.download_url);
             const qrCodeUrl = responseData.content.download_url;
             try {
-                const response = await fetch(`http://api.qrserver.com/v1/read-qr-code/?fileurl=${qrCodeUrl}`);
+                const response = await fetch(`https://api.qrserver.com/v1/read-qr-code/?fileurl=${qrCodeUrl}`);
 
                 if (!response.ok) {
                     setLoading(false)

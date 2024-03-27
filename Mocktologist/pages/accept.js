@@ -88,7 +88,7 @@ export default function Accept({ navigation }) {
                 console.log(resp)
                 setName(data.name)
                 setProfile(data.body[0])
-                const i = data.body.findIndex(e => e == "Ingredients required:") + 1
+                const i = data.body.findIndex(e => e == "Ingredients:") + 1
                 const j = data.body.findIndex(e => e == "Instructions:")
                 setIngredients(data.body.slice(i, j))
                 let k
