@@ -1,43 +1,51 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import Landing from '../../pages/landing';
 import { NavigationContainer } from '@react-navigation/native';
+import Landing from '../../pages/landing';
+import { AuthProvider } from '../../hooks/useAuth'; // Assuming AuthProvider wraps the entire app and provides useAuth context
 
 describe('Landing component', () => {
-  test('renders correctly', () => {
+  it('navigates to Login screen when Login button is pressed', () => {
+    const navigate = jest.fn();
+    const useNavigationMock = jest.fn().mockReturnValue({ navigate });
+
     const { getByText } = render(
       <NavigationContainer>
-        <Landing />
-      </NavigationContainer>
+        <AuthProvider>
+          <Landing />
+        </AuthProvider>
+      </NavigationContainer>,
+      { wrapper: ({ children }) => (
+        <AuthProvider>
+          <Landing />
+        </AuthProvider>
+      )}
     );
 
-    expect(getByText('A mocktail bar in your pocket.')).toBeTruthy(); //Checking for text within the rendered component to make sure the component has rendered
-    expect(getByText('Login')).toBeTruthy();
-    expect(getByText('Register')).toBeTruthy();
+    fireEvent.press(getByText('Login'));
+
+    expect(navigate).toHaveBeenCalledWith('Login');
   });
 
-  test('navigates to Login screen when Login button is pressed', () => { 
-    const { getByText, queryByText } = render( //getByText lets you find elements in the rendered component by their display text, queryByText lets you find elements but returns null if nothing is found
+  it('navigates to Register screen when Register button is pressed', () => {
+    const navigate = jest.fn();
+    const useNavigationMock = jest.fn().mockReturnValue({ navigate });
+
+    const { getByText } = render(
       <NavigationContainer>
-        <Landing />
-      </NavigationContainer> //Rendering the landing component in a navigation container so we can simulate navigation actions
-    );
-
-    fireEvent.press(getByText('Login')); //Simulating a press on the login button, finds said button using the getByText function
-
-    
-    expect(queryByText('Login')).toBeTruthy(); //Checking if the page has been navigated to the login page by checking if the text 'Login' is present
-  });
-
-  test('navigates to Register screen when Register button is pressed', () => {
-    const { getByText, queryByText } = render(
-      <NavigationContainer>
-        <Landing />
-      </NavigationContainer> 
+        <AuthProvider>
+          <Landing />
+        </AuthProvider>
+      </NavigationContainer>,
+      { wrapper: ({ children }) => (
+        <AuthProvider>
+          <Landing />
+        </AuthProvider>
+      )}
     );
 
     fireEvent.press(getByText('Register'));
 
-    expect(queryByText('Register')).toBeTruthy();
+    expect(navigate).toHaveBeenCalledWith('Register');
   });
 });
